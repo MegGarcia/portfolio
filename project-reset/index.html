@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Reset — Megan Garcia</title>
+  <meta name="description" content="Rebuilding the core navigation of Johnson &amp; Johnson's cell therapy platform — reaching the industry UX benchmark (78%) for the first time.">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../" aria-label="Megan Garcia — home"><img src="../images/logo-5__6a6fe14c.png" alt="Megan Garcia logo" width="46" height="46"></a>
+      <nav aria-label="Primary"><ul class="nav__links pill-hidden">
+        <li><a href="../work/">Work</a></li><li><a href="../about/">About</a></li><li><a href="../resume/">Resume</a></li>
+      </ul></nav>
+      <div class="nav__right">
+        <a class="btn btn--light" href="../contact/">Let's Chat!</a>
+        <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <button class="mobile-menu__close" aria-label="Close menu"></button>
+    <a href="../work/">Work</a><a href="../about/">About</a><a href="../resume/">Resume</a>
+    <a class="btn btn--light" href="../contact/">Let's Chat!</a>
+  </div>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="section cs-hero">
+      <div class="wrap">
+        <div class="cs-hero__media reveal">
+          <img src="../images/frame-131-500__692da579.png" alt="Redesigned Cryopreservation landing screen with an order side panel">
+        </div>
+        <h1 class="cs-title t-orange">Project Reset
+          <a class="btn" href="../files/ProjectReset-Deck.pdf" target="_blank" rel="noopener" style="font-size:.95rem;margin-left:6px">Process Deck
+            <span class="arrow-circle" aria-hidden="true" style="border:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          </a>
+        </h1>
+        <p class="cs-sub">Rebuilding the core navigation of a platform that tracks personalized cell therapies from patient to lab and back, where a confusing screen isn't just friction. It's a compliance risk. The redesign reached the industry UX benchmark for the first time (78%).</p>
+
+        <div class="cs-meta">
+          <div class="cs-meta__item"><div class="k"><span class="dot c-orange"></span>Duration</div><div class="v">12 Months</div></div>
+          <div class="cs-meta__item"><div class="k"><span class="dot c-purple"></span>Role</div><div class="v">Lead Product Designer</div></div>
+          <div class="cs-meta__item"><div class="k"><span class="dot c-pink"></span>Team</div><div class="v">20-person cross-functional product team</div></div>
+          <div class="cs-meta__item"><div class="k"><span class="dot c-blue"></span>Software</div><div class="v">Figma, Mural, Salesforce</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- At a glance -->
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="glance reveal">
+          <div class="glance__grid">
+            <div><h3 class="t-orange">Problem</h3><p>Navigation had grown tangled enough to cost users time and risk wrong-order errors.</p></div>
+            <div><h3 class="t-purple">What I Did</h3><p>Led the end-to-end redesign, from research through a shipped, multi-release overhaul.</p></div>
+            <div><h3 class="t-pink">Impact</h3><p>Reached the industry-standard UX benchmark for the first time (78%), with a 7% lift in perceived usefulness.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">Overview</h2>
+        <p>Personalized treatments like cell therapies require a strict chain of identity and custody to ensure patient safety and trust. The Chain of Identity &amp; Custody (COI/C) portal manages and verifies these hand-offs throughout the order fulfillment process. But consistent user feedback revealed navigation challenges that impacted daily operations and uncovered additional opportunities.</p>
+        <p>To address this, Project Reset simplified the portal's user experience and improved workflow navigation, delivered across two releases.</p>
+      </div>
+    </section>
+
+    <!-- Initial research -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">Initial Research</h2>
+        <p>The team conducted 10 site visits across the United States and Germany, which surfaced recurring themes about poor navigation between pages and tasks. Following the visits, I conducted 11 conversational user interviews with the people who had raised navigation feedback: vein-to-vein planners, manufacturing warehouse personnel, and quality (QA) staff. These confirmed the site-visit findings and revealed further opportunities.</p>
+        <p>To prioritize what I heard, I rated each finding using Nielsen Norman's severity scale, so the team could separate catastrophes from cosmetic fixes.</p>
+        <div class="stats">
+          <div class="stat"><div class="n t-orange">10</div><div class="l">Site Visits</div></div>
+          <div class="stat"><div class="n t-purple">2</div><div class="l">Countries</div></div>
+          <div class="stat"><div class="n t-pink">11</div><div class="l">Interviews</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key discoveries -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">Key Discoveries</h2>
+        <div class="media-grid media-grid--2">
+          <figure>
+            <img src="../images/frame-118-500__6924dd48.png" alt="Order detail screen in the original portal">
+            <figcaption><strong>Confusing Navigation</strong> — Selecting the right workflow was hard, and returning home meant relocating the same order and re-entering a different workflow from scratch. Users lost real time hunting across multiple pages.</figcaption>
+          </figure>
+          <figure>
+            <img src="../images/frame-108-500__6924dd48.png" alt="Task wizard that could show an inaccurate status">
+            <figcaption><strong>Lack of Status Visibility</strong> — There was no reliable way to see an order's status. A task page could still read incomplete even after the work was done, so orders were sometimes left unfinished because users trusted an inaccurate status.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kick-off workshop -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">Kick-Off Workshop</h2>
+        <p>I kicked off Project Reset with a hybrid, full-day workshop across design, product, and engineering to generate solutions to the opportunities research had surfaced.</p>
+        <div class="media-grid media-grid--3">
+          <figure><img src="../images/frame-118__6925c0fb.png" alt="Team collaborating in a hybrid workshop"><figcaption><strong>Hybrid Modality</strong> — To include our global team, we ran it hybrid: online on the whiteboarding tool Mural, and in-person on sticky notes shown through a connected camera.</figcaption></figure>
+          <figure><img src="../images/frame-108__6925c0fb.png" alt="Mural board of grouped sticky notes"><figcaption><strong>How Might We Statements</strong> — We reframed each opportunity as a "How Might We" statement, which moves the focus away from pre-baked solutions and toward the real underlying need.</figcaption></figure>
+          <figure><img src="../images/frame-118-1__6925c0fb.png" alt="Loose hand sketches of navigation ideas"><figcaption><strong>Sketching</strong> — With the opportunities framed, we sketched quickly and stayed deliberately loose, so no one got attached to a single idea too early.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sketches to solutions -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">Sketches To Solutions</h2>
+        <p>As we digitized the sketches, we iterated from low- to high-fidelity wireframes. I led the design work, directing two designers on stretch assignments as we explored how to address as many opportunities as possible. Throughout, I partnered closely with engineering in a weekly Design Collab session to keep every proposal's effort proportional to the problem it solved.</p>
+        <div class="media-grid media-grid--2">
+          <figure><img src="../images/frame-116-500__692da2e1.png" alt="Low-fidelity wireframe of the order info layout"></figure>
+          <figure><img src="../images/frame-114-500__692da2e1.png" alt="Mid-fidelity explorations of the order overview"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key decision 1 -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <span class="eyebrow">Key Decision</span>
+        <h2 class="cs-h">Removing The Intermediary Page</h2>
+        <div class="decision__grid">
+          <div class="decision__block"><span class="num">Problem</span><p>To open any workflow, users first pressed an order on the landing page, which took them to a separate "intermediary" page just to pick a task. It felt redundant, and it was costly. Users had to re-verify they'd opened the right order by scanning its details on this middle page. If it was wrong, they had to go all the way back, search again, and start over. In a system where selecting the wrong order carries real consequences, that extra hop was both a time sink and a risk.</p></div>
+          <div class="decision__block"><span class="num">Explorations</span>
+            <ol>
+              <li>A Kanban-inspired landing page surfacing workflow statuses earlier.</li>
+              <li>Enhancing status visibility on the intermediary page itself.</li>
+              <li>Removing the intermediary page entirely and pulling the order-identifying details onto the landing page.</li>
+            </ol>
+          </div>
+          <div class="decision__block"><span class="num">Tradeoffs</span><p>In testing, users gravitated toward options 1 and 3, which confirmed the intermediary page didn't earn its place. But they relied on the patient information there to confirm they'd selected the right order, so I couldn't just delete it. I had to relocate what it did well. I chose to remove the page and bring that confirming information into a side panel on the landing page, so users could verify and switch orders without ever leaving home.</p></div>
+          <div class="decision__block"><span class="num">Results</span><p>The redesign collapsed a two-stop navigation into one, let users correct a wrong-order selection instantly instead of restarting, and became the backbone of the new landing-page experience.</p></div>
+        </div>
+        <div class="media-grid media-grid--2" style="margin-top:30px">
+          <figure><img src="../images/frame-118-500__6a667f09.png" alt="Before: intermediary page used to validate the selected order"><figcaption><strong>Before</strong> — Intermediary page where the user validated they had selected the correct order before entering their desired workflow.</figcaption></figure>
+          <figure><img src="../images/frame-131-500__6a667f4f.png" alt="After: landing page with an order-validation side panel"><figcaption><strong>After</strong> — Information needed to validate the order selection moved to a side panel, letting the user quickly confirm they'd selected the right order.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key decision 2 -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <span class="eyebrow">Key Decision</span>
+        <h2 class="cs-h">Making "Home" Findable Globally</h2>
+        <div class="decision__grid">
+          <div class="decision__block"><span class="num">Problem</span><p>The only way back to the landing page was pressing the logo or hitting the browser's back button repeatedly. Research surfaced something I wouldn't have caught from the US alone: while clicking the logo to go home is familiar in North America, it wasn't a common expectation for our EMEA users. New and infrequent users there often couldn't recall how to get home at all, which stranded them mid-task.</p></div>
+          <div class="decision__block"><span class="num">Explorations</span>
+            <ol>
+              <li>Interactive breadcrumbs.</li>
+              <li>A global search that could double as a way home while speeding up finding an order.</li>
+              <li>A dedicated home icon in the navigation.</li>
+            </ol>
+          </div>
+          <div class="decision__block"><span class="num">Tradeoffs</span><p>Breadcrumbs and global search both appealed, but each carried heavy cost on Salesforce: deep-linking breadcrumbs into every workflow was high-effort, and compiling global search across the platform was a significant build. Weighed against the size of the problem, neither earned its cost yet. The home icon was universally recognizable, needed no translation, and directly solved the recall problem. I chose the solution that fixed the real need at a proportionate level of effort.</p></div>
+          <div class="decision__block"><span class="num">Results</span><p>A single, recognizable home icon gave every user, regardless of region or usage frequency, an obvious way back, removing a quiet but persistent source of confusion for our fastest-growing user base.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Validating with users -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">Validating With Users</h2>
+        <p>While iterating, I ran several group testing sessions with the target personas, walking through proposals with pre-set questions and following up live to dig deeper. These let us pivot quickly toward the solutions that best solved the real problems.</p>
+        <div class="callout"><q>The checklist was a big win for navigation.</q></div>
+        <p style="margin-top:20px">Reprinting a label without a full modify was received positively, and the extra confirmation step before modifications was seen as a helpful guardrail against accidental edits.</p>
+        <div class="media-grid media-grid--2" style="margin-top:24px">
+          <figure><img src="../images/frame-132-500__6a669741.png" alt="Collection screen with an order overview and checklist"></figure>
+          <figure><img src="../images/frame-131-500__692da579.png" alt="Redesigned landing screen with order side panel"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Also shipped -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">Also Shipped</h2>
+        <p>Beyond the two decisions above, Project Reset delivered a set of connected improvements:</p>
+        <div class="shipped-grid">
+          <div class="shipped__item"><span class="num">01</span><h4>Workflow Checklist</h4><p>Faster movement through non-linear tasks.</p></div>
+          <div class="shipped__item"><span class="num">02</span><h4>Order Overview</h4><p>Confirms the right order at a glance.</p></div>
+          <div class="shipped__item"><span class="num">03</span><h4>Reprint Without Modify</h4><p>Removing the most common reason users modified a page.</p></div>
+          <div class="shipped__item"><span class="num">04</span><h4>Modification Mode</h4><p>Guardrail to reduce incomplete orders and the compliance issues they caused.</p></div>
+          <div class="shipped__item"><span class="num">05</span><h4>Resources &amp; Reports Pages</h4><p>In-portal training and custom reporting.</p></div>
+          <div class="shipped__item"><span class="num">06</span><h4>Shipment Tracking</h4><p>Consolidated for scalability across couriers.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prioritizing & shipping / results -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">Prioritizing &amp; Shipping</h2>
+        <p>I partnered with product analysts to prioritize solutions into the roadmap, and MVP features shipped across two releases in 2025. Before each release, I prepared component documentation alongside the Salesforce Lightning Design System specs to keep the design-to-dev hand-off clean.</p>
+        <h3 class="h-md" style="margin-top:28px">Results</h3>
+        <p>The redesign produced concrete, undeniable wins first: it collapsed the core navigation from two stops to one, gave every user a recognizable way home regardless of region, introduced a checklist testers called a big win for navigation, and removed the top reason users modified pages (label reprints). Measured impact followed. Each year we run UX-Lite, an industry-standard survey, to benchmark the portal against peers. The 2025 results:</p>
+        <div class="stats stats--result">
+          <div class="stat"><div class="n">78%</div><div class="l">UX-Lite Score — hit industry standard for the first time</div></div>
+          <div class="stat"><div class="n">+7%</div><div class="l">Perceived Usefulness, year over year</div></div>
+          <div class="stat"><div class="n">+194%</div><div class="l">Increase in survey responses, year over year</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The rebrand -->
+    <section class="cs-section">
+      <div class="wrap reveal">
+        <h2 class="cs-h">The Rebrand</h2>
+        <p>Partway through Project Reset, the platform also began a rebrand to align with Johnson &amp; Johnson's 2023 identity and unite with a partner system into one ecosystem, which I took from design through hand-coding the production components.</p>
+        <p style="margin-top:18px">
+          <a class="btn btn--solid" href="../under-one-brand/">Read Case Study
+            <span class="arrow-circle" aria-hidden="true" style="border:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- More like this -->
+    <section class="section" aria-label="More work">
+      <div class="wrap">
+        <span class="eyebrow">More Like This</span>
+        <a class="project-link reveal" href="../pizza/">
+          <article class="project project--pink">
+            <div class="project__head">
+              <div>
+                <h2 class="project__title t-pink">Pizza Shop
+                  <span class="arrow-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+                </h2>
+                <p class="project__tags"><span class="tag">UI Design</span><span class="tag">UX Research</span><span class="tag">Animation</span></p>
+              </div>
+              <p class="project__desc">Reimagined in-store pizza ordering as a playful kiosk experience, built from physical hardware to hand-drawn interface.</p>
+            </div>
+            <div class="project__media"><img src="../images/pizza-500__691f6819.png" alt="Smokey Mountain pizza kiosk ordering screen" loading="lazy"></div>
+          </article>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shapes" aria-hidden="true">
+      <img src="../images/ellipse-3__67b3dc3c.svg" alt="" style="bottom:-50px;left:32%;width:120px">
+      <img src="../images/diamond2__68f140b4.svg" alt="" style="top:40%;right:22%;width:24px">
+    </div>
+    <div class="wrap site-footer__inner">
+      <div class="footer-id"><span class="name">Megan Garcia</span><span class="role">Product Designer</span></div>
+      <div class="footer-social">
+        <a href="mailto:megangarcia2024@gmail.com" aria-label="Email Megan"><img src="../images/mail__6924ce17.svg" alt=""></a>
+        <a href="https://www.linkedin.com/in/megangarcia-ux/" aria-label="Megan on LinkedIn" target="_blank" rel="noopener"><img src="../images/icons8-linkedin__6924cf16.svg" alt=""></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
