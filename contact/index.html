@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Let's Chat! — Megan Garcia</title>
+  <meta name="description" content="Get in touch with Megan Garcia. Send a message or email megangarcia2024@gmail.com.">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
+
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../" aria-label="Megan Garcia — home"><img src="../images/logo-5__6a6fe14c.png" alt="Megan Garcia logo" width="46" height="46"></a>
+      <nav aria-label="Primary"><ul class="nav__links pill-hidden">
+        <li><a href="../work/">Work</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="../resume/">Resume</a></li>
+      </ul></nav>
+      <div class="nav__right">
+        <a class="btn btn--light" href="../contact/" aria-current="page">Let's Chat!</a>
+        <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <button class="mobile-menu__close" aria-label="Close menu"></button>
+    <a href="../work/">Work</a><a href="../about/">About</a><a href="../resume/">Resume</a>
+    <a class="btn btn--light" href="../contact/">Let's Chat!</a>
+  </div>
+
+  <main id="main" class="section">
+    <div class="wrap" style="max-width:900px">
+      <h1 class="page-title t-blue" data-stagger style="color:var(--blue)">Contact</h1>
+      <p class="lead" style="margin-top:14px">Let's connect! Send me a note below, or email
+        <a href="mailto:megangarcia2024@gmail.com" style="color:var(--blue);font-weight:600">megangarcia2024@gmail.com</a>.</p>
+
+      <form id="contact-form" class="reveal" novalidate style="margin-top:clamp(28px,5vw,48px)">
+        <div class="field-group">
+          <label class="field-label" for="name"><span class="dot" style="background:var(--orange);border-radius:50%"></span> Name</label>
+          <input class="field" id="name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" maxlength="256" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="email"><span class="dot" style="background:var(--purple);transform:rotate(45deg)"></span> Email</label>
+          <input class="field" id="email" name="email" type="email" autocomplete="email" placeholder="name@website.com" maxlength="256" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="message"><span class="dot" style="background:var(--pink);border-radius:50% 50% 50% 0"></span> Message</label>
+          <textarea class="textarea" id="message" name="message" placeholder="Hello, I would like to learn more about…" maxlength="5000" required></textarea>
+        </div>
+        <div style="margin-top:26px">
+          <button class="btn btn--solid" type="submit">Submit</button>
+        </div>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shapes" aria-hidden="true">
+      <img src="../images/ellipse-3__67b3dc3c.svg" alt="" style="bottom:-50px;left:32%;width:120px">
+      <img src="../images/diamond2__68f140b4.svg" alt="" style="top:40%;right:22%;width:24px">
+    </div>
+    <div class="wrap site-footer__inner">
+      <div class="footer-id"><span class="name">Megan Garcia</span><span class="role">Product Designer</span></div>
+      <div class="footer-social">
+        <a href="mailto:megangarcia2024@gmail.com" aria-label="Email Megan"><img src="../images/mail__6924ce17.svg" alt=""></a>
+        <a href="https://www.linkedin.com/in/megangarcia-ux/" aria-label="Megan on LinkedIn" target="_blank" rel="noopener"><img src="../images/icons8-linkedin__6924cf16.svg" alt=""></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+  <script src="../js/contact.js" defer></script>
+</body>
+</html>
