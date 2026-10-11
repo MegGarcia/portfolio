@@ -545,10 +545,11 @@ body.menu-open { overflow: hidden; }
 /* Sticky card stack: each project section pins and the next stacks over it,
    leaving each card's colored top border peeking above the one on top. */
 .project-stack { position: relative; }
-/* Extra scroll track so a taller card doesn't release from the top before the
-   next card pins (which would momentarily open a gap above the next card). */
-.project-stack { padding-bottom: 96px; }
 .project-stack .project-link:has(.project) { position: sticky; }
+/* The last project card stays in normal flow: it scrolls up flush over the
+   pinned cards. (A sticky last card can't always reach its pin point on tall
+   viewports, which opened a gap above it.) */
+.project-stack .project-link.stack-last { position: static; }
 /* Each card sticks exactly one border-thickness (12px) below the previous, so
    the colored top borders stack flush with no gap between them. */
 .project-stack .project-link:nth-child(1) { top: 0; }
