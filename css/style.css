@@ -247,7 +247,6 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ---- Home hero (tagline-led headline) --------------------------------- */
-.hero--home { border-bottom: 12px solid var(--orange); }
 .hero--home .hero__inner {
   padding-block: clamp(120px, 15vw, 210px) clamp(80px, 13vw, 160px);
 }
@@ -551,13 +550,13 @@ body.menu-open { overflow: hidden; }
    leaving each card's colored top border peeking above the one on top. */
 .project-stack { position: relative; }
 .project-stack .project-link:has(.project) { position: sticky; }
-/* Each card sticks exactly one border-thickness (6px) below the previous, so
+/* Each card sticks exactly one border-thickness (12px) below the previous, so
    the colored top borders stack flush with no gap between them. */
-.project-stack .project-link:nth-child(1) { top: 88px; }
+.project-stack .project-link:nth-child(1) { top: 82px; }
 .project-stack .project-link:nth-child(2) { top: 94px; }
-.project-stack .project-link:nth-child(3) { top: 100px; }
-.project-stack .project-link:nth-child(4) { top: 106px; }
-.project-stack .project-link:nth-child(5) { top: 112px; }
+.project-stack .project-link:nth-child(3) { top: 106px; }
+.project-stack .project-link:nth-child(4) { top: 118px; }
+.project-stack .project-link:nth-child(5) { top: 130px; }
 /* Card background + colored border span the full viewport width, while the
    content stays within the site's standard content margins. */
 .project-stack .project-link:has(.project) .project {
@@ -565,9 +564,11 @@ body.menu-open { overflow: hidden; }
   padding: 0 calc(50vw - 50%) clamp(34px, 5vw, 64px);
   background: var(--paper);
   border-radius: 0;
-  box-shadow: 0 -14px 30px rgba(11, 11, 15, .10);
+  border-top-width: 12px;
 }
 .project-stack .project__head { padding-top: clamp(24px, 3.5vw, 42px); }
+/* First project sits flush against the hero (no gap). */
+.section:has(.project-stack) { padding-top: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
