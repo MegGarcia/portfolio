@@ -92,4 +92,45 @@
       if (next) { next.focus(); select(next); e.preventDefault(); }
     });
   }
+
+  /* ---- Hero shape drift + cursor parallax ------------------------------- */
+  /* Gentle idle float (sine) plus a smoothed parallax toward/away from the
+     cursor, matching the live site's MOUSE_MOVE_IN_VIEWPORT + loop motion.
+     Uses the CSS `translate` property so each shape's base `transform`
+     rotation is preserved. Disabled entirely under reduced-motion. */
+  if (!reduce) {
+    document.querySelectorAll(".hero .shapes").forEach(function (layer) {
+      var shapes = Array.prototype.slice.call(layer.children);
+      if (!shapes.length || !("requestAnimationFrame" in window)) return;
+      var hero = layer.closest(".hero");
+      var cfg = shapes.map(function (el, i) {
+        return {
+          el: el,
+          depth: 0.014 + (i % 4) * 0.01,         // parallax strength
+          amp: 6 + (i % 3) * 5,                  // idle drift (px)
+          speed: 0.00022 + (i % 5) * 0.00006,    // idle speed
+          phase: i * 1.7,
+          cx: 0, cy: 0                           // smoothed cursor offset
+        };
+      });
+      var tx = 0, ty = 0;
+      hero.addEventListener("pointermove", function (e) {
+        var r = hero.getBoundingClientRect();
+        tx = (e.clientX - r.left) / r.width - 0.5;
+        ty = (e.clientY - r.top) / r.height - 0.5;
+      });
+      hero.addEventListener("pointerleave", function () { tx = 0; ty = 0; });
+      requestAnimationFrame(function frame(now) {
+        var w = hero.clientWidth;
+        cfg.forEach(function (c) {
+          c.cx += (tx - c.cx) * 0.06;
+          c.cy += (ty - c.cy) * 0.06;
+          var px = -c.cx * w * c.depth + Math.sin(now * c.speed + c.phase) * c.amp;
+          var py = -c.cy * w * c.depth + Math.cos(now * c.speed * 0.9 + c.phase) * c.amp;
+          c.el.style.translate = px.toFixed(2) + "px " + py.toFixed(2) + "px";
+        });
+        requestAnimationFrame(frame);
+      });
+    });
+  }
 })();

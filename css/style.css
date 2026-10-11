@@ -284,10 +284,24 @@ body.menu-open { overflow: hidden; }
 .hero-id__row strong { font-weight: 800; }
 .hero-id__muted { font-weight: 500; color: rgba(255, 255, 255, 0.9); }
 .hero-id__diamond { width: 18px; height: 18px; flex: none; }
-.hero-id__dot { width: 15px; height: 15px; flex: none; }
+.hero-id__dotwrap {
+  position: relative; display: inline-grid; place-items: center;
+  width: 15px; height: 15px; flex: none;
+}
+.hero-id__dot { width: 15px; height: 15px; display: block; position: relative; z-index: 1; }
+/* Radar-ping behind the dot (matches the live site: scale 1 -> 1.75, fade out, loop) */
+.hero-id__ping {
+  position: absolute; inset: 0; z-index: 0; border-radius: 50%;
+  background: var(--yellow);
+  animation: heroPing 1.6s cubic-bezier(.45, 0, .55, 1) infinite;
+}
+@keyframes heroPing {
+  0%, 31%   { transform: scale(1);    opacity: .85; }
+  100%      { transform: scale(1.75); opacity: 0; }
+}
 
 /* Home hero decorative shapes */
-.hero--home .sh { position: absolute; }
+.hero--home .sh { position: absolute; will-change: translate; }
 .sh-yellow-block {
   top: 0; left: -16px;
   width: min(30vw, 440px); height: clamp(110px, 12vw, 172px);
@@ -523,9 +537,15 @@ body.menu-open { overflow: hidden; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
+/* Project cards "stack in" (growIn-style) as they scroll into view. */
+.js .reveal.project-link { transform: translateY(46px) scale(.96); transition-duration: .8s; }
+.js .reveal.project-link.is-in { transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0ms !important; transition-duration: .001ms !important; }
   .page-title .ltr { opacity: 1; transform: none; }
-  .js .reveal { opacity: 1; transform: none; }
+  .js .reveal, .js .reveal.project-link { opacity: 1; transform: none; }
+  .hero-id__ping { animation: none; display: none; }
+  .hero--home .sh { translate: none !important; }
 }
