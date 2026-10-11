@@ -269,6 +269,13 @@ body.menu-open { overflow: hidden; }
   padding: 0.04em 0.4em 0.1em;
   line-height: 1;
 }
+/* "and building" rocks back and forth on hover */
+.hero-headline .pill:hover { animation: pillWobble .55s ease-in-out infinite; }
+@keyframes pillWobble {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25%      { transform: translateX(-5px) rotate(-1.5deg); }
+  75%      { transform: translateX(5px) rotate(1.5deg); }
+}
 
 .hero-id {
   margin-top: clamp(30px, 5vw, 58px);
@@ -537,9 +544,10 @@ body.menu-open { overflow: hidden; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
-/* Project cards "stack in" (growIn-style) as they scroll into view. */
-.js .reveal.project-link { transform: translateY(46px) scale(.96); transition-duration: .8s; }
-.js .reveal.project-link.is-in { transform: none; }
+/* Project cards: the text stays put; the image reveals top-to-bottom as the
+   card scrolls into view (scroll-linked), matching the live site. */
+.js .reveal.project-link { opacity: 1; transform: none; }
+.js .project__media { clip-path: inset(0 0 100% 0 round var(--radius)); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -548,4 +556,6 @@ body.menu-open { overflow: hidden; }
   .js .reveal, .js .reveal.project-link { opacity: 1; transform: none; }
   .hero-id__ping { animation: none; display: none; }
   .hero--home .sh { translate: none !important; }
+  .js .project__media { clip-path: none !important; }
+  .hero-headline .pill:hover { animation: none; }
 }
