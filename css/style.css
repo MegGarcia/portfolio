@@ -50,7 +50,7 @@ body {
   font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip (not hidden) so position:sticky keeps working */
 }
 
 img, svg, video { display: block; max-width: 100%; height: auto; }
@@ -269,12 +269,12 @@ body.menu-open { overflow: hidden; }
   padding: 0.04em 0.4em 0.1em;
   line-height: 1;
 }
-/* "and building" rocks back and forth on hover */
-.hero-headline .pill:hover { animation: pillWobble .55s ease-in-out infinite; }
+/* "and building" gently sways back and forth on hover */
+.hero-headline .pill:hover { animation: pillWobble 1.3s ease-in-out infinite; }
 @keyframes pillWobble {
-  0%, 100% { transform: translateX(0) rotate(0); }
-  25%      { transform: translateX(-5px) rotate(-1.5deg); }
-  75%      { transform: translateX(5px) rotate(1.5deg); }
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-2.5px); }
+  75%      { transform: translateX(2.5px); }
 }
 
 .hero-id {
@@ -544,10 +544,26 @@ body.menu-open { overflow: hidden; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
-/* Project cards: the text stays put; the image reveals top-to-bottom as the
-   card scrolls into view (scroll-linked), matching the live site. */
+/* Project cards keep their reveal off (they animate via the sticky stack). */
 .js .reveal.project-link { opacity: 1; transform: none; }
-.js .project__media { clip-path: inset(0 0 100% 0 round var(--radius)); }
+
+/* Sticky card stack: each project section pins and the next stacks over it,
+   leaving each card's colored top border peeking above the one on top. */
+.project-stack { position: relative; }
+.project-stack .project-link:has(.project) { position: sticky; }
+.project-stack .project-link:nth-child(1) { top: 92px; }
+.project-stack .project-link:nth-child(2) { top: 110px; }
+.project-stack .project-link:nth-child(3) { top: 128px; }
+.project-stack .project-link:nth-child(4) { top: 146px; }
+.project-stack .project-link:nth-child(5) { top: 164px; }
+.project-stack .project-link:has(.project) .project {
+  margin-top: 0;
+  background: var(--paper);
+  padding: 0 clamp(16px, 3vw, 34px) clamp(32px, 5vw, 60px);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 -2px 0 rgba(11, 11, 15, .04), 0 -16px 34px rgba(11, 11, 15, .10);
+}
+.project-stack .project__head { padding-top: clamp(22px, 3.5vw, 40px); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -556,6 +572,8 @@ body.menu-open { overflow: hidden; }
   .js .reveal, .js .reveal.project-link { opacity: 1; transform: none; }
   .hero-id__ping { animation: none; display: none; }
   .hero--home .sh { translate: none !important; }
-  .js .project__media { clip-path: none !important; }
   .hero-headline .pill:hover { animation: none; }
+  /* No sticky overlap under reduced motion — plain stacked sections. */
+  .project-stack .project-link:has(.project) { position: static; }
+  .project-stack .project-link:has(.project) .project { box-shadow: none; }
 }

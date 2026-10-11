@@ -134,34 +134,4 @@
     });
   }
 
-  /* ---- Project image reveal (scroll-linked top-to-bottom wipe) ---------- */
-  /* Matches the live site: as each project scrolls into view, its image is
-     revealed from top to bottom, scrubbed with scroll position. CSS gives the
-     initial clipped state (under .js); reduced-motion removes it entirely. */
-  if (!reduce) {
-    var medias = Array.prototype.slice.call(document.querySelectorAll(".project__media"));
-    if (medias.length && "requestAnimationFrame" in window && CSS && CSS.supports && CSS.supports("clip-path", "inset(0 0 10% 0)")) {
-      var ticking = false;
-      var paint = function () {
-        var vh = window.innerHeight || document.documentElement.clientHeight;
-        var start = vh * 0.95, end = vh * 0.42;
-        medias.forEach(function (m) {
-          var top = m.getBoundingClientRect().top;
-          var p = (start - top) / (start - end);
-          p = p < 0 ? 0 : p > 1 ? 1 : p;
-          m.style.clipPath = "inset(0 0 " + ((1 - p) * 100).toFixed(1) + "% 0 round 14px)";
-        });
-        ticking = false;
-      };
-      var onScroll = function () {
-        if (!ticking) { ticking = true; requestAnimationFrame(paint); }
-      };
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", onScroll);
-      paint();
-    } else {
-      // No clip-path support: show images normally.
-      document.querySelectorAll(".project__media").forEach(function (m) { m.style.clipPath = "none"; });
-    }
-  }
 })();
