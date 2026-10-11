@@ -268,13 +268,9 @@ body.menu-open { overflow: hidden; }
   padding: 0.04em 0.4em 0.1em;
   line-height: 1;
 }
-/* "and building" gently sways back and forth on hover */
-.hero-headline .pill:hover { animation: pillWobble 1.3s ease-in-out infinite; }
-@keyframes pillWobble {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  25%      { transform: translateX(-2px) rotate(-3.5deg); }
-  75%      { transform: translateX(2px) rotate(3.5deg); }
-}
+/* "and building" tilts on hover and eases back on mouse off */
+.hero-headline .pill { transition: transform .35s var(--ease); }
+.hero-headline .pill:hover { transform: rotate(-5deg); }
 
 .hero-id {
   margin-top: clamp(30px, 5vw, 58px);
@@ -549,6 +545,9 @@ body.menu-open { overflow: hidden; }
 /* Sticky card stack: each project section pins and the next stacks over it,
    leaving each card's colored top border peeking above the one on top. */
 .project-stack { position: relative; }
+/* Extra scroll track so a taller card doesn't release from the top before the
+   next card pins (which would momentarily open a gap above the next card). */
+.project-stack { padding-bottom: 96px; }
 .project-stack .project-link:has(.project) { position: sticky; }
 /* Each card sticks exactly one border-thickness (12px) below the previous, so
    the colored top borders stack flush with no gap between them. */
@@ -577,7 +576,7 @@ body.menu-open { overflow: hidden; }
   .js .reveal, .js .reveal.project-link { opacity: 1; transform: none; }
   .hero-id__ping { animation: none; display: none; }
   .hero--home .sh { translate: none !important; }
-  .hero-headline .pill:hover { animation: none; }
+  .hero-headline .pill:hover { transform: none; }
   /* No sticky overlap under reduced motion — plain stacked sections. */
   .project-stack .project-link:has(.project) { position: static; }
   .project-stack .project-link:has(.project) .project { box-shadow: none; }
