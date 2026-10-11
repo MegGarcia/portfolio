@@ -141,7 +141,7 @@ a:hover .arrow-circle svg { color: #fff; }
    Header / navigation
    ========================================================================== */
 .site-header {
-  position: sticky; top: 0; z-index: 100;
+  position: relative; z-index: 100;
   background: var(--blue); color: #fff;
 }
 .nav {
@@ -552,11 +552,11 @@ body.menu-open { overflow: hidden; }
 .project-stack .project-link:has(.project) { position: sticky; }
 /* Each card sticks exactly one border-thickness (12px) below the previous, so
    the colored top borders stack flush with no gap between them. */
-.project-stack .project-link:nth-child(1) { top: 82px; }
-.project-stack .project-link:nth-child(2) { top: 94px; }
-.project-stack .project-link:nth-child(3) { top: 106px; }
-.project-stack .project-link:nth-child(4) { top: 118px; }
-.project-stack .project-link:nth-child(5) { top: 130px; }
+.project-stack .project-link:nth-child(1) { top: 0; }
+.project-stack .project-link:nth-child(2) { top: 12px; }
+.project-stack .project-link:nth-child(3) { top: 24px; }
+.project-stack .project-link:nth-child(4) { top: 36px; }
+.project-stack .project-link:nth-child(5) { top: 48px; }
 /* Card background + colored border span the full viewport width, while the
    content stays within the site's standard content margins. */
 .project-stack .project-link:has(.project) .project {
