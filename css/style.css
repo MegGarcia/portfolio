@@ -561,7 +561,7 @@ body.menu-open { overflow: hidden; }
    box, not the padding box — so this must be a real box in the flow.) Without
    it the last card can never pin, slides up, and exposes the previous card's
    head, which is the white band that showed above the last project. */
-.project-stack::after { content: ""; display: block; height: clamp(150px, 22vh, 260px); }
+.project-stack::after { content: ""; display: block; height: max(130px, calc(100vh - 860px)); }
 /* Card background + colored border span the full viewport width, while the
    content stays within the site's standard content margins. */
 .project-stack .project-link:has(.project) .project {
