@@ -572,7 +572,13 @@ body.menu-open { overflow: hidden; }
   border-radius: 0;
   border-top-width: 12px;
 }
-.project-stack .project__head { padding-top: clamp(24px, 3.5vw, 42px); }
+/* No top padding on the head: a pinned card's title sits directly under its
+   12px border. The real cause of the "gap above the last project" was this
+   padding — as the next card scrolled up it covered the card's title but not
+   its off-white top-padding strip, leaving a white band between the two
+   colored borders. With it removed the only thing a covered card ever shows
+   is its colored border, so no white gap appears at any scroll or viewport. */
+.project-stack .project__head { padding-top: 0; }
 /* First project sits flush against the hero (no gap). */
 .section:has(.project-stack) { padding-top: 0; }
 
