@@ -544,25 +544,24 @@ body.menu-open { overflow: hidden; }
 
 /* Sticky card stack: each project section pins and the next stacks over it,
    leaving each card's colored top border peeking above the one on top. */
+/* EVERY card pins (including the last). Each pins exactly one border-thickness
+   (12px) below the previous, so as you scroll the colored top borders stack
+   flush against each other with no gap between them, and a higher z-index makes
+   each card paint over the one before it. */
 .project-stack { position: relative; }
 .project-stack .project-link:has(.project) { position: sticky; }
-/* The last project card isn't sticky: it scrolls up flush over the pinned
-   cards (a sticky last card can't always reach its pin point on tall viewports,
-   which opened a gap above it). It must stay POSITIONED (relative, not static)
-   so it still paints on top of the pinned cards and isn't hidden behind them. */
-.project-stack .project-link.stack-last { position: relative; }
-/* Each card sticks exactly one border-thickness (12px) below the previous, so
-   the colored top borders stack flush with no gap between them. Later cards get
-   a higher z-index so each one paints over the card before it. */
 .project-stack .project-link:nth-child(1) { top: 0;    z-index: 1; }
 .project-stack .project-link:nth-child(2) { top: 12px; z-index: 2; }
 .project-stack .project-link:nth-child(3) { top: 24px; z-index: 3; }
 .project-stack .project-link:nth-child(4) { top: 36px; z-index: 4; }
 .project-stack .project-link:nth-child(5) { top: 48px; z-index: 5; }
-/* The last card is the top of the stack: it only scrolls up over the pinned
-   cards, so it takes no top offset (any offset would open a gap above it).
-   Declared after the nth-child rules so it wins their equal specificity. */
-.project-stack .project-link.stack-last { top: 0; }
+/* A trailing spacer EXTENDS the sticky containing block below the last card so
+   it can reach its own pin point and hold there, flush over the previous card.
+   (padding-bottom does not work here — the sticky constraint uses the content
+   box, not the padding box — so this must be a real box in the flow.) Without
+   it the last card can never pin, slides up, and exposes the previous card's
+   head, which is the white band that showed above the last project. */
+.project-stack::after { content: ""; display: block; height: clamp(150px, 22vh, 260px); }
 /* Card background + colored border span the full viewport width, while the
    content stays within the site's standard content margins. */
 .project-stack .project-link:has(.project) .project {
@@ -572,13 +571,9 @@ body.menu-open { overflow: hidden; }
   border-radius: 0;
   border-top-width: 12px;
 }
-/* No top padding on the head: a pinned card's title sits directly under its
-   12px border. The real cause of the "gap above the last project" was this
-   padding — as the next card scrolled up it covered the card's title but not
-   its off-white top-padding strip, leaving a white band between the two
-   colored borders. With it removed the only thing a covered card ever shows
-   is its colored border, so no white gap appears at any scroll or viewport. */
-.project-stack .project__head { padding-top: 0; }
+/* The title keeps its breathing room below the border. This padding is only
+   ever covered by the next card once it pins flush, so it never shows as a gap. */
+.project-stack .project__head { padding-top: clamp(22px, 3vw, 38px); }
 /* First project sits flush against the hero (no gap). */
 .section:has(.project-stack) { padding-top: 0; }
 
@@ -593,4 +588,6 @@ body.menu-open { overflow: hidden; }
   /* No sticky overlap under reduced motion — plain stacked sections. */
   .project-stack .project-link:has(.project) { position: static; }
   .project-stack .project-link:has(.project) .project { box-shadow: none; }
+  /* The sticky spacer is only needed to hold the pinned stack; drop it here. */
+  .project-stack::after { display: none; }
 }
