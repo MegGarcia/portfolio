@@ -546,17 +546,23 @@ body.menu-open { overflow: hidden; }
    leaving each card's colored top border peeking above the one on top. */
 .project-stack { position: relative; }
 .project-stack .project-link:has(.project) { position: sticky; }
-/* The last project card stays in normal flow: it scrolls up flush over the
-   pinned cards. (A sticky last card can't always reach its pin point on tall
-   viewports, which opened a gap above it.) */
-.project-stack .project-link.stack-last { position: static; }
+/* The last project card isn't sticky: it scrolls up flush over the pinned
+   cards (a sticky last card can't always reach its pin point on tall viewports,
+   which opened a gap above it). It must stay POSITIONED (relative, not static)
+   so it still paints on top of the pinned cards and isn't hidden behind them. */
+.project-stack .project-link.stack-last { position: relative; }
 /* Each card sticks exactly one border-thickness (12px) below the previous, so
-   the colored top borders stack flush with no gap between them. */
-.project-stack .project-link:nth-child(1) { top: 0; }
-.project-stack .project-link:nth-child(2) { top: 12px; }
-.project-stack .project-link:nth-child(3) { top: 24px; }
-.project-stack .project-link:nth-child(4) { top: 36px; }
-.project-stack .project-link:nth-child(5) { top: 48px; }
+   the colored top borders stack flush with no gap between them. Later cards get
+   a higher z-index so each one paints over the card before it. */
+.project-stack .project-link:nth-child(1) { top: 0;    z-index: 1; }
+.project-stack .project-link:nth-child(2) { top: 12px; z-index: 2; }
+.project-stack .project-link:nth-child(3) { top: 24px; z-index: 3; }
+.project-stack .project-link:nth-child(4) { top: 36px; z-index: 4; }
+.project-stack .project-link:nth-child(5) { top: 48px; z-index: 5; }
+/* The last card is the top of the stack: it only scrolls up over the pinned
+   cards, so it takes no top offset (any offset would open a gap above it).
+   Declared after the nth-child rules so it wins their equal specificity. */
+.project-stack .project-link.stack-last { top: 0; }
 /* Card background + colored border span the full viewport width, while the
    content stays within the site's standard content margins. */
 .project-stack .project-link:has(.project) .project {
