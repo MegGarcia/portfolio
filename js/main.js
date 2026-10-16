@@ -134,4 +134,40 @@
     });
   }
 
+  /* ---- Equal-height project cards (sticky stack releases as one unit) ---- */
+  /* The project cards stack with pure CSS `position: sticky`. Sticky cards of
+     different heights un-pin from their pinned positions at different scroll
+     points, so the tallest card would let go first and briefly reopen a gap
+     above the last card as the stack scrolls away. Giving every card the same
+     height makes them un-pin together, so the connected stack scrolls up and
+     off as a single block. Motion stays 100% CSS; this only matches heights,
+     responsively. Skipped under reduced motion (no sticky stacking there). */
+  if (!reduce) {
+    var stacks = document.querySelectorAll(".project-stack");
+    if (stacks.length) {
+      var equalize = function () {
+        stacks.forEach(function (stack) {
+          var cards = Array.prototype.slice.call(
+            stack.querySelectorAll(".project-link .project")
+          );
+          if (cards.length < 2) return;
+          cards.forEach(function (c) { c.style.minHeight = ""; });
+          var max = 0;
+          cards.forEach(function (c) {
+            max = Math.max(max, c.getBoundingClientRect().height);
+          });
+          cards.forEach(function (c) { c.style.minHeight = max + "px"; });
+        });
+      };
+      equalize();
+      // Re-measure once images finish (they change card heights).
+      window.addEventListener("load", equalize);
+      var rt;
+      window.addEventListener("resize", function () {
+        clearTimeout(rt);
+        rt = setTimeout(equalize, 150);
+      });
+    }
+  }
+
 })();
