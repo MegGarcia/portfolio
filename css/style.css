@@ -312,7 +312,7 @@ body.menu-open { overflow: hidden; }
 }
 
 /* Home hero decorative shapes */
-.hero--home .sh { position: absolute; will-change: translate; }
+.hero--home .sh { position: absolute; will-change: translate, rotate, scale; }
 /* Hero decorations use the live site's actual shape SVGs: the yellow arch
    ("Minion"), the orange circle, the pink "Petal", and the three diamonds
    (yellow / pink / orange). */
@@ -596,7 +596,7 @@ body.menu-open { overflow: hidden; }
   .page-title .ltr { opacity: 1; transform: none; }
   .js .reveal, .js .reveal.project-link { opacity: 1; transform: none; }
   .hero-id__ping { animation: none; display: none; }
-  .hero--home .sh { translate: none !important; }
+  .hero--home .sh { translate: none !important; rotate: none !important; scale: none !important; }
   .hero-headline .pill:hover { transform: none; }
   /* No sticky overlap under reduced motion — plain stacked sections. */
   .project-stack .project-link:has(.project) { position: static; }

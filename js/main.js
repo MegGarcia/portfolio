@@ -93,23 +93,46 @@
     });
   }
 
-  /* ---- Hero shape drift + cursor parallax ------------------------------- */
-  /* Gentle idle float (sine) plus a smoothed parallax toward/away from the
-     cursor, matching the live site's MOUSE_MOVE_IN_VIEWPORT + loop motion.
-     Uses the CSS `translate` property so each shape's base `transform`
-     rotation is preserved. Disabled entirely under reduced-motion. */
+  /* ---- Hero shape float + rotate + pulse + cursor parallax -------------- */
+  /* A bubbly idle loop — each shape bobs (sine), rotates gently around its
+     resting angle, and softly pulses in scale — layered with a smoothed
+     parallax toward/away from the cursor. Matches the live site's looping
+     MOUSE_MOVE + TRANSFORM_MOVE / ROTATE / SCALE feel.
+     Uses the CSS individual transform properties (`translate`, `rotate`,
+     `scale`) so they compose with each shape's base `transform: rotate()`
+     without overwriting it. Disabled entirely under reduced-motion. */
   if (!reduce) {
     document.querySelectorAll(".hero .shapes").forEach(function (layer) {
       var shapes = Array.prototype.slice.call(layer.children);
       if (!shapes.length || !("requestAnimationFrame" in window)) return;
       var hero = layer.closest(".hero");
       var cfg = shapes.map(function (el, i) {
+        // Resting angle set in CSS (e.g. `transform: rotate(3deg)`), so the
+        // wobble oscillates around it rather than snapping to 0.
+        var baseRot = 0;
+        try {
+          var tr = getComputedStyle(el).transform;
+          if (tr && tr !== "none") {
+            var p = tr.match(/matrix\(([^)]+)\)/);
+            if (p) {
+              var v = p[1].split(",");
+              baseRot = Math.round(Math.atan2(parseFloat(v[1]), parseFloat(v[0])) * 180 / Math.PI);
+            }
+          }
+        } catch (err) { baseRot = 0; }
         return {
           el: el,
-          depth: 0.014 + (i % 4) * 0.01,         // parallax strength
-          amp: 6 + (i % 3) * 5,                  // idle drift (px)
-          speed: 0.00022 + (i % 5) * 0.00006,    // idle speed
+          baseRot: baseRot,
+          depth: 0.016 + (i % 4) * 0.012,        // parallax strength
+          amp: 10 + (i % 3) * 7,                 // idle drift (px) — bubblier
+          speed: 0.00024 + (i % 5) * 0.00007,    // idle float speed
           phase: i * 1.7,
+          rotAmp: 5 + (i % 3) * 3,               // rotation wobble (deg)
+          rotSpeed: 0.00017 + (i % 4) * 0.00005, // rotation speed
+          rotPhase: i * 2.3,
+          sclAmp: 0.035 + (i % 3) * 0.015,       // scale pulse (±)
+          sclSpeed: 0.0003 + (i % 3) * 0.0001,   // pulse speed
+          sclPhase: i * 1.1,
           cx: 0, cy: 0                           // smoothed cursor offset
         };
       });
@@ -127,7 +150,11 @@
           c.cy += (ty - c.cy) * 0.06;
           var px = -c.cx * w * c.depth + Math.sin(now * c.speed + c.phase) * c.amp;
           var py = -c.cy * w * c.depth + Math.cos(now * c.speed * 0.9 + c.phase) * c.amp;
+          var rot = c.baseRot + Math.sin(now * c.rotSpeed + c.rotPhase) * c.rotAmp;
+          var scl = 1 + Math.sin(now * c.sclSpeed + c.sclPhase) * c.sclAmp;
           c.el.style.translate = px.toFixed(2) + "px " + py.toFixed(2) + "px";
+          c.el.style.rotate = rot.toFixed(2) + "deg";
+          c.el.style.scale = scl.toFixed(3);
         });
         requestAnimationFrame(frame);
       });
