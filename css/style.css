@@ -476,7 +476,7 @@ body.menu-open { overflow: hidden; }
 .cs-hero__media { border-radius: 8px; overflow: hidden; position: relative; z-index: 2; border: 1px solid var(--line); aspect-ratio: 2.39; background: var(--card); }
 .cs-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
 .cs-title { font-family: var(--f-display); margin-top: 28px; display: flex; flex-wrap: wrap; gap: .25em .6em; align-items: center; }
-.cs-title .btn { margin-left: auto; }
+.cs-title .btn { margin-left: auto; font-size: .95rem; }
 .cs-sub { max-width: 70ch; margin-top: 14px; font-size: 1.1rem; }
 
 .cs-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; margin-top: 34px; }
@@ -542,6 +542,66 @@ body.menu-open { overflow: hidden; }
 .decision__block h4 { font-family: var(--f-head); font-weight: 700; margin-top: 4px; }
 .decision__block p, .decision__block ol { margin-top: 8px; color: var(--body); }
 .decision__block ol { padding-left: 1.2em; }
+
+/* ===== Case-study page refinements (scoped to .cs-page) =====================
+   Match the live Webflow case-study layout. --accent is the project color. */
+.cs--orange { --accent: var(--orange); }
+
+/* Section headings, eyebrows, and stat numbers take the project accent. */
+.cs-page .cs-h { color: var(--accent); }
+.cs-page .cs-section .eyebrow { color: var(--accent); }
+.cs-page .stat .n,
+.cs-page .stats--result .stat .n { color: var(--accent); }
+
+/* Narrower body measure, like the live site. */
+.cs-page .cs-section .wrap > p,
+.cs-page .decision__block p { max-width: 60ch; }
+
+/* At A Glance: light-gray card with black, mixed-case sub-headings. */
+.cs-page .glance { background: #f6f6f6; }
+.cs-page .glance h3 { color: var(--ink); text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-weight: 700; font-size: 1.05rem; }
+
+/* Key Decision sub-labels: solid black display type. */
+.cs-page .decision__block .num { color: var(--ink); font-size: 1.1rem; }
+
+/* Figure captions: orange eyebrow, black title, gray body — each on its line. */
+.cs-page figure .fig-eyebrow { display: block; color: var(--accent); font-family: var(--f-body); font-weight: 700; font-size: .78rem; }
+.cs-page figure .fig-title { display: block; color: var(--ink); font-weight: 700; margin-top: 4px; }
+.cs-page figure .fig-body { display: block; color: var(--muted); margin-top: 6px; }
+
+/* Validating callout: gray box, black left-aligned quote, supporting text in. */
+.cs-page .callout { background: #f6f6f6; color: var(--ink); text-align: left; }
+.cs-page .callout .callout__lead { color: var(--muted); max-width: 60ch; }
+.cs-page .callout q { display: block; color: var(--ink); margin: 14px 0; }
+.cs-page .callout p:last-child { color: var(--muted); max-width: 60ch; margin-bottom: 0; }
+
+/* Results: gray card with a real bullet list. */
+.cs-page .result-box { background: #f6f6f6; border-radius: var(--radius); padding: clamp(28px, 4vw, 52px); margin-top: 22px; }
+.cs-page .result-box p { max-width: 60ch; }
+.cs-page .result-box ul { margin: 14px 0 0; padding-left: 1.2em; color: var(--muted); }
+.cs-page .result-box li { margin-top: 6px; }
+
+/* Prioritizing & Shipping: heading left, body in the right column. */
+@media (min-width: 760px) {
+  .cs-page .cs-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .cs-page .cs-split > p { max-width: none; }
+}
+
+/* Ghost pill + plain horizontal arrow (Process Deck, Read Case Study). */
+.btn--ghost { background: transparent; border: 2px solid var(--ink); color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: #fff; }
+.btn .arrow-h { width: 1.05em; height: 1.05em; flex: none; }
+
+/* Hero meta shape icons (stacked above each label). */
+.cs-page .cs-meta__item { display: block; }
+.cs-meta .mshape { display: block; width: 16px; height: 16px; margin-bottom: 10px; }
+.cs-meta .mshape--circle { border-radius: 50%; }
+.cs-meta .mshape--diamond { width: 14px; height: 14px; border-radius: 3px; transform: rotate(45deg); }
+.cs-meta .mshape--teardrop { border-radius: 50% 50% 50% 0; transform: rotate(45deg); }
+.cs-meta .c-orange { background: var(--orange); }
+.cs-meta .c-purple { background: var(--purple); }
+.cs-meta .c-pink { background: var(--pink); }
+.cs-meta .c-yellow { background: var(--yellow); }
 
 .shipped-grid { display: grid; gap: 22px; margin-top: 26px; }
 @media (min-width: 680px) { .shipped-grid { grid-template-columns: 1fr 1fr; } }

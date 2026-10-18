@@ -8,7 +8,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=24">
+  <link rel="stylesheet" href="../css/style.css?v=25">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -32,7 +32,7 @@
     <a class="btn btn--light" href="../contact/">Let's Chat!</a>
   </div>
 
-  <main id="main">
+  <main id="main" class="cs-page cs--orange">
     <!-- Hero -->
     <section class="section cs-hero">
       <div class="wrap">
@@ -40,17 +40,17 @@
           <img src="../images/coic-1-500__6a666361.png" alt="Redesigned Cryopreservation landing screen with an order side panel">
         </div>
         <h1 class="cs-title t-orange">Project Reset
-          <a class="btn" href="../files/ProjectReset-Deck.pdf" target="_blank" rel="noopener" style="font-size:.95rem;margin-left:6px">Process Deck
-            <span class="arrow-circle" aria-hidden="true" style="border:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <a class="btn btn--ghost" href="../files/ProjectReset-Deck.pdf" target="_blank" rel="noopener">Process Deck
+            <svg class="arrow-h" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </h1>
         <p class="cs-sub">Rebuilding the core navigation of a platform that tracks personalized cell therapies from patient to lab and back, where a confusing screen isn't just friction. It's a compliance risk. The redesign reached the industry UX benchmark for the first time (78%).</p>
 
         <div class="cs-meta">
-          <div class="cs-meta__item"><div class="k"><span class="dot c-orange"></span>Duration</div><div class="v">12 Months</div></div>
-          <div class="cs-meta__item"><div class="k"><span class="dot c-purple"></span>Role</div><div class="v">Lead Product Designer</div></div>
-          <div class="cs-meta__item"><div class="k"><span class="dot c-pink"></span>Team</div><div class="v">20-person cross-functional product team</div></div>
-          <div class="cs-meta__item"><div class="k"><span class="dot c-blue"></span>Software</div><div class="v">Figma, Mural, Salesforce</div></div>
+          <div class="cs-meta__item"><span class="mshape mshape--circle c-orange"></span><div class="k">Duration</div><div class="v">12 Months</div></div>
+          <div class="cs-meta__item"><span class="mshape mshape--diamond c-purple"></span><div class="k">Role</div><div class="v">Lead Product Designer</div></div>
+          <div class="cs-meta__item"><span class="mshape mshape--teardrop c-pink"></span><div class="k">Team</div><div class="v">20-person cross-functional product team</div></div>
+          <div class="cs-meta__item"><span class="mshape mshape--circle c-yellow"></span><div class="k">Software</div><div class="v">Figma, Mural, Salesforce</div></div>
         </div>
       </div>
     </section>
@@ -58,7 +58,7 @@
     <!-- At a glance -->
     <section class="section--tight">
       <div class="wrap">
-        <div class="glance glance--orange reveal">
+        <div class="glance reveal">
           <div class="glance__grid">
             <div><h3 class="t-orange">Problem</h3><p>Navigation had grown tangled enough to cost users time and risk wrong-order errors.</p></div>
             <div><h3 class="t-purple">What I Did</h3><p>Led the end-to-end redesign, from research through a shipped, multi-release overhaul.</p></div>
@@ -98,11 +98,11 @@
         <div class="media-grid media-grid--2">
           <figure>
             <img src="../images/frame-118-500__6924dd48.png" alt="Order detail screen in the original portal">
-            <figcaption><strong>Confusing Navigation</strong> — Selecting the right workflow was hard, and returning home meant relocating the same order and re-entering a different workflow from scratch. Users lost real time hunting across multiple pages.</figcaption>
+            <figcaption><span class="fig-eyebrow">Major Usability Problem</span><span class="fig-title">Confusing Navigation</span><span class="fig-body">Selecting the right workflow was hard, and returning home meant relocating the same order and re-entering a different workflow from scratch. Users lost real time hunting across multiple pages.</span></figcaption>
           </figure>
           <figure>
             <img src="../images/frame-108-500__6924dd48.png" alt="Task wizard that could show an inaccurate status">
-            <figcaption><strong>Lack of Status Visibility</strong> — There was no reliable way to see an order's status. A task page could still read incomplete even after the work was done, so orders were sometimes left unfinished because users trusted an inaccurate status.</figcaption>
+            <figcaption><span class="fig-eyebrow">Major Usability Problem</span><span class="fig-title">Lack of Status Visibility</span><span class="fig-body">There was no reliable way to see an order's status. A task page could still read incomplete even after the work was done, so orders were sometimes left unfinished because users trusted an inaccurate status.</span></figcaption>
           </figure>
         </div>
       </div>
@@ -182,8 +182,11 @@
       <div class="wrap reveal">
         <h2 class="cs-h">Validating With Users</h2>
         <p>While iterating, I ran several group testing sessions with the target personas, walking through proposals with pre-set questions and following up live to dig deeper. These let us pivot quickly toward the solutions that best solved the real problems.</p>
-        <div class="callout"><q>The checklist was a big win for navigation.</q></div>
-        <p style="margin-top:20px">Reprinting a label without a full modify was received positively, and the extra confirmation step before modifications was seen as a helpful guardrail against accidental edits.</p>
+        <div class="callout">
+          <p class="callout__lead">A few things testers responded to strongly:</p>
+          <q>The checklist was a big win for navigation.</q>
+          <p>Reprinting a label without a full modify was received positively, and the extra confirmation step before modifications was seen as a helpful guardrail against accidental edits.</p>
+        </div>
         <div class="media-grid media-grid--2" style="margin-top:24px">
           <figure><img src="../images/frame-132-500__6a669741.png" alt="Collection screen with an order overview and checklist"></figure>
           <figure><img src="../images/coic-1-500__6a666361.png" alt="Redesigned landing screen with order side panel"></figure>
@@ -210,10 +213,21 @@
     <!-- Prioritizing & shipping / results -->
     <section class="cs-section">
       <div class="wrap reveal">
-        <h2 class="cs-h">Prioritizing &amp; Shipping</h2>
-        <p>I partnered with product analysts to prioritize solutions into the roadmap, and MVP features shipped across two releases in 2025. Before each release, I prepared component documentation alongside the Salesforce Lightning Design System specs to keep the design-to-dev hand-off clean.</p>
-        <h3 class="h-md" style="margin-top:28px">Results</h3>
-        <p>The redesign produced concrete, undeniable wins first: it collapsed the core navigation from two stops to one, gave every user a recognizable way home regardless of region, introduced a checklist testers called a big win for navigation, and removed the top reason users modified pages (label reprints). Measured impact followed. Each year we run UX-Lite, an industry-standard survey, to benchmark the portal against peers. The 2025 results:</p>
+        <div class="cs-split">
+          <h2 class="cs-h">Prioritizing &amp; Shipping</h2>
+          <p>I partnered with product analysts to prioritize solutions into the roadmap, and MVP features shipped across two releases in 2025. Before each release, I prepared component documentation alongside the Salesforce Lightning Design System specs to keep the design-to-dev hand-off clean.</p>
+        </div>
+        <div class="result-box">
+          <h2 class="cs-h">Results</h2>
+          <p>The redesign produced concrete, undeniable wins first:</p>
+          <ul>
+            <li>Collapsed the core navigation from two stops to one.</li>
+            <li>Gave every user a recognizable way home, regardless of region.</li>
+            <li>Introduced a checklist testers called a big win for navigation.</li>
+            <li>Removed the top reason users modified pages (label reprints).</li>
+          </ul>
+        </div>
+        <p style="margin-top:22px">Measured impact followed. Each year we run UX-Lite, an industry-standard survey, to benchmark the portal against peers. The 2025 results:</p>
         <div class="stats stats--result">
           <div class="stat"><div class="n">78%</div><div class="l">UX-Lite Score — hit industry standard for the first time</div></div>
           <div class="stat"><div class="n">+7%</div><div class="l">Perceived Usefulness, year over year</div></div>
@@ -228,8 +242,8 @@
         <h2 class="cs-h">The Rebrand</h2>
         <p>Partway through Project Reset, the platform also began a rebrand to align with Johnson &amp; Johnson's 2023 identity and unite with a partner system into one ecosystem, which I took from design through hand-coding the production components.</p>
         <p style="margin-top:18px">
-          <a class="btn btn--solid" href="../under-one-brand/">Read Case Study
-            <span class="arrow-circle" aria-hidden="true" style="border:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <a class="btn btn--ghost" href="../under-one-brand/">Read Case Study
+            <svg class="arrow-h" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </p>
       </div>
