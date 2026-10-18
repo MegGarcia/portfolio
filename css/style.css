@@ -309,7 +309,7 @@ body.menu-open { overflow: hidden; }
    (yellow / pink / orange). */
 .sh-minion     { top: -118px; left: clamp(36px, 6vw, 92px); width: min(20vw, 254px); transform: rotate(3deg); }
 .sh-circle     { top: 17%; right: -6%; width: min(24vw, 300px); }
-.sh-petal      { bottom: -16%; left: -3%; width: min(17vw, 240px); transform: rotate(-8deg); }
+.sh-petal      { bottom: -14%; left: 8%; width: min(17vw, 240px); transform: rotate(-8deg); }
 .sh-dia-pink   { top: 18%; left: 72%; width: 32px; transform: rotate(8deg); }
 .sh-dia-orange { top: 58%; left: -8px; width: 26px; }
 .sh-dia-yellow { top: 76%; left: 65%; width: 32px; transform: rotate(-6deg); }
