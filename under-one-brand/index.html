@@ -8,7 +8,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=27">
+  <link rel="stylesheet" href="../css/style.css?v=28">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -41,8 +41,8 @@
         <div class="cs-meta">
           <div class="cs-meta__item"><span class="mshape mshape--circle c-orange"></span><div class="k">Duration</div><div class="v">9 Months</div></div>
           <div class="cs-meta__item"><span class="mshape mshape--diamond c-purple"></span><div class="k">Role</div><div class="v">Lead Product Designer (Sole Designer &amp; Hands-On Front-End)</div></div>
-          <div class="cs-meta__item"><span class="mshape mshape--teardrop c-pink"></span><div class="k">Team</div><div class="v">6 Engineers</div></div>
-          <div class="cs-meta__item"><span class="mshape mshape--circle c-yellow"></span><div class="k">Software</div><div class="v">Figma, Salesforce (LWC), HTML, CSS, JavaScript, Lighthouse</div></div>
+          <div class="cs-meta__item"><span class="mshape mshape--petal c-pink"></span><div class="k">Team</div><div class="v">6 Engineers</div></div>
+          <div class="cs-meta__item"><span class="mshape mshape--wedge c-yellow"></span><div class="k">Software</div><div class="v">Figma, Salesforce (LWC), HTML, CSS, JavaScript, Lighthouse</div></div>
         </div>
       </div>
     </section>
@@ -71,21 +71,17 @@
           <div class="decision__block"><span class="num">03</span><p>The <strong>look</strong> was essentially default Salesforce. Because Janssen's brand color was also blue, much of the internal team assumed the out-of-the-box styling was our brand. It wasn't anyone's brand.</p></div>
         </div>
         <p style="margin-top:18px">That fragmentation had a real cost: roughly 10% of our users also use CQUENCE® (most visibly the apheresis nurses in hospitals), and they were moving between two products that shared a login but looked and felt like strangers.</p>
-        <div class="media-grid media-grid--2" style="margin-top:24px">
-          <figure><img src="../images/coic-1-500__6a666361.png" alt="The platform's earlier default-Salesforce styling"></figure>
-          <figure><img src="../images/frame-118-500__692da5ee.png" alt="Chain of Identity & Custody wordmark"></figure>
-        </div>
       </div>
     </section>
 
     <section class="cs-section">
       <div class="wrap reveal">
-        <span class="eyebrow">Key Decision</span>
+        <span class="cs-kicker">Key Decision</span>
         <h2 class="cs-h">Earning The Name</h2>
         <div class="decision__grid">
           <div class="decision__block"><span class="num">The Decision</span><p>Rename the platform to the internal legal name no user recognized, or claim the "CQUENCE®" name users already trusted, which the team didn't know if the product held the rights to?</p></div>
           <div class="decision__block"><span class="num">Challenge</span><p>A separate company held legal agreements that made both the CQUENCE® name and the J&amp;J rebrand itself legally fuzzy. Getting this wrong wasn't a branding misstep, it was a compliance one.</p></div>
-          <div class="decision__block"><span class="num">Approach</span><p>I ran proposals to leadership across three months of working sessions, making the business case for the rebrand. I worked with legal to confirm we sat outside the other company's agreement (clearing us to adopt J&amp;J branding) and to add an addendum that let us use the CQUENCE® name. I also received alignment to shorten the name to "Chain of Identity &amp; Custody," landing on "CQUENCE® Chain of Identity &amp; Custody." I secured funding by pointing to precedent: CQUENCE® in EMEA had already moved to J&amp;J, making alignment a consistency win, not a nice-to-have.</p></div>
+          <div class="decision__block cs-media-split"><div><span class="num">Approach</span><p>I ran proposals to leadership across three months of working sessions, making the business case for the rebrand. I worked with legal to confirm we sat outside the other company's agreement (clearing us to adopt J&amp;J branding) and to add an addendum that let us use the CQUENCE® name. I also received alignment to shorten the name to "Chain of Identity &amp; Custody," landing on "CQUENCE® Chain of Identity &amp; Custody." I secured funding by pointing to precedent: CQUENCE® in EMEA had already moved to J&amp;J, making alignment a consistency win, not a nice-to-have.</p></div><figure style="margin:0"><img src="../images/frame-118-500__692da5ee.png" alt="CQUENCE® Chain of Identity &amp; Custody wordmark" style="width:100%;border-radius:8px;border:1px solid var(--line)" loading="lazy"></figure></div>
           <div class="decision__block"><span class="num">Results</span><p>Naming, rebrand rights, and funding all cleared. That was the foundation the entire design and build then stood on.</p></div>
         </div>
       </div>
@@ -93,7 +89,7 @@
 
     <section class="cs-section">
       <div class="wrap reveal">
-        <span class="eyebrow">Key Decision</span>
+        <span class="cs-kicker">Key Decision</span>
         <h2 class="cs-h">Translating J&amp;J to Salesforce</h2>
         <p>J&amp;J's design system was never built for a Salesforce-based, data-entry platform like ours. Its components didn't fully overlap with the Salesforce Lightning Design System (SLDS), it had no patterns for a lot of what a data-heavy app needs, and J&amp;J actually maintains two design systems whose tokens contradict each other. On top of that, we had to move fully off the default Salesforce styling everyone had mistaken for our brand.</p>
         <div class="decision__grid" style="margin-top:18px">
@@ -101,7 +97,8 @@
           <div class="decision__block"><span class="num">02 — Semi-custom for the gaps</span><p>Where J&amp;J had no match, I designed components that borrow J&amp;J's patterns (spacing, typography, color) and Salesforce's functionality. The clearest example: a two-layer navigation bar showing both the parent brand (CQUENCE®) and the product name, built from common web conventions while staying visually native to J&amp;J.</p></div>
           <div class="decision__block"><span class="num">03 — One source of truth</span><p>I worked through both J&amp;J systems, decided which tokens won where they conflicted, and wrote the development documentation so the coded system was internally consistent even though its sources weren't — a deliberate, documented set of judgment calls, not a copy-paste.</p></div>
         </div>
-        <div class="stats" style="margin-top:30px">
+        <p style="margin-top:18px">To simplify the rebranding initiative, I developed and delivered:</p>
+        <div class="stats" style="margin-top:22px">
           <div class="stat"><div class="n">6</div><div class="l">Webpages</div></div>
           <div class="stat"><div class="n">13</div><div class="l">Components Developed</div><div class="l2">Used across 100% of the website</div></div>
           <div class="stat"><div class="n">650+</div><div class="l">Icons</div><div class="l2">For a robust, future-proof icon library</div></div>
@@ -113,8 +110,8 @@
       <div class="wrap reveal">
         <h2 class="cs-h">The Build</h2>
         <p>As the only designer, I owned the translation from J&amp;J design system to Salesforce-ready system, and then I hand-coded the majority of it in HTML, CSS, and JavaScript alongside four in-house and two agency engineers.</p>
-        <p>I coded the token system (every design token and variable, reconciled across the two J&amp;J systems into one coded set) and the component library — the navbar, footer, table, button, dropdown, date picker, single-line field, text area, radio button, checkbox, profile icon, the checklist side navigation, and an icon holder built to serve all 650+ J&amp;J icons. I also coded the pages: landing, shipment tracking, upcoming orders, and the legal notice, cookie policy, and privacy policy pages.</p>
-        <p>I built accessibility into the process, not onto the end of it. I helped shape the testing strategy, adding Lighthouse checks so any page that didn't hit a green AA accessibility score got fixed before it moved on. And for any implementation I wasn't coding myself, I trained the developers on Figma Dev Mode so the design-to-dev handoff stayed clean.</p>
+        <p><strong>I coded the token system</strong> (every design token and variable, reconciled across the two J&amp;J systems into one coded set) <strong>and the component library</strong> — the navbar, footer, table, button, dropdown, date picker, single-line field, text area, radio button, checkbox, profile icon, the checklist side navigation, and an icon holder built to serve all <strong>650+</strong> J&amp;J icons. <strong>I also coded the pages:</strong> landing, shipment tracking, upcoming orders, and the legal notice, cookie policy, and privacy policy pages.</p>
+        <p><strong>I built accessibility into the process, not onto the end of it.</strong> I helped shape the testing strategy, adding <strong>Lighthouse</strong> checks so any page that didn't hit a green AA accessibility score got fixed before it moved on. And for any implementation I wasn't coding myself, I trained the developers on Figma Dev Mode so the design-to-dev handoff stayed clean.</p>
       </div>
     </section>
 
@@ -122,8 +119,8 @@
       <div class="wrap reveal">
         <h2 class="cs-h">Results</h2>
         <div class="media-grid media-grid--2">
-          <figure><img src="../images/coic-1-500__6a666361.png" alt="Before: out-of-the-box Salesforce with the Janssen logo"><figcaption><span class="fig-title">Before</span><span class="fig-body">Leverages out-of-the-box Salesforce, with minimal customization, and uses the Janssen logo.</span></figcaption></figure>
-          <figure><img src="../images/frame-108-500__692da5ee.png" alt="After: rebranded to the J&J design system on Salesforce"><figcaption><span class="fig-title">After</span><span class="fig-body">Rebranded to the J&amp;J design system, while leveraging Salesforce as its structure.</span></figcaption></figure>
+          <figure><img src="../images/frame-108-500__692da5ee.png" alt="Before: out-of-the-box Salesforce with the Janssen logo"><figcaption><span class="fig-title">Before</span><span class="fig-body">Leverages out-of-the-box Salesforce, with minimal customization, and uses the Janssen logo.</span></figcaption></figure>
+          <figure><img src="../images/frame-118-1-500__692da5ee.png" alt="After: rebranded to the J&amp;J design system on Salesforce"><figcaption><span class="fig-title">After</span><span class="fig-body">Rebranded to the J&amp;J design system, while leveraging Salesforce as its structure.</span></figcaption></figure>
         </div>
         <p style="margin-top:24px">Ahead of launch, leadership review has been the strongest signal so far. One VP, seeing the redesign for the first time, put it bluntly:</p>
         <blockquote class="cs-quote">"I never knew I hated the look of the original platform until I saw this redesign."</blockquote>

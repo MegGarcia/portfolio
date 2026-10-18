@@ -498,7 +498,7 @@ body.menu-open { overflow: hidden; }
 /* "More Like This" next-project card — a single bordered card: wide banner
    image on top, then the project name + circular arrow (no tags/desc),
    matching the live case-study pages. */
-.next-card { display: block; text-decoration: none; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--card); margin-top: 22px; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.next-card { display: block; text-decoration: none; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; margin-top: 22px; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
 .next-card:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,.09); }
 .next-card__pic { display: block; width: 100%; aspect-ratio: 2.39; object-fit: cover; object-position: 50% 0; }
 .next-card__foot { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: clamp(16px, 2.4vw, 26px) clamp(18px, 3vw, 30px); }
@@ -508,7 +508,7 @@ body.menu-open { overflow: hidden; }
 .next-card:hover .arrow-circle svg { stroke: #fff; }
 @media (max-width: 560px) { .next-card__title { font-size: 34px; } }
 
-.cs-section { padding-block: clamp(34px, 5vw, 70px); }
+.cs-section { padding-block: clamp(26px, 3.8vw, 54px); }
 .cs-h { font-family: var(--f-display); font-size: clamp(1.5rem, 3.5vw, 2.3rem); }
 .cs-section > p { margin-top: 16px; max-width: 72ch; }
 
@@ -536,8 +536,7 @@ body.menu-open { overflow: hidden; }
 .callout q { font-family: var(--f-display); font-size: clamp(1.2rem, 2.6vw, 1.7rem); line-height: 1.3; }
 
 .decision { margin-top: 34px; }
-.decision__grid { display: grid; gap: 22px; margin-top: 18px; }
-@media (min-width: 760px) { .decision__grid { grid-template-columns: repeat(2, 1fr); } }
+.decision__grid { display: grid; gap: 26px; margin-top: 18px; }
 .decision__block .num { font-family: var(--f-display); color: var(--faint); font-size: .9rem; }
 .decision__block h4 { font-family: var(--f-head); font-weight: 700; margin-top: 4px; }
 .decision__block p, .decision__block ol { margin-top: 8px; color: var(--body); }
@@ -553,15 +552,21 @@ body.menu-open { overflow: hidden; }
 /* Large inline pull-quote (Under One Brand) — not boxed, matches the live site. */
 .cs-page .cs-quote { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.4rem, 2.8vw, 2rem); line-height: 1.25; color: var(--ink); margin: 22px 0; max-width: 24ch; }
 
-/* Section headings, eyebrows, and stat numbers take the project accent. */
-.cs-page .cs-h { color: var(--accent); }
+/* Section headings, eyebrows, and stat numbers take the project accent.
+   Headings get breathing room above their content. */
+.cs-page .cs-h { color: var(--accent); margin-bottom: 20px; }
 .cs-page .cs-section .eyebrow { color: var(--accent); }
 .cs-page .stat .n,
 .cs-page .stats--result .stat .n { color: var(--accent); }
 
-/* Narrower body measure, like the live site. */
+/* "Key Decision" kicker above the decision title (live: text-h4, accent). */
+.cs-page .cs-kicker { display: block; font-family: var(--f-display); font-weight: 400; font-size: 24px; text-transform: none; letter-spacing: 0; color: var(--accent); margin-bottom: 2px; }
+.cs-page .cs-kicker + .cs-h { margin-top: 0; }
+
+/* Narrower body measure, like the live site; clear space between paragraphs. */
 .cs-page .cs-section .wrap > p,
 .cs-page .decision__block p { max-width: 60ch; }
+.cs-page .cs-section .wrap > p + p { margin-top: 1.1em; }
 
 /* At A Glance: light-gray card with an accent title and black, mixed-case
    sub-headings (title keeps .cs-h styling; only the grid labels go black). */
@@ -576,22 +581,42 @@ body.menu-open { overflow: hidden; }
 /* Key Decision sub-labels: solid black display type. */
 .cs-page .decision__block .num { color: var(--ink); font-size: 1.1rem; }
 
-/* Figure captions: orange eyebrow, black title, gray body — each on its line. */
+/* Figure captions: optional accent eyebrow, black title, dark body at the site
+   body size (not muted/small) — matches the live stacked caption hierarchy. */
 .cs-page figure .fig-eyebrow { display: block; color: var(--accent); font-family: var(--f-body); font-weight: 700; font-size: .78rem; }
-.cs-page figure .fig-title { display: block; color: var(--ink); font-weight: 700; margin-top: 4px; }
-.cs-page figure .fig-body { display: block; color: var(--muted); margin-top: 6px; }
+.cs-page figure .fig-title { display: block; color: var(--ink); font-weight: 700; font-size: 1.1rem; margin-top: 6px; }
+.cs-page figure .fig-body { display: block; color: var(--body); margin-top: 6px; }
 
-/* Validating callout: gray box, black left-aligned quote, supporting text in. */
-.cs-page .callout { background: #f6f6f6; color: var(--ink); text-align: left; }
-.cs-page .callout .callout__lead { color: var(--muted); max-width: 60ch; }
-.cs-page .callout q { display: block; color: var(--ink); margin: 14px 0; }
-.cs-page .callout p:last-child { color: var(--muted); max-width: 60ch; margin-bottom: 0; }
+/* Unified gray box. All text inside is dark (never gray on gray). */
+.cs-page .cs-box { background: #f6f6f6; border-radius: var(--radius); padding: clamp(26px, 4vw, 48px); margin-top: 22px; }
+.cs-page .cs-box p, .cs-page .cs-box li, .cs-page .cs-box .fig-body { color: var(--body); }
+.cs-page .cs-box img { width: 100%; border-radius: 8px; border: 0; display: block; }
+.cs-page .cs-box ul { margin: 14px 0 0; padding-left: 1.2em; }
+.cs-page .cs-box li { margin-top: 6px; }
+.cs-page .cs-box .fig-title { color: var(--ink); }
+/* Large inline-style quote inside a gray box (Validating). */
+.cs-page .cs-box .cs-box__lead { max-width: 60ch; }
+.cs-page .cs-box .cs-box__quote { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.3; color: var(--ink); margin: 14px 0; }
+@media (min-width: 760px) {
+  /* content left, image right */
+  .cs-page .cs-box--media { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  /* label/heading left, body right */
+  .cs-page .cs-box--split { display: grid; grid-template-columns: 1fr 1.7fr; gap: 40px; align-items: start; }
+  .cs-page .cs-box--split .cs-h { margin-bottom: 0; }
+}
+/* Before/After pair inside a gray box. */
+.cs-page .cs-box__grid { display: grid; gap: 28px; }
+@media (min-width: 680px) { .cs-page .cs-box__grid--2 { grid-template-columns: 1fr 1fr; } }
 
-/* Results: gray card with a real bullet list. */
-.cs-page .result-box { background: #f6f6f6; border-radius: var(--radius); padding: clamp(28px, 4vw, 52px); margin-top: 22px; }
-.cs-page .result-box p { max-width: 60ch; }
-.cs-page .result-box ul { margin: 14px 0 0; padding-left: 1.2em; color: var(--muted); }
-.cs-page .result-box li { margin-top: 6px; }
+/* Plain two-column media split (image right) without a box. */
+@media (min-width: 760px) {
+  .cs-page .cs-media-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .cs-page .cs-media-split > p { max-width: none; }
+}
+
+/* Embedded (vertical) walkthrough video — Pizza Outcome. */
+.cs-page .cs-video { max-width: 380px; margin-top: 26px; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: #000; }
+.cs-page .cs-video iframe { width: 100%; height: 100%; border: 0; display: block; }
 
 /* Prioritizing & Shipping: heading left, body in the right column. */
 @media (min-width: 760px) {
@@ -608,8 +633,9 @@ body.menu-open { overflow: hidden; }
 .cs-page .cs-meta__item { display: block; }
 .cs-meta .mshape { display: block; width: 16px; height: 16px; margin-bottom: 10px; }
 .cs-meta .mshape--circle { border-radius: 50%; }
-.cs-meta .mshape--diamond { width: 14px; height: 14px; border-radius: 3px; transform: rotate(45deg); }
-.cs-meta .mshape--teardrop { border-radius: 50% 50% 50% 0; transform: rotate(45deg); }
+.cs-meta .mshape--diamond { width: 14px; height: 14px; border-radius: 1px; transform: rotate(45deg); }
+.cs-meta .mshape--petal { width: 15px; height: 15px; border-radius: 50% 0 50% 50%; transform: rotate(10deg); }
+.cs-meta .mshape--wedge { width: 15px; height: 15px; border-radius: 100% 0 0 0; transform: rotate(10deg); }
 .cs-meta .c-orange { background: var(--orange); }
 .cs-meta .c-purple { background: var(--purple); }
 .cs-meta .c-pink { background: var(--pink); }
