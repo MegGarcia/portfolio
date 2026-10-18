@@ -155,8 +155,10 @@ body:has(.hero) .site-header {
   display: flex; align-items: center; justify-content: space-between;
   gap: 20px; min-height: 76px;
 }
-.brand { display: inline-flex; }
-.brand img { width: 46px; height: 46px; }
+/* Logo sits in a deep-blue box (matches the live site) so the white "M" stays
+   legible over the hero shapes behind the transparent nav. */
+.brand { display: inline-flex; background: #0b46a5; padding: 4px; line-height: 0; }
+.brand img { width: 40px; height: 40px; display: block; }
 .nav__links {
   display: flex; align-items: center; gap: clamp(18px, 3vw, 44px);
   list-style: none; padding: 0;
