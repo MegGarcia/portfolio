@@ -546,6 +546,12 @@ body.menu-open { overflow: hidden; }
 /* ===== Case-study page refinements (scoped to .cs-page) =====================
    Match the live Webflow case-study layout. --accent is the project color. */
 .cs--orange { --accent: var(--orange); }
+.cs--purple { --accent: var(--purple); }
+.cs--pink   { --accent: var(--pink); }
+.cs--blue   { --accent: var(--blue); }
+
+/* Large inline pull-quote (Under One Brand) — not boxed, matches the live site. */
+.cs-page .cs-quote { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.4rem, 2.8vw, 2rem); line-height: 1.25; color: var(--ink); margin: 22px 0; max-width: 24ch; }
 
 /* Section headings, eyebrows, and stat numbers take the project accent. */
 .cs-page .cs-h { color: var(--accent); }
