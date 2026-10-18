@@ -144,6 +144,13 @@ a:hover .arrow-circle svg { color: #fff; }
   position: relative; z-index: 100;
   background: var(--blue); color: #fff;
 }
+/* On pages led by a blue hero, the nav sits transparently over the hero (which
+   fills the full height behind it) instead of as its own solid bar. Other pages
+   (light tops: About, Contact, case studies) keep the solid header. */
+body:has(.hero) .site-header {
+  position: absolute; top: 0; left: 0; right: 0;
+  background: transparent;
+}
 .nav {
   display: flex; align-items: center; justify-content: space-between;
   gap: 20px; min-height: 76px;
@@ -218,7 +225,7 @@ body.menu-open { overflow: hidden; }
 .hero {
   position: relative; background: var(--blue); color: #fff; overflow: hidden;
 }
-.hero__inner { position: relative; z-index: 2; padding-block: clamp(54px, 11vw, 120px); }
+.hero__inner { position: relative; z-index: 2; padding-block: clamp(96px, 11vw, 120px) clamp(54px, 11vw, 120px); }
 .hero__kicker { font-family: var(--f-head); font-weight: 700; opacity: .9; }
 
 /* The giant animated page title (letters stagger up) */
@@ -248,7 +255,7 @@ body.menu-open { overflow: hidden; }
 
 /* ---- Home hero (tagline-led headline) --------------------------------- */
 .hero--home .hero__inner {
-  padding-block: clamp(84px, 10vw, 150px) clamp(52px, 7vw, 96px);
+  padding-block: clamp(96px, 10vw, 150px) clamp(52px, 7vw, 96px);
 }
 
 .hero-headline {
