@@ -554,7 +554,7 @@ body.menu-open { overflow: hidden; }
 
 /* Section headings, eyebrows, and stat numbers take the project accent.
    Headings get breathing room above their content. */
-.cs-page .cs-h { color: var(--accent); margin-bottom: 20px; }
+.cs-page .cs-h { color: var(--accent); margin-bottom: 26px; }
 .cs-page .cs-section .eyebrow { color: var(--accent); }
 .cs-page .stat .n,
 .cs-page .stats--result .stat .n { color: var(--accent); }
@@ -566,7 +566,8 @@ body.menu-open { overflow: hidden; }
 /* Narrower body measure, like the live site; clear space between paragraphs. */
 .cs-page .cs-section .wrap > p,
 .cs-page .decision__block p { max-width: 60ch; }
-.cs-page .cs-section .wrap > p + p { margin-top: 1.1em; }
+.cs-page .cs-section .wrap > p + p,
+.cs-page .cs-box p + p { margin-top: 1.6em; }
 
 /* At A Glance: light-gray card with an accent title and black, mixed-case
    sub-headings (title keeps .cs-h styling; only the grid labels go black). */
@@ -589,7 +590,7 @@ body.menu-open { overflow: hidden; }
 
 /* Unified gray box. All text inside is dark (never gray on gray). */
 .cs-page .cs-box { background: #f6f6f6; border-radius: var(--radius); padding: clamp(26px, 4vw, 48px); margin-top: 22px; }
-.cs-page .cs-box p, .cs-page .cs-box li, .cs-page .cs-box .fig-body { color: var(--body); }
+.cs-page .cs-box p, .cs-page .cs-box li, .cs-page .cs-box .fig-body { color: var(--ink); }
 .cs-page .cs-box img { width: 100%; border-radius: 8px; border: 0; display: block; }
 .cs-page .cs-box ul { margin: 14px 0 0; padding-left: 1.2em; }
 .cs-page .cs-box li { margin-top: 6px; }
