@@ -304,36 +304,23 @@ body.menu-open { overflow: hidden; }
 
 /* Home hero decorative shapes */
 .hero--home .sh { position: absolute; will-change: translate; }
-.sh-yellow-block {
-  top: 0; left: -16px;
-  width: min(30vw, 440px); height: clamp(110px, 12vw, 172px);
-  background: var(--yellow); border-radius: 34px; transform: rotate(-1.5deg);
-}
-.sh-orange-circle { top: 13%; right: -78px; width: min(26vw, 380px); }
-.sh-pink-blob {
-  bottom: -26px; left: 49%;
-  width: min(30vw, 430px); height: min(22vw, 290px);
-  background: var(--pink); border-radius: 110px; transform: rotate(-3deg);
-}
-.sh-pink-dia { top: 12%; right: 26%; width: 34px; }
-.sh-yellow-dia-a { top: 17%; right: 21%; width: 30px; }
-.sh-yellow-dia-b { bottom: 34%; left: 60%; width: 28px; }
-.sh-orange-dia {
-  top: 52%; left: 0; width: 26px; height: 26px;
-  background: var(--orange); transform: rotate(45deg);
-}
+/* Hero decorations use the live site's actual shape SVGs: the yellow arch
+   ("Minion"), the orange circle, the pink "Petal", and the three diamonds
+   (yellow / pink / orange). */
+.sh-minion     { top: -118px; left: clamp(36px, 6vw, 92px); width: min(20vw, 254px); transform: rotate(3deg); }
+.sh-circle     { top: 17%; right: -6%; width: min(24vw, 300px); }
+.sh-petal      { bottom: -16%; left: -3%; width: min(17vw, 240px); transform: rotate(-8deg); }
+.sh-dia-pink   { top: 18%; left: 72%; width: 32px; transform: rotate(8deg); }
+.sh-dia-orange { top: 58%; left: -8px; width: 26px; }
+.sh-dia-yellow { top: 76%; left: 65%; width: 32px; transform: rotate(-6deg); }
 @media (max-width: 760px) {
   /* Keep decorations in the margins so the headline stays clear and readable. */
-  .sh-yellow-block { top: -8px; left: -16px; width: 200px; height: 104px; border-radius: 24px; }
-  .sh-orange-circle { top: -34px; right: -74px; width: 180px; }
-  .sh-pink-blob {
-    left: auto; right: -34px; bottom: -34px;
-    width: 220px; height: 150px; border-radius: 80px;
-  }
-  .sh-pink-dia { top: 72px; right: 9%; width: 24px; }
-  .sh-yellow-dia-a { top: 96px; right: 20%; width: 22px; }
-  .sh-yellow-dia-b { display: none; }
-  .sh-orange-dia { top: auto; bottom: 34%; left: 2%; width: 20px; }
+  .sh-minion     { top: -40px; left: -14px; width: 150px; }
+  .sh-circle     { top: -30px; right: -56px; width: 150px; }
+  .sh-petal      { bottom: -6%; left: auto; right: -40px; width: 150px; }
+  .sh-dia-pink   { top: 64px; left: auto; right: 9%; width: 24px; }
+  .sh-dia-orange { top: auto; bottom: 30%; left: 2%; width: 20px; }
+  .sh-dia-yellow { top: auto; bottom: 9%; left: 58%; width: 22px; }
 }
 
 /* ==========================================================================
