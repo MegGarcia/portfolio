@@ -97,6 +97,14 @@ h1, h2, h3, h4 { line-height: 1.08; color: var(--ink); font-weight: 400; }
 .h-xl { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.4rem, 6vw, 4.6rem); letter-spacing: -0.02em; }
 .h-lg { font-family: var(--f-display); font-size: clamp(1.9rem, 4.5vw, 3rem); }
 .h-md { font-family: var(--f-display); font-size: clamp(1.4rem, 3vw, 2rem); }
+
+/* Uniform h1 size across every page (home hero, page titles, case-study
+   titles, About heading). h1-qualified selectors outrank the per-class
+   font-size rules regardless of source order. */
+h1.hero-headline,
+h1.page-title,
+h1.cs-title,
+h1.about-head__title { font-size: 48px; }
 .lead { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--body); max-width: 56ch; }
 
 /* Section heading with a colored shape marker above it */
