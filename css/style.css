@@ -557,9 +557,15 @@ body.menu-open { overflow: hidden; }
 .cs-page .cs-section .wrap > p,
 .cs-page .decision__block p { max-width: 60ch; }
 
-/* At A Glance: light-gray card with black, mixed-case sub-headings. */
+/* At A Glance: light-gray card with an accent title and black, mixed-case
+   sub-headings (title keeps .cs-h styling; only the grid labels go black). */
 .cs-page .glance { background: #f6f6f6; }
-.cs-page .glance h3 { color: var(--ink); text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-weight: 700; font-size: 1.05rem; }
+.cs-page .glance__title { font-family: var(--f-display); font-weight: 400; font-size: 32px; text-transform: none; letter-spacing: 0; color: var(--accent); margin-bottom: 20px; }
+.cs-page .glance__grid h3 { color: var(--ink); text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-weight: 700; font-size: 1.05rem; }
+
+/* Stat labels: bold black primary line, optional gray secondary line. */
+.cs-page .stat .l { color: var(--ink); font-weight: 700; }
+.cs-page .stat .l2 { color: var(--muted); font-weight: 400; font-size: .9rem; margin-top: 3px; }
 
 /* Key Decision sub-labels: solid black display type. */
 .cs-page .decision__block .num { color: var(--ink); font-size: 1.1rem; }
