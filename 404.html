@@ -7,7 +7,12 @@
   <meta name="robots" content="noindex">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="stylesheet" href="/fonts/fonts.css">
-  <link rel="stylesheet" href="/css/style.css?v=43">
+  <link rel="stylesheet" href="/css/style.css?v=44">
+  <style>
+    /* Fill the viewport so the footer sits at the bottom (no white gap) */
+    body { min-height: 100dvh; display: flex; flex-direction: column; }
+    body > main { flex: 1 0 auto; }
+  </style>
 </head>
 <body>
   <header class="site-header">
