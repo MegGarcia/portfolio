@@ -127,22 +127,33 @@ h1.about-head__title { font-size: 48px; }
 .c-yellow{ background: var(--yellow); color: var(--yellow); }
 .t-blue{ color: var(--blue);} .t-orange{color:var(--orange);} .t-pink{color:var(--pink);} .t-purple{color:var(--purple);}
 
-/* ---- Buttons ------------------------------------------------------------ */
+/* ---- Buttons ------------------------------------------------------------
+   Two kinds — primary (solid fill) and secondary (outline) — each with an
+   on-dark variant (add .btn--on-dark for use over the blue / dark bands).   */
 .btn {
-  display: inline-flex; align-items: center; gap: .6em;
-  font-family: var(--f-body); font-weight: 700;
-  padding: .72em 1.4em; border-radius: var(--radius-pill);
-  border: 2px solid var(--ink); background: transparent; color: var(--ink);
-  transition: transform .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  font-family: var(--f-body); font-weight: 700; font-size: .88rem; line-height: 1.1;
+  padding: .55em 1.15em; border-radius: var(--radius-pill);
+  border: 2px solid transparent; background: transparent; color: var(--ink);
+  cursor: pointer;
+  transition: transform .18s var(--ease), background .18s var(--ease),
+              color .18s var(--ease), border-color .18s var(--ease);
 }
-.btn:hover { transform: translateY(-2px); background: var(--card); }
-.btn--light { border-color: #fff; color: #fff; }
-.btn--light:hover { background: #fff; color: var(--blue); }
-.btn--solid { background: var(--ink); color: #fff; }
-.btn--solid:hover { background: var(--blue); border-color: var(--blue); }
-/* Solid white pill with blue text — high-contrast primary on the blue hero */
-.btn--invert { background: #fff; border-color: #fff; color: var(--blue); }
-.btn--invert:hover { background: #fff; color: var(--blue-d); box-shadow: 0 10px 26px rgba(0,0,0,.20); }
+.btn:hover { transform: translateY(-2px); }
+
+/* Primary — solid fill (ink), brand-blue on hover */
+.btn--primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn--primary:hover { background: var(--blue); border-color: var(--blue); }
+
+/* Secondary — outline, soft fill on hover */
+.btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn--secondary:hover { background: var(--card); color: var(--ink); }
+
+/* On dark backgrounds (blue hero / header) */
+.btn--primary.btn--on-dark { background: #fff; color: var(--blue); border-color: #fff; }
+.btn--primary.btn--on-dark:hover { background: #fff; color: var(--blue-d); box-shadow: 0 10px 26px rgba(0,0,0,.18); }
+.btn--secondary.btn--on-dark { background: transparent; color: #fff; border-color: #fff; }
+.btn--secondary.btn--on-dark:hover { background: rgba(255,255,255,.15); color: #fff; }
 
 /* Arrow-in-circle icon used beside project / section titles */
 .arrow-circle {
@@ -704,8 +715,6 @@ body.menu-open { overflow: hidden; }
 }
 
 /* Ghost pill + plain horizontal arrow (Process Deck, Read Case Study). */
-.btn--ghost { background: transparent; border: 2px solid var(--ink); color: var(--ink); }
-.btn--ghost:hover { background: var(--card); color: var(--ink); }
 /* Standard button icon size — applies to every direct SVG icon in a button */
 .btn > svg, .btn .arrow-h { width: 1.05em; height: 1.05em; flex: none; }
 
