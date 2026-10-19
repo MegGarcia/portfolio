@@ -440,12 +440,14 @@ body.menu-open { overflow: hidden; }
 /* ==========================================================================
    Resume page
    ========================================================================== */
-.resume-embed {
-  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
-  background: var(--card); box-shadow: 0 20px 60px rgba(0,0,0,.08);
+/* Resume shown as a clean page image (no chrome around it), just a soft lift */
+.resume-img { max-width: 900px; margin: 0 auto; }
+.resume-img img {
+  width: 100%; height: auto; display: block;
+  box-shadow: 0 24px 60px rgba(0,0,0,.10);
 }
-.resume-embed object, .resume-embed iframe { width: 100%; height: min(120vh, 1000px); border: 0; display: block; }
-.resume-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 22px; }
+.resume-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero .resume-actions { margin-top: 1.8rem; }
 
 /* ==========================================================================
    Contact page / forms
