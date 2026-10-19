@@ -472,7 +472,7 @@ body.menu-open { overflow: hidden; }
 
 /* Resume hero: headline left, actions to its right (stacks on narrow screens) */
 .hero__inner--row {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: flex-end; justify-content: space-between;
   gap: clamp(24px, 4vw, 56px); flex-wrap: wrap;
 }
 /* Compact the headline so it shares the row with the action buttons */
