@@ -13,12 +13,20 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="/" aria-label="Megan Garcia — home"><img src="/images/logo-5__6a6fe14c.png" alt="Megan Garcia logo" width="46" height="46"></a>
-      <nav aria-label="Primary"><ul class="nav__links">
+      <nav aria-label="Primary"><ul class="nav__links pill-hidden">
         <li><a href="/work/">Work</a></li><li><a href="/about/">About</a></li><li><a href="/resume/">Resume</a></li>
       </ul></nav>
-      <div class="nav__right"><a class="btn btn--secondary btn--on-dark" href="mailto:megangarcia2024@gmail.com">Let's Chat!</a></div>
+      <div class="nav__right">
+        <a class="btn btn--secondary btn--on-dark" href="mailto:megangarcia2024@gmail.com">Let's Chat!</a>
+        <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+      </div>
     </div>
   </header>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <button class="mobile-menu__close" aria-label="Close menu"></button>
+    <a href="/work/">Work</a><a href="/about/">About</a><a href="/resume/">Resume</a>
+    <a class="btn btn--secondary btn--on-dark" href="mailto:megangarcia2024@gmail.com">Let's Chat!</a>
+  </div>
   <main class="hero" style="min-height:60vh;display:grid;place-items:center">
     <div class="wrap" style="text-align:center">
       <h1 class="page-title" style="color:#fff;justify-content:center">404</h1>
@@ -35,5 +43,6 @@
       </div>
     </div>
   </footer>
+  <script src="/js/main.js?v=19" defer></script>
 </body>
 </html>
