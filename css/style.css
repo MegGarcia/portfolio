@@ -141,17 +141,13 @@ h1.about-head__title { font-size: 48px; }
   transition: color .2s var(--ease), border-color .2s var(--ease),
               background-size .3s var(--ease);
 }
-/* Arrow slide — icons nudge right on hover/focus */
-.btn > svg { transition: transform .2s var(--ease); }
-.btn:hover > svg, .btn:focus-visible > svg { transform: translateX(4px); }
+/* Primary — solid brand blue, sweeps to a darker blue */
+.btn--primary { background-color: var(--blue); background-image: linear-gradient(var(--blue-d), var(--blue-d)); color: #fff; border-color: var(--blue); }
+.btn--primary:hover { background-size: 100% 100%; border-color: var(--blue-d); }
 
-/* Primary — solid ink, sweeps to brand blue */
-.btn--primary { background-color: var(--ink); background-image: linear-gradient(var(--blue), var(--blue)); color: #fff; border-color: var(--ink); }
-.btn--primary:hover { background-size: 100% 100%; border-color: var(--blue); }
-
-/* Secondary — outline, sweeps to an ink fill */
-.btn--secondary { background-image: linear-gradient(var(--ink), var(--ink)); color: var(--ink); border-color: var(--ink); }
-.btn--secondary:hover { background-size: 100% 100%; color: #fff; }
+/* Secondary — outline, sweeps to a brand-blue fill */
+.btn--secondary { background-image: linear-gradient(var(--blue), var(--blue)); color: var(--ink); border-color: var(--ink); }
+.btn--secondary:hover { background-size: 100% 100%; color: #fff; border-color: var(--blue); }
 
 /* On dark backgrounds (blue hero / header) */
 .btn--primary.btn--on-dark { background-color: #fff; background-image: linear-gradient(var(--blue-d), var(--blue-d)); color: var(--blue); border-color: #fff; }
@@ -821,7 +817,6 @@ body.menu-open { overflow: hidden; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0ms !important; transition-duration: .001ms !important; }
   .page-title .ltr { opacity: 1; transform: none; }
   .page-title--whole { opacity: 1; transform: none; }
-  .btn:hover > svg, .btn:focus-visible > svg { transform: none; }
   .js .reveal, .js .reveal.project-link { opacity: 1; transform: none; }
   .hero-id__ping { animation: none; display: none; }
   .hero--home .sh { translate: none !important; rotate: none !important; scale: none !important; }
