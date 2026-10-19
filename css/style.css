@@ -153,7 +153,7 @@ h1.about-head__title { font-size: 48px; }
 .btn--primary.btn--on-dark { background: #fff; color: var(--blue); border-color: #fff; }
 .btn--primary.btn--on-dark:hover { background: #fff; color: var(--blue-d); box-shadow: 0 10px 26px rgba(0,0,0,.18); }
 .btn--secondary.btn--on-dark { background: transparent; color: #fff; border-color: #fff; }
-.btn--secondary.btn--on-dark:hover { background: rgba(255,255,255,.15); color: #fff; }
+.btn--secondary.btn--on-dark:hover { background: rgba(13,21,66,.35); color: #fff; }
 
 /* Arrow-in-circle icon used beside project / section titles */
 .arrow-circle {
