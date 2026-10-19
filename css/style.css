@@ -134,6 +134,9 @@ h1.about-head__title { font-size: 48px; }
 .btn--light:hover { background: #fff; color: var(--blue); }
 .btn--solid { background: var(--ink); color: #fff; }
 .btn--solid:hover { background: var(--blue); border-color: var(--blue); }
+/* Solid white pill with blue text — high-contrast primary on the blue hero */
+.btn--invert { background: #fff; border-color: #fff; color: var(--blue); }
+.btn--invert:hover { background: #fff; color: var(--blue-d); box-shadow: 0 10px 26px rgba(0,0,0,.20); }
 
 /* Arrow-in-circle icon used beside project / section titles */
 .arrow-circle {
@@ -440,11 +443,16 @@ body.menu-open { overflow: hidden; }
 /* ==========================================================================
    Resume page
    ========================================================================== */
-/* Resume shown as a clean page image (no chrome around it), just a soft lift */
-.resume-img { max-width: 900px; margin: 0 auto; }
+/* Resume shown as a clean page image that pokes up into the blue hero */
+.resume-show { padding-block: 0 clamp(48px, 8vw, 110px); }
+.resume-img {
+  max-width: 900px; margin: 0 auto; position: relative; z-index: 2;
+  margin-top: calc(-1 * clamp(56px, 8vw, 120px));
+}
 .resume-img img {
   width: 100%; height: auto; display: block;
-  box-shadow: 0 24px 60px rgba(0,0,0,.10);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0,0,0,.18);
 }
 .resume-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero .resume-actions { margin-top: 1.8rem; }
