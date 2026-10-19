@@ -62,5 +62,43 @@
     </div>
   </footer>
   <script src="/portfolio/js/main.js?v=19" defer></script>
+  <script>
+    /* Same bubbly float as the hero shapes (bob + gentle rotate + scale +
+       cursor parallax), kept here because the 404 shapes sit outside a .hero
+       and set their base angle via the `rotate` property. */
+    (function () {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var layer = document.querySelector(".shapes");
+      if (!layer || !("requestAnimationFrame" in window)) return;
+      var cfg = [].slice.call(layer.children).map(function (el, i) {
+        var r = getComputedStyle(el).rotate, base = 0;
+        if (r && r !== "none") { var n = parseFloat(r); if (!isNaN(n)) base = n; }
+        el.style.willChange = "translate, rotate, scale";
+        return { el: el, base: base,
+          depth: 0.016 + (i % 4) * 0.012, amp: 10 + (i % 3) * 7,
+          speed: 0.00024 + (i % 5) * 0.00007, phase: i * 1.7,
+          rotAmp: 5 + (i % 3) * 3, rotSpeed: 0.00017 + (i % 4) * 0.00005, rotPhase: i * 2.3,
+          sclAmp: 0.035 + (i % 3) * 0.015, sclSpeed: 0.0003 + (i % 3) * 0.0001, sclPhase: i * 1.1,
+          cx: 0, cy: 0 };
+      });
+      var tx = 0, ty = 0;
+      addEventListener("pointermove", function (e) { tx = e.clientX / innerWidth - 0.5; ty = e.clientY / innerHeight - 0.5; });
+      addEventListener("pointerleave", function () { tx = 0; ty = 0; });
+      requestAnimationFrame(function frame(now) {
+        var w = innerWidth;
+        cfg.forEach(function (c) {
+          c.cx += (tx - c.cx) * 0.06; c.cy += (ty - c.cy) * 0.06;
+          var px = -c.cx * w * c.depth + Math.sin(now * c.speed + c.phase) * c.amp;
+          var py = -c.cy * w * c.depth + Math.cos(now * c.speed * 0.9 + c.phase) * c.amp;
+          var rot = c.base + Math.sin(now * c.rotSpeed + c.rotPhase) * c.rotAmp;
+          var scl = 1 + Math.sin(now * c.sclSpeed + c.sclPhase) * c.sclAmp;
+          c.el.style.translate = px.toFixed(2) + "px " + py.toFixed(2) + "px";
+          c.el.style.rotate = rot.toFixed(2) + "deg";
+          c.el.style.scale = scl.toFixed(3);
+        });
+        requestAnimationFrame(frame);
+      });
+    })();
+  </script>
 </body>
 </html>
