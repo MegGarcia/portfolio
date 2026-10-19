@@ -75,6 +75,12 @@ h1, h2, h3, h4 { line-height: 1.08; color: var(--ink); font-weight: 400; }
 }
 .skip-link:focus { left: 0; }
 
+/* Visually hidden, still available to screen readers */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
 /* ---- Layout helpers ----------------------------------------------------- */
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
 .section { padding-block: clamp(48px, 8vw, 110px); }
@@ -258,6 +264,13 @@ body.menu-open { overflow: hidden; }
   animation: ltrUp .6s var(--ease) forwards;
 }
 @keyframes ltrUp { to { transform: translateY(0); opacity: 1; } }
+
+/* Whole-heading entrance (one intact, accessible text node — no per-letter split) */
+.page-title--whole {
+  display: block;
+  transform: translateY(1.1em); opacity: 0;
+  animation: ltrUp .6s var(--ease) both;
+}
 
 .hero__meta { margin-top: 1.2rem; display: grid; gap: 2px; }
 .hero__meta .name { font-family: var(--f-head); font-weight: 700; font-size: 1.3rem; }
@@ -457,6 +470,18 @@ body.menu-open { overflow: hidden; }
 .resume-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero .resume-actions { margin-top: 1.8rem; }
 
+/* Resume hero: headline left, actions to its right (stacks on narrow screens) */
+.hero__inner--row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: clamp(24px, 4vw, 56px); flex-wrap: wrap;
+}
+/* Compact the headline so it shares the row with the action buttons */
+.hero__inner--row .page-title {
+  flex: 1 1 380px; max-width: 18ch; margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+}
+.hero__inner--row .resume-actions { flex: 0 1 auto; margin-top: 0; }
+
 /* ==========================================================================
    Contact page / forms
    ========================================================================== */
@@ -642,7 +667,8 @@ body.menu-open { overflow: hidden; }
 /* Ghost pill + plain horizontal arrow (Process Deck, Read Case Study). */
 .btn--ghost { background: transparent; border: 2px solid var(--ink); color: var(--ink); }
 .btn--ghost:hover { background: var(--card); color: var(--ink); }
-.btn .arrow-h { width: 1.05em; height: 1.05em; flex: none; }
+/* Standard button icon size — applies to every direct SVG icon in a button */
+.btn > svg, .btn .arrow-h { width: 1.05em; height: 1.05em; flex: none; }
 
 /* Hero meta shape icons (stacked above each label). */
 .cs-page .cs-meta__item { display: block; }
@@ -742,6 +768,7 @@ body.menu-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0ms !important; transition-duration: .001ms !important; }
   .page-title .ltr { opacity: 1; transform: none; }
+  .page-title--whole { opacity: 1; transform: none; }
   .js .reveal, .js .reveal.project-link { opacity: 1; transform: none; }
   .hero-id__ping { animation: none; display: none; }
   .hero--home .sh { translate: none !important; rotate: none !important; scale: none !important; }
