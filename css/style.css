@@ -458,15 +458,52 @@ body.menu-open { overflow: hidden; }
    ========================================================================== */
 /* Resume shown as a clean page image that pokes up into the blue hero */
 .resume-show { padding-block: 0 clamp(48px, 8vw, 110px); }
-.resume-img {
-  max-width: 900px; margin: 0 auto; position: relative; z-index: 2;
+
+/* Résumé as real, selectable HTML — a white card that pokes up into the blue */
+.resume-card {
+  max-width: 940px; margin: 0 auto; position: relative; z-index: 2;
   margin-top: calc(-1 * clamp(56px, 8vw, 120px));
+  background: #fff; color: var(--ink);
+  border-radius: var(--radius); box-shadow: 0 24px 60px rgba(0,0,0,.18);
+  padding: clamp(26px, 4vw, 56px);
 }
-.resume-img img {
-  width: 100%; height: auto; display: block;
-  border-radius: var(--radius);
-  box-shadow: 0 24px 60px rgba(0,0,0,.18);
+.resume-card__name { font-size: clamp(1.9rem, 3.4vw, 2.5rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.01em; }
+.resume-card__role { color: var(--purple); font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 1.7rem); margin-top: 3px; }
+
+.resume-card__grid { display: grid; gap: clamp(24px, 4vw, 52px); margin-top: clamp(22px, 3vw, 34px); }
+@media (min-width: 760px) { .resume-card__grid { grid-template-columns: 38% 1fr; align-items: start; } }
+
+.resume-sec + .resume-sec { margin-top: clamp(20px, 2.4vw, 30px); }
+.resume-sec__h {
+  text-transform: uppercase; letter-spacing: .08em; color: var(--purple);
+  font-weight: 700; font-size: .8rem; margin-bottom: .7rem;
 }
+
+.resume-item { margin-top: .85rem; }
+.resume-sec__h + .resume-item { margin-top: 0; }
+.resume-item__title { font-weight: 700; font-size: .98rem; line-height: 1.25; }
+.resume-item__sub { color: var(--muted); font-size: .9rem; line-height: 1.45; }
+.resume-item__meta { color: var(--faint); font-size: .85rem; margin-top: 2px; }
+
+/* Contact */
+.resume-contact { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; }
+.resume-contact li { display: grid; gap: 1px; }
+.resume-k { font-weight: 700; font-size: .92rem; }
+.resume-contact a, .resume-contact li > span:last-child { color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
+.resume-contact a:hover { color: var(--purple); }
+
+/* Experience */
+.resume-job + .resume-job { margin-top: clamp(18px, 2.4vw, 28px); }
+.resume-job__co { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 5px; }
+.resume-job__co h4 { font-size: 1.08rem; font-weight: 800; }
+.resume-job__loc { margin-left: auto; color: var(--faint); font-size: .88rem; }
+.resume-role { margin-top: .85rem; }
+.resume-role__head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.resume-role__title { font-size: .98rem; font-weight: 700; }
+.resume-role__dates { margin-left: auto; color: var(--faint); font-size: .85rem; }
+.resume-bullets { margin: .45rem 0 0; padding-left: 1.1rem; display: grid; gap: .35rem; }
+.resume-bullets li { color: var(--muted); font-size: .9rem; line-height: 1.45; }
+
 .resume-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero .resume-actions { margin-top: 1.8rem; }
 
