@@ -494,7 +494,7 @@ body.menu-open { overflow: hidden; }
 
 /* Experience */
 .resume-job + .resume-job { margin-top: clamp(18px, 2.4vw, 28px); }
-.resume-job__co { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 5px; }
+.resume-job__co { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .resume-job__co h4 { font-size: 1.08rem; font-weight: 800; }
 .resume-job__loc { margin-left: auto; color: var(--faint); font-size: .88rem; }
 .resume-role { margin-top: .85rem; }
