@@ -134,26 +134,30 @@ h1.about-head__title { font-size: 48px; }
   display: inline-flex; align-items: center; justify-content: center; gap: .5em;
   font-family: var(--f-body); font-weight: 700; font-size: .88rem; line-height: 1.1;
   padding: .55em 1.15em; border-radius: var(--radius-pill);
-  border: 2px solid transparent; background: transparent; color: var(--ink);
-  cursor: pointer;
-  transition: transform .18s var(--ease), background .18s var(--ease),
-              color .18s var(--ease), border-color .18s var(--ease);
+  border: 2px solid transparent; color: var(--ink); cursor: pointer;
+  /* Hover = a colour wipe that sweeps in from the left (background-size) */
+  background-color: transparent; background-repeat: no-repeat;
+  background-position: left center; background-size: 0% 100%;
+  transition: color .2s var(--ease), border-color .2s var(--ease),
+              background-size .3s var(--ease);
 }
-.btn:hover { transform: translateY(-2px); }
+/* Arrow slide — icons nudge right on hover/focus */
+.btn > svg { transition: transform .2s var(--ease); }
+.btn:hover > svg, .btn:focus-visible > svg { transform: translateX(4px); }
 
-/* Primary — solid fill (ink), brand-blue on hover */
-.btn--primary { background: var(--ink); color: #fff; border-color: var(--ink); }
-.btn--primary:hover { background: var(--blue); border-color: var(--blue); }
+/* Primary — solid ink, sweeps to brand blue */
+.btn--primary { background-color: var(--ink); background-image: linear-gradient(var(--blue), var(--blue)); color: #fff; border-color: var(--ink); }
+.btn--primary:hover { background-size: 100% 100%; border-color: var(--blue); }
 
-/* Secondary — outline, soft fill on hover */
-.btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
-.btn--secondary:hover { background: var(--card); color: var(--ink); }
+/* Secondary — outline, sweeps to an ink fill */
+.btn--secondary { background-image: linear-gradient(var(--ink), var(--ink)); color: var(--ink); border-color: var(--ink); }
+.btn--secondary:hover { background-size: 100% 100%; color: #fff; }
 
 /* On dark backgrounds (blue hero / header) */
-.btn--primary.btn--on-dark { background: #fff; color: var(--blue); border-color: #fff; }
-.btn--primary.btn--on-dark:hover { background: #fff; color: var(--blue-d); box-shadow: 0 10px 26px rgba(0,0,0,.18); }
-.btn--secondary.btn--on-dark { background: transparent; color: #fff; border-color: #fff; }
-.btn--secondary.btn--on-dark:hover { background: rgba(13,21,66,.35); color: #fff; }
+.btn--primary.btn--on-dark { background-color: #fff; background-image: linear-gradient(var(--blue-d), var(--blue-d)); color: var(--blue); border-color: #fff; }
+.btn--primary.btn--on-dark:hover { background-size: 100% 100%; color: #fff; }
+.btn--secondary.btn--on-dark { background-image: linear-gradient(rgba(13,21,66,.45), rgba(13,21,66,.45)); color: #fff; border-color: #fff; }
+.btn--secondary.btn--on-dark:hover { background-size: 100% 100%; color: #fff; }
 
 /* Arrow-in-circle icon used beside project / section titles */
 .arrow-circle {
@@ -817,6 +821,7 @@ body.menu-open { overflow: hidden; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0ms !important; transition-duration: .001ms !important; }
   .page-title .ltr { opacity: 1; transform: none; }
   .page-title--whole { opacity: 1; transform: none; }
+  .btn:hover > svg, .btn:focus-visible > svg { transform: none; }
   .js .reveal, .js .reveal.project-link { opacity: 1; transform: none; }
   .hero-id__ping { animation: none; display: none; }
   .hero--home .sh { translate: none !important; rotate: none !important; scale: none !important; }
