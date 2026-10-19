@@ -129,7 +129,7 @@ h1.about-head__title { font-size: 48px; }
   border: 2px solid var(--ink); background: transparent; color: var(--ink);
   transition: transform .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
 }
-.btn:hover { transform: translateY(-2px); background: var(--ink); color: #fff; }
+.btn:hover { transform: translateY(-2px); background: var(--card); }
 .btn--light { border-color: #fff; color: #fff; }
 .btn--light:hover { background: #fff; color: var(--blue); }
 .btn--solid { background: var(--ink); color: #fff; }
@@ -403,13 +403,16 @@ body.menu-open { overflow: hidden; }
   transition: background .2s, color .2s;
 }
 .tabs button[aria-selected="true"] { background: var(--blue); color: #fff; }
+.tabs #tab-life[aria-selected="true"] { background: var(--pink); }
 
 .about-grid { display: grid; gap: clamp(26px, 5vw, 56px); }
 @media (min-width: 820px) { .about-grid { grid-template-columns: minmax(280px, 360px) 1fr; align-items: start; } }
 .about-photo figure { margin: 0; }
-.about-photo img { border-radius: var(--radius); width: 100%; }
-.about-photo figcaption { font-size: .85rem; color: var(--faint); margin-top: 10px; font-style: italic; }
+.about-photo img { border-radius: var(--radius); width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.about-photo figcaption { font-size: .85rem; color: var(--faint); margin-top: 10px; }
 .about-copy .h-xl { color: var(--blue); font-size: clamp(1.9rem, 3.4vw, 2.7rem); line-height: 1.06; }
+/* Off The Clock tab uses the brand pink for its toggle + headline. */
+#panel-life .about-copy .h-xl { color: var(--pink); }
 .about-copy p { margin-top: 1.2rem; font-size: 1.05rem; }
 
 .tabpanel[hidden] { display: none; }
@@ -628,7 +631,7 @@ body.menu-open { overflow: hidden; }
 
 /* Ghost pill + plain horizontal arrow (Process Deck, Read Case Study). */
 .btn--ghost { background: transparent; border: 2px solid var(--ink); color: var(--ink); }
-.btn--ghost:hover { background: var(--ink); color: #fff; }
+.btn--ghost:hover { background: var(--card); color: var(--ink); }
 .btn .arrow-h { width: 1.05em; height: 1.05em; flex: none; }
 
 /* Hero meta shape icons (stacked above each label). */
