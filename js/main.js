@@ -173,16 +173,12 @@
     var stacks = document.querySelectorAll(".project-stack");
     if (stacks.length) {
       var equalize = function () {
-        // On mobile the stack isn't sticky (plain scroll), so equal heights
-        // would only add whitespace — clear them and bail.
-        var mobile = window.innerWidth <= 760;
         stacks.forEach(function (stack) {
           var cards = Array.prototype.slice.call(
             stack.querySelectorAll(".project-link .project")
           );
           if (cards.length < 2) return;
           cards.forEach(function (c) { c.style.minHeight = ""; });
-          if (mobile) return;
           var max = 0;
           cards.forEach(function (c) {
             max = Math.max(max, c.getBoundingClientRect().height);

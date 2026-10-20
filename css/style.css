@@ -835,12 +835,6 @@ body.menu-open .nav__toggle { display: none; }
 /* First project flush to the hero; CTA band (last child) flush to the footer. */
 .section:has(.project-stack) { padding-top: 0; padding-bottom: 0; }
 
-/* On mobile, drop the sticky stacking so the projects and footer scroll
-   naturally (otherwise the footer slides up behind the pinned cards). */
-@media (max-width: 760px) {
-  .project-stack .project-link:has(.project) { position: static; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0ms !important; transition-duration: .001ms !important; }
