@@ -30,6 +30,24 @@
     });
   }
 
+  /* ---- Back to top ------------------------------------------------------ */
+  /* Visible once the page is scrolled past the first viewport. CSS decides
+     where it's allowed to show (every page on mobile; only opted-in pages on
+     desktop); this just toggles the visibility class and scrolls up. */
+  var toTop = document.querySelector(".back-to-top");
+  if (toTop) {
+    var toggleTop = function () {
+      if (window.scrollY > window.innerHeight) toTop.classList.add("is-visible");
+      else toTop.classList.remove("is-visible");
+    };
+    toggleTop();
+    window.addEventListener("scroll", toggleTop, { passive: true });
+    toTop.addEventListener("click", function () {
+      var noMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: noMotion ? "auto" : "smooth" });
+    });
+  }
+
   /* ---- Animated page title (letter stagger) ----------------------------- */
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.querySelectorAll("[data-stagger]").forEach(function (el) {

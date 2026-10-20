@@ -467,6 +467,7 @@ body.menu-open .nav__toggle { display: none; }
 .row {
   display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: baseline;
   padding: 20px 0; border-bottom: 1px solid var(--line);
+  line-height: 1.3;
 }
 .row:first-child { border-top: 1px solid var(--line); }
 .row__title { font-family: var(--f-head); font-weight: 700; color: var(--ink); font-size: 1.05rem; }
@@ -514,7 +515,7 @@ body.menu-open .nav__toggle { display: none; }
 .resume-sec__h + .resume-item { margin-top: 0; }
 .resume-item__title { font-weight: 700; font-size: .98rem; line-height: 1.25; }
 .resume-item__sub { color: var(--muted); font-size: .9rem; line-height: 1.45; margin-top: 3px; }
-.resume-item__meta { color: var(--faint); font-size: .85rem; margin-top: 3px; }
+.resume-item__meta { color: var(--muted); font-size: .85rem; margin-top: 3px; }
 
 /* Contact */
 .resume-contact { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(16px, 1.8vw, 22px); }
@@ -528,12 +529,12 @@ body.menu-open .nav__toggle { display: none; }
 .resume-job + .resume-job { margin-top: clamp(28px, 3.4vw, 42px); }
 .resume-job__co { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .resume-job__co h4 { font-size: clamp(1.15rem, 1.8vw, 1.4rem); font-weight: 800; }
-.resume-job__loc { margin-left: auto; color: var(--faint); font-size: .88rem; }
+.resume-job__loc { margin-left: auto; color: var(--muted); font-size: .88rem; }
 .resume-role { margin-top: 2px; }
 .resume-role + .resume-role { margin-top: clamp(16px, 2vw, 24px); }
 .resume-role__head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .resume-role__title { font-size: .98rem; font-weight: 700; }
-.resume-role__dates { margin-left: auto; color: var(--faint); font-size: .85rem; }
+.resume-role__dates { margin-left: auto; color: var(--muted); font-size: .85rem; }
 .resume-bullets { margin: .5rem 0 0; padding-left: 1.1rem; display: grid; gap: .4rem; }
 .resume-bullets li { color: var(--muted); font-size: .9rem; line-height: 1.5; }
 
@@ -542,10 +543,10 @@ body.menu-open .nav__toggle { display: none; }
 @media (max-width: 560px) {
   .resume-role__head { flex-direction: column; align-items: flex-start; gap: 2px; }
   .resume-role__dates { margin-left: 0; }
-  /* Keep the location on the company's row (baseline-aligned to its first line)
-     even when the name is long, e.g. "RIT University Center" — let the name wrap
-     internally instead of pushing the location onto its own line. */
-  .resume-job__co { flex-wrap: nowrap; }
+  /* Keep the location on the company's row even when the name is long, e.g.
+     "RIT University Center" — let the name wrap internally and align the
+     location to the bottom (last) line of the company name. */
+  .resume-job__co { flex-wrap: nowrap; align-items: flex-end; }
   .resume-job__co h4 { min-width: 0; }
   .resume-job__loc { flex: none; }
 }
@@ -773,13 +774,15 @@ body.menu-open .nav__toggle { display: none; }
 /* Embedded walkthrough video — vertical (Pizza Short) or wide (Small Town). */
 .cs-page .cs-video { max-width: 380px; margin-top: 26px; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: #000; }
 .cs-page .cs-video--wide { max-width: 760px; aspect-ratio: 16 / 9; }
-.cs-page .cs-video--square { max-width: 440px; aspect-ratio: 1 / 1; }
+.cs-page .cs-video--square { max-width: 560px; aspect-ratio: 1 / 1; }
 .cs-page .cs-video iframe { width: 100%; height: 100%; border: 0; display: block; }
 /* Outcome: text left, square video right on desktop; stacked (video below)
    on mobile. */
 @media (min-width: 760px) {
   .cs-page .cs-outcome { display: grid; grid-template-columns: 1fr auto; gap: 44px; align-items: center; }
-  .cs-page .cs-outcome .cs-video { margin-top: 0; }
+  /* Give the square video an explicit, responsive width (a grid `auto` track
+     would otherwise collapse it to the iframe's 300px default). */
+  .cs-page .cs-outcome .cs-video { margin-top: 0; width: clamp(340px, 42vw, 560px); }
   .cs-page .cs-outcome > div:first-child > :first-child { margin-top: 0; }
 }
 
@@ -895,8 +898,36 @@ body.menu-open .nav__toggle { display: none; }
 /* First project flush to the hero; CTA band (last child) flush to the footer. */
 .section:has(.project-stack) { padding-top: 0; padding-bottom: 0; }
 
+/* ==========================================================================
+   Back to top
+   ========================================================================== */
+/* Round brand-blue FAB, matching the primary buttons (blue, darkening to
+   blue-d on hover). Shown once the page is scrolled past the first viewport.
+   On desktop it appears only on pages that opt in via `body.btt-desktop`
+   (case studies, About, Resume); on mobile it appears on every page. */
+.back-to-top {
+  position: fixed; z-index: 80;
+  right: clamp(16px, 4vw, 28px); bottom: clamp(16px, 4vw, 28px);
+  width: 48px; height: 48px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--blue); color: #fff; border: 0; cursor: pointer;
+  box-shadow: 0 10px 28px rgba(45, 81, 242, .35);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .3s var(--ease), transform .3s var(--ease),
+              visibility .3s var(--ease), background-color .2s var(--ease);
+}
+.back-to-top svg { width: 22px; height: 22px; }
+.back-to-top:hover { background: var(--blue-d); }
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+@media (min-width: 761px) {
+  /* Desktop: only the opted-in pages show it. */
+  body:not(.btt-desktop) .back-to-top { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .back-to-top { transform: none; transition: opacity .2s linear, visibility .2s linear; }
+  .back-to-top.is-visible { transform: none; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0ms !important; transition-duration: .001ms !important; }
   .page-title .ltr { opacity: 1; transform: none; }
   .page-title--whole { opacity: 1; transform: none; }
