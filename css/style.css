@@ -226,7 +226,9 @@ body:has(.hero) .site-header {
   .nav__right .btn { display: none; }
 
   .mobile-menu {
-    position: fixed; inset: 0; z-index: 90;
+    /* Above the sticky header (z-index 100) so the close "X" — which sits in
+       the header's top strip — actually receives taps instead of the nav bar. */
+    position: fixed; inset: 0; z-index: 110;
     background: var(--blue); color: #fff;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 10px;
@@ -367,7 +369,7 @@ body.menu-open .nav__toggle { display: none; }
 .sh-dia-yellow { top: 76%; left: 65%; width: 32px; transform: rotate(-6deg); }
 @media (max-width: 760px) {
   /* More line spacing so the "and building" pill doesn't overlap "Designing". */
-  .hero-headline { line-height: 1.32; }
+  .hero-headline { line-height: 1.45; }
   /* Keep decorations in the margins so the headline stays clear and readable. */
   .sh-minion     { top: -72px; left: -14px; width: 150px; }
   .sh-circle     { top: -30px; right: -56px; width: 150px; }
@@ -466,8 +468,8 @@ body.menu-open .nav__toggle { display: none; }
   .row { grid-template-columns: 1fr; gap: 4px 24px; }
   .row__meta { text-align: left; }
   /* More breathing room between the About page sections. */
-  main:has(.about-head) .section--tight { padding-block: 48px; }
-  main:has(.about-head) .two-col { gap: 44px; }
+  main:has(.about-head) .section--tight { padding-block: 64px; }
+  main:has(.about-head) .two-col { gap: 56px; }
 }
 
 .two-col { display: grid; gap: clamp(30px, 5vw, 60px); }
@@ -545,7 +547,7 @@ body.menu-open .nav__toggle { display: none; }
 /* On mobile push the headline down so it clears the logo, and keep the blue
    deep enough that the résumé card still pokes into it. */
 @media (max-width: 560px) {
-  .hero__inner--row { padding-block: 92px 132px; }
+  .hero__inner--row { padding-block: 84px 92px; }
 }
 /* Compact the headline so it shares the row with the action buttons */
 .hero__inner--row .page-title {
@@ -624,7 +626,18 @@ body.menu-open .nav__toggle { display: none; }
 .cs-section > p { margin-top: 16px; max-width: 72ch; }
 
 .stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin-top: 30px; }
-.stat { flex: 1 1 160px; max-width: 300px; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; text-align: center; }
+/* Up to 3 per row, each exactly one-third of the row (minus the two gaps). The
+   fixed basis keeps every card the same width — a card left alone on its own
+   line stays that same third-width and just centers, instead of stretching. */
+.stat {
+  flex: 1 1 calc((100% - 36px) / 3); max-width: calc((100% - 36px) / 3);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 22px 16px; text-align: center;
+}
+@media (max-width: 560px) {
+  /* Two per row on narrow screens; a lone third card keeps the half-width. */
+  .stat { flex-basis: calc((100% - 18px) / 2); max-width: calc((100% - 18px) / 2); }
+}
 .stat .n { font-family: var(--f-display); font-size: clamp(2rem, 5vw, 3rem); color: var(--ink); }
 .stat .l { color: var(--muted); margin-top: 6px; }
 .stats--result .stat .n { color: var(--blue); }
@@ -756,7 +769,7 @@ body.menu-open .nav__toggle { display: none; }
 .shipped-grid { display: grid; gap: 22px; margin-top: 26px; }
 @media (min-width: 680px) { .shipped-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 980px) { .shipped-grid { grid-template-columns: repeat(3, 1fr); } }
-.shipped__item .num { font-family: var(--f-display); color: var(--faint); }
+.shipped__item .num { font-family: var(--f-display); color: var(--ink); }
 .shipped__item h4 { font-family: var(--f-head); font-weight: 700; margin-top: 4px; }
 .shipped__item p { margin-top: 6px; color: var(--muted); }
 
@@ -782,6 +795,14 @@ body.menu-open .nav__toggle { display: none; }
 
 /* Project cards keep their reveal off (they animate via the sticky stack). */
 .js .reveal.project-link { opacity: 1; transform: none; }
+
+/* On mobile the résumé card sits well below the fold, so its scroll-reveal
+   leaves a tall blank gap until you reach it. Play the same rise+fade on load
+   instead, so the card is already settled by the time you scroll down. */
+@keyframes revealUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@media (max-width: 760px) {
+  .js .resume-card.reveal { opacity: 1; transform: none; animation: revealUp .7s var(--ease) both; }
+}
 
 /* Sticky card stack: each project section pins and the next stacks over it,
    leaving each card's colored top border peeking above the one on top. */
