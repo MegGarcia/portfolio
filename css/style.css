@@ -424,11 +424,12 @@ body.menu-open .nav__toggle { display: none; }
   background: var(--card);
   position: relative;
 }
-.project__media img { width: 100%; height: auto; }
-
 .project-link { display: block; }
-.project-link:hover .project__media img { transform: scale(1.015); }
-.project__media img { transition: transform .5s var(--ease); }
+/* Hover zooms only the product picture, not the decorative shapes. */
+.project__media .product-frame__img { transition: transform .5s var(--ease); }
+.project-link:hover .project__media .product-frame__img { transform: scale(1.015); }
+/* In cards, the card/media wrapper provides the corner radius + clipping. */
+.next-card .product-frame, .project__media .product-frame { border-radius: 0; }
 
 /* ==========================================================================
    About page
@@ -760,6 +761,34 @@ html.lo-fi body { background: #fff; }
    full content width, cropped from the top. */
 .cs-hero__media { border-radius: 8px; overflow: hidden; position: relative; z-index: 2; border: 1px solid var(--line); aspect-ratio: 2.39; background: var(--card); }
 .cs-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
+
+/* ==========================================================================
+   Product frame — a project-colored container with decorative SVG shapes and a
+   swappable product picture on top. Reused for project heroes, "More Like This"
+   cards, and home Work cards. Only the <img.product-frame__img> src changes to
+   swap the picture (e.g. to a low-fi doodle); the container + shapes stay put.
+   Geometry matches the 1280x600 Figma frames.
+   ========================================================================== */
+.product-frame {
+  position: relative; z-index: 2;
+  aspect-ratio: 1280 / 600; overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--frame-wash, var(--card));
+  margin: 0;
+}
+.product-frame--orange { --frame-wash: #feddcd; }
+.product-frame--purple { --frame-wash: #e6d7fb; }
+.product-frame--pink   { --frame-wash: #ffe5f0; }
+/* the swappable picture: inset with ~7% side margins, flush to the bottom */
+.product-frame__img {
+  position: absolute; left: 7.1%; top: 6.5%; width: 85.8%; bottom: 0;
+  object-fit: cover; object-position: 50% 0; display: block;
+}
+/* decorative shapes layer, scaled to the frame, drawn over the picture edges */
+.product-frame__shapes {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; pointer-events: none; display: block;
+}
 .cs-title { font-family: var(--f-display); margin-top: 28px; display: flex; flex-wrap: wrap; gap: .25em .6em; align-items: center; }
 .cs-title .btn { margin-left: auto; font-size: .95rem; }
 @media (max-width: 560px) { .cs-title .btn { margin-left: 0; } }
