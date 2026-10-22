@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protected Work — Megan Garcia</title>
+  <meta name="description" content="Password-protected case studies covering confidential Johnson &amp; Johnson work.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="stylesheet" href="../css/style.css?v=70">
+  <script>document.documentElement.classList.add("js");</script>
+  <script>
+  /* Gate state. Client-side only (static site) — a courtesy gate, not real auth. */
+  (function () {
+    try {
+      var params = new URLSearchParams(location.search);
+      var n = params.get('next');
+      // Only honor a same-origin relative path into the two protected folders.
+      function safeNext(p) {
+        if (!p) return null;
+        if (p.indexOf('://') !== -1 || p.indexOf('//') === 0 || p.charAt(0) === '\\') return null;
+        return /(^|\/)(project-reset|under-one-brand)\/?($|\?|#)/.test(p) ? p : null;
+      }
+      window.__gateNext = safeNext(n);
+      if (localStorage.getItem('mg-unlocked') === 'yes') {
+        document.documentElement.classList.add('is-unlocked');
+        if (window.__gateNext) location.replace(window.__gateNext);
+      }
+    } catch (e) {}
+  })();
+  </script>
+</head>
+<body class="btt-desktop">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../" aria-label="Megan Garcia — home"><img src="../images/logo-5__6a6fe14c.png" alt="Megan Garcia logo" width="46" height="46"></a>
+      <nav aria-label="Primary"><ul class="nav__links pill-hidden">
+        <li><a href="../#work">Work</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="../resume/">Resume</a></li>
+      </ul></nav>
+      <div class="nav__right">
+        <a class="btn btn--secondary btn--on-dark" href="mailto:megangarcia2024@gmail.com">Let's Chat!</a>
+        <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <button class="mobile-menu__close" aria-label="Close menu"></button>
+    <a href="../#work">Work</a><a href="../about/">About</a><a href="../resume/">Resume</a>
+  </div>
+
+  <main id="main" class="section gate-page">
+    <div class="wrap gate-wrap">
+
+      <!-- LOCKED -->
+      <section class="gate-locked">
+        <div class="gate-card">
+          <span class="gate-shape" aria-hidden="true" style="top:-18px;left:44px;width:84px;height:84px;border-radius:100% 0 0 0;background:var(--pink);transform:rotate(-16deg)"></span>
+          <span class="gate-shape" aria-hidden="true" style="top:-12px;right:12%;width:40px;height:40px;border-radius:50%;background:var(--purple)"></span>
+          <span class="gate-shape" aria-hidden="true" style="bottom:-18px;right:9%;width:56px;height:56px;border-radius:4px;background:var(--yellow);transform:rotate(28deg)"></span>
+          <span class="gate-shape" aria-hidden="true" style="left:-20px;bottom:56px;width:60px;height:60px;border-radius:50% 0 50% 50%;background:var(--orange);transform:rotate(-28deg)"></span>
+          <span class="gate-shape" aria-hidden="true" style="top:58%;right:-24px;width:72px;height:72px;border-radius:50%;background:var(--orange)"></span>
+          <span class="gate-shape" aria-hidden="true" style="bottom:-8px;left:24%;width:24px;height:24px;border-radius:50%;background:var(--pink)"></span>
+
+          <svg class="gate-lock" width="96" height="120" viewBox="0 0 96 120" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M31 54V38a17 17 0 0 1 34 0v16" stroke="var(--blue)" stroke-width="8"></path>
+            <rect x="18" y="52" width="60" height="58" rx="14" fill="var(--blue)" stroke="var(--blue)" stroke-width="4"></rect>
+            <circle cx="48" cy="77" r="7" fill="var(--card)"></circle>
+            <path d="M48 80v14" stroke="var(--card)" stroke-width="6"></path>
+            <circle cx="86" cy="22" r="5" fill="var(--purple)"></circle>
+            <rect x="4" y="22" width="10" height="10" rx="2" fill="var(--orange)" transform="rotate(20 9 27)"></rect>
+          </svg>
+          <h1 class="gate-title">Protected Work</h1>
+          <p class="gate-lead">These case studies cover confidential Johnson &amp; Johnson work. Enter the password to view them.</p>
+
+          <form id="gate-form" class="gate-form" novalidate>
+            <label for="pw">Password</label>
+            <div class="gate-field">
+              <input id="pw" type="password" name="password" autocomplete="current-password" aria-describedby="pw-error" placeholder="Enter password">
+              <button type="submit" class="gate-submit" aria-label="View projects">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </button>
+            </div>
+            <p id="pw-error" class="gate-error" role="alert" hidden><span class="gate-error__dot" aria-hidden="true"></span>That password didn't work. Try again.</p>
+          </form>
+          <p class="gate-help">Need access? <a href="mailto:megangarcia2024@gmail.com?subject=Portfolio%20password">Email me for the password</a></p>
+        </div>
+
+        <div class="gate-inside">
+          <h2 class="gate-inside__h">What's Inside</h2>
+          <div class="gate-grid">
+            <div class="gate-preview">
+              <div class="gate-preview__media">
+                <img src="../images/coic-1-500__6a666361.png" alt="" loading="lazy">
+                <span class="gate-preview__lock" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
+              </div>
+              <div class="gate-preview__body">
+                <span class="gate-preview__title t-orange">Project Reset</span>
+                <span class="gate-preview__desc">Rebuilt navigation for a cell-therapy platform, hitting the industry UX benchmark for the first time.</span>
+              </div>
+            </div>
+            <div class="gate-preview">
+              <div class="gate-preview__media">
+                <img src="../images/one-brand-500__6a6f4f5e.png" alt="" loading="lazy">
+                <span class="gate-preview__lock" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
+              </div>
+              <div class="gate-preview__body">
+                <span class="gate-preview__title t-purple">Under One Brand</span>
+                <span class="gate-preview__desc">Rebranded the platform into one J&amp;J product, designed and hand-coded end to end.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UNLOCKED -->
+      <section class="gate-unlocked">
+        <div class="gate-granted">
+          <span class="gate-granted__row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Access granted</span>
+          <h1 id="granted-h" class="gate-title" tabindex="-1">Protected Work</h1>
+          <p>Thanks for taking a look. Please keep these case studies confidential.</p>
+        </div>
+        <div class="gate-grid">
+          <a class="gate-link" href="../project-reset/">
+            <img src="../images/coic-1-500__6a666361.png" alt="Project Reset — redesigned Chain of Identity &amp; Custody collection screen" loading="lazy">
+            <span class="gate-link__row">
+              <span class="gate-link__title t-orange">Project Reset</span>
+              <span class="gate-link__arrow" aria-hidden="true" style="border-color:var(--orange);color:var(--orange)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"></path></svg></span>
+            </span>
+          </a>
+          <a class="gate-link" href="../under-one-brand/">
+            <img src="../images/one-brand-500__6a6f4f5e.png" alt="Under One Brand — unified cell therapy platform interface" loading="lazy">
+            <span class="gate-link__row">
+              <span class="gate-link__title t-purple">Under One Brand</span>
+              <span class="gate-link__arrow" aria-hidden="true" style="border-color:var(--purple);color:var(--purple)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"></path></svg></span>
+            </span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shapes" aria-hidden="true">
+      <img src="../images/ellipse-3__67b3dc3c.svg" alt="" style="bottom:-50px;left:32%;width:120px">
+      <img src="../images/diamond2__68f140b4.svg" alt="" style="top:40%;right:22%;width:24px">
+    </div>
+    <div class="wrap site-footer__inner">
+      <div class="footer-id"><span class="name">Megan Garcia</span><span class="role">Product Designer</span></div>
+      <div class="footer-social">
+        <a href="mailto:megangarcia2024@gmail.com" aria-label="Email Megan"><img src="../images/mail__6924ce17.svg" alt=""></a>
+        <a href="https://www.linkedin.com/in/megangarcia-ux/" aria-label="Megan on LinkedIn" target="_blank" rel="noopener"><img src="../images/icons8-linkedin__6924cf16.svg" alt=""></a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="Back to top">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 20V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script>
+  (function () {
+    var form = document.getElementById('gate-form');
+    if (!form) return;
+    var input = document.getElementById('pw');
+    var err = document.getElementById('pw-error');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (input.value.trim() === 'EverydayThings') {
+        try { localStorage.setItem('mg-unlocked', 'yes'); } catch (e) {}
+        if (window.__gateNext) { location.replace(window.__gateNext); return; }
+        document.documentElement.classList.add('is-unlocked');
+        if (err) err.hidden = true;
+        var h = document.getElementById('granted-h');
+        if (h) { h.focus(); h.scrollIntoView({ block: 'center' }); }
+      } else if (err) {
+        err.hidden = false;
+        input.focus();
+        input.select();
+      }
+    });
+  })();
+  </script>
+  <script src="../js/main.js?v=23" defer></script>
+</body>
+</html>
