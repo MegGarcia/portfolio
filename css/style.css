@@ -585,6 +585,36 @@ body.menu-open .nav__toggle { display: none; }
 .gate-link__title { font-size: clamp(24px, 3vw, 36px); }
 .gate-link__arrow { width: 46px; height: 46px; flex: none; border: 2px solid; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 
+/* "or" divider + bypass button + clickable preview cards */
+.gate-or { display: flex; align-items: center; gap: 14px; width: 100%; max-width: 460px; color: var(--faint); font-size: .9rem; }
+.gate-or::before, .gate-or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.gate-bypass { align-self: center; }
+.gate-inside__sub { margin: -14px 0 22px; color: var(--body); }
+a.gate-preview { text-decoration: none; color: inherit; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+a.gate-preview:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(11, 11, 15, .1); }
+.gate-preview__cta { font-family: var(--f-head); font-weight: 700; font-size: .9rem; color: var(--blue); margin-top: 4px; }
+a.gate-preview:hover .gate-preview__cta { text-decoration: underline; }
+
+/* ==========================================================================
+   Low-fidelity preview mode (unsigned visitors) — mockups render as whiteboard
+   sketches via an SVG edge-detect filter, with a banner offering the full view.
+   ========================================================================== */
+.lofi-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.lofi-banner { display: none; }
+html.lo-fi .lofi-banner {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 14px clamp(20px, 3vw, 32px); text-align: center;
+  position: sticky; top: 0; z-index: 50;
+  background: #eef1ff; border-bottom: 1px solid var(--line);
+  padding: 14px clamp(20px, 5vw, 64px);
+}
+.lofi-banner__text { max-width: 72ch; color: var(--ink); font-size: .95rem; }
+html.lo-fi body { background: #fcfcf9; }
+/* The sketch look: dark-blue line art on white, like a dry-erase drawing. */
+html.lo-fi main img { filter: url(#lofi-sketch); background: #fff; }
+/* Keep navigation thumbnails (More Like This) legible. */
+html.lo-fi .next-card img { filter: none; }
+
 /* Timeline / list rows (experience, education, certificates) */
 .rows { margin-top: 28px; }
 .row {

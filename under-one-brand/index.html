@@ -8,9 +8,19 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=70">
+  <link rel="stylesheet" href="../css/style.css?v=71">
   <script>document.documentElement.classList.add("js");</script>
-  <script>if(localStorage.getItem("mg-unlocked")!=="yes"){location.replace("../protected/?next="+encodeURIComponent(location.pathname));}</script>
+  <script>
+  /* Access gate: full version when unlocked, low-fidelity preview when the
+     visitor chose to bypass, otherwise send them to the password page. */
+  (function () {
+    try {
+      if (localStorage.getItem("mg-unlocked") === "yes") return;
+      if (localStorage.getItem("mg-preview") === "yes") { document.documentElement.classList.add("lo-fi"); return; }
+      location.replace("../protected/?next=" + encodeURIComponent(location.pathname));
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body class="btt-desktop">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,7 +42,25 @@
     <a href="../#work">Work</a><a href="../about/">About</a><a href="../resume/">Resume</a>
   </div>
 
+  <svg class="lofi-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="lofi-sketch" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"/>
+      <feGaussianBlur stdDeviation="0.5"/>
+      <feConvolveMatrix order="3" preserveAlpha="true" divisor="1" bias="0" kernelMatrix="0 -1 0 -1 4 -1 0 -1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1 0 0"/>
+        <feFuncG type="table" tableValues="1 0 0"/>
+        <feFuncB type="table" tableValues="1 0 0"/>
+      </feComponentTransfer>
+      <feColorMatrix type="matrix" values="0.95 0 0 0 0.05  0.92 0 0 0 0.08  0.75 0 0 0 0.25  0 0 0 1 0"/>
+    </filter>
+  </svg>
+
   <main id="main" class="cs-page cs--purple cs-redesign">
+    <div class="lofi-banner" role="status">
+      <span class="lofi-banner__text"><strong>Low-fidelity preview.</strong> Mockups are shown as sketches to keep confidential work under wraps — enter the password to see the full case study.</span>
+      <a class="btn btn--primary" href="../protected/?next=..%2Funder-one-brand%2F">Enter password</a>
+    </div>
     <!-- Hero -->
     <section class="section cs-hero">
       <div class="wrap">

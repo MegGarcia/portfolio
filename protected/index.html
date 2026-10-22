@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=70">
+  <link rel="stylesheet" href="../css/style.css?v=71">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Gate state. Client-side only (static site) — a courtesy gate, not real auth. */
@@ -76,7 +76,7 @@
             <rect x="4" y="22" width="10" height="10" rx="2" fill="var(--orange)" transform="rotate(20 9 27)"></rect>
           </svg>
           <h1 class="gate-title">Protected Work</h1>
-          <p class="gate-lead">These case studies cover confidential Johnson &amp; Johnson work. Enter the password to view them.</p>
+          <p class="gate-lead">These case studies cover confidential Johnson &amp; Johnson work. Enter the password for the full versions — or browse low-fidelity previews with the mockups shown as sketches.</p>
 
           <form id="gate-form" class="gate-form" novalidate>
             <label for="pw">Password</label>
@@ -88,13 +88,20 @@
             </div>
             <p id="pw-error" class="gate-error" role="alert" hidden><span class="gate-error__dot" aria-hidden="true"></span>That password didn't work. Try again.</p>
           </form>
-          <p class="gate-help">Need access? <a href="mailto:megangarcia2024@gmail.com?subject=Portfolio%20password">Email me for the password</a></p>
+
+          <div class="gate-or" aria-hidden="true"><span>or</span></div>
+          <button type="button" class="btn btn--secondary gate-bypass" data-bypass>
+            Browse a low-fidelity preview
+            <svg class="arrow-h" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="gate-help">Need the password? <a href="mailto:megangarcia2024@gmail.com?subject=Portfolio%20password">Email me</a></p>
         </div>
 
         <div class="gate-inside">
           <h2 class="gate-inside__h">What's Inside</h2>
+          <p class="gate-inside__sub">Tap a project to open its low-fidelity preview, or enter the password above for the full version.</p>
           <div class="gate-grid">
-            <div class="gate-preview">
+            <a class="gate-preview" href="../project-reset/" data-preview>
               <div class="gate-preview__media">
                 <img src="../images/coic-1-500__6a666361.png" alt="" loading="lazy">
                 <span class="gate-preview__lock" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
@@ -102,9 +109,10 @@
               <div class="gate-preview__body">
                 <span class="gate-preview__title t-orange">Project Reset</span>
                 <span class="gate-preview__desc">Rebuilt navigation for a cell-therapy platform, hitting the industry UX benchmark for the first time.</span>
+                <span class="gate-preview__cta">View low-fidelity preview →</span>
               </div>
-            </div>
-            <div class="gate-preview">
+            </a>
+            <a class="gate-preview" href="../under-one-brand/" data-preview>
               <div class="gate-preview__media">
                 <img src="../images/one-brand-500__6a6f4f5e.png" alt="" loading="lazy">
                 <span class="gate-preview__lock" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
@@ -112,8 +120,9 @@
               <div class="gate-preview__body">
                 <span class="gate-preview__title t-purple">Under One Brand</span>
                 <span class="gate-preview__desc">Rebranded the platform into one J&amp;J product, designed and hand-coded end to end.</span>
+                <span class="gate-preview__cta">View low-fidelity preview →</span>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -166,24 +175,42 @@
 
   <script>
   (function () {
+    function setPreview() { try { localStorage.setItem('mg-preview', 'yes'); } catch (e) {} }
+
     var form = document.getElementById('gate-form');
-    if (!form) return;
-    var input = document.getElementById('pw');
-    var err = document.getElementById('pw-error');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (input.value.trim() === 'EverydayThings') {
-        try { localStorage.setItem('mg-unlocked', 'yes'); } catch (e) {}
-        if (window.__gateNext) { location.replace(window.__gateNext); return; }
-        document.documentElement.classList.add('is-unlocked');
-        if (err) err.hidden = true;
-        var h = document.getElementById('granted-h');
-        if (h) { h.focus(); h.scrollIntoView({ block: 'center' }); }
-      } else if (err) {
-        err.hidden = false;
-        input.focus();
-        input.select();
-      }
+    if (form) {
+      var input = document.getElementById('pw');
+      var err = document.getElementById('pw-error');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (input.value.trim() === 'EverydayThings') {
+          try { localStorage.setItem('mg-unlocked', 'yes'); } catch (e) {}
+          if (window.__gateNext) { location.replace(window.__gateNext); return; }
+          document.documentElement.classList.add('is-unlocked');
+          if (err) err.hidden = true;
+          var h = document.getElementById('granted-h');
+          if (h) { h.focus(); h.scrollIntoView({ block: 'center' }); }
+        } else if (err) {
+          err.hidden = false;
+          input.focus();
+          input.select();
+        }
+      });
+    }
+
+    // "Browse a low-fidelity preview" — enter preview mode, then go to the
+    // requested project (if we came from one) or Project Reset.
+    var bypass = document.querySelector('[data-bypass]');
+    if (bypass) {
+      bypass.addEventListener('click', function () {
+        setPreview();
+        location.href = window.__gateNext || '../project-reset/';
+      });
+    }
+
+    // Clicking a "What's Inside" card opens that project's low-fidelity preview.
+    Array.prototype.forEach.call(document.querySelectorAll('[data-preview]'), function (a) {
+      a.addEventListener('click', setPreview);
     });
   })();
   </script>
