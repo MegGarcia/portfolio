@@ -557,7 +557,10 @@ body.menu-open .nav__toggle { display: none; }
 /* All-blue page: the footer sits on the same blue, so drop its own fill and let
    the page's blue show through (matches the other blue-hero-led pages). */
 .gate-body { background: var(--blue); }
+/* Footer sits on the page's blue with no fill and none of its own decorative
+   shapes, so it reads as part of the gate rather than a separate footer band. */
 .gate-body .site-footer { background: transparent; }
+.gate-body .site-footer .shapes { display: none; }
 .gate-eyebrow { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; color: #fff; font-size: clamp(1rem, 1.8vw, 1.2rem); }
 .gate-eyebrow span { font-weight: 500; }
 .gate-eyebrow strong { font-weight: 700; }
