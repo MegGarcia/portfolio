@@ -829,8 +829,21 @@ body.menu-open .nav__toggle { display: none; }
 /* Two Key Decisions: display-type sub-headings. */
 .kd-title { font-family: var(--f-display); font-weight: 400; font-size: 1.4rem; line-height: 1.2; color: var(--ink); margin: 44px 0 14px; }
 
-/* Full-width outcome image under the numbered intro. */
-.outcome__img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); margin-top: 32px; }
+/* Outcome image under the numbered intro — capped width so the whole screenshot
+   stays shorter than the screen (centered in the content row). */
+.outcome__img { width: 100%; max-width: 720px; height: auto; display: block; margin: 32px auto 0; border-radius: var(--radius); border: 1px solid var(--line); }
+
+/* Equal breathing room on both sides of the Before/After divider. */
+.ba__item--before { padding-bottom: 40px; }
+
+/* Crop a figure row to one uniform ratio so every image is the same size. */
+.media-grid--crop img { aspect-ratio: 343 / 203; object-fit: cover; object-position: 50% 0; }
+
+/* Project Reset page-scoped spacing + section rules (match the design file). */
+.cs-reset .cs-hero { padding-bottom: clamp(28px, 4vw, 48px); }
+.cs-reset .section--tight { padding-top: 0; }
+.cs-reset .cs-section,
+.cs-reset .cs-morework { border-top: 1px solid var(--line); }
 
 /* Impact stat row: colored label above a big ink number, no borders. */
 .impact { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 18px; }
