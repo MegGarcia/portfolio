@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=89">
+  <link rel="stylesheet" href="../css/style.css?v=90">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Gate state. Client-side only (static site) — a courtesy gate, not real auth. */
@@ -55,18 +55,20 @@
     <a href="../#work">Work</a><a href="../about/">About</a><a href="../resume/">Resume</a>
   </div>
 
+  <!-- Full-page decorative layer: sits behind the hero AND the footer (both
+       transparent) so the drifting shapes show through everywhere. -->
+  <div class="shapes gate-bg" aria-hidden="true">
+    <img class="sh" src="../images/circle__68f142c5.svg" alt="" style="bottom:-10%;right:6%;width:min(16vw,210px)">
+    <img class="sh" src="../images/rectangle-2__67bcf6f6.svg" alt="" style="top:3%;right:9%;width:min(12vw,158px);transform:rotate(26deg)">
+    <img class="sh" src="../images/petal__68f140b4.svg" alt="" style="top:4%;right:30%;width:min(8vw,112px);transform:rotate(56deg)">
+    <img class="sh" src="../images/minion__68f142e5.svg" alt="" style="bottom:-6%;left:3%;width:min(13vw,175px);transform:rotate(-28deg)">
+    <img class="sh" src="../images/diamond3__68f140b4.svg" alt="" style="top:40%;left:86%;width:32px;transform:rotate(28deg)">
+    <img class="sh" src="../images/diamond2__68f140b4.svg" alt="" style="top:13%;left:56%;width:24px;transform:rotate(-20deg)">
+    <img class="sh" src="../images/diamond1__68f140b4.svg" alt="" style="bottom:8%;left:50%;width:30px;transform:rotate(18deg)">
+  </div>
+
   <main id="main">
     <section class="hero gate-hero" aria-label="Password">
-      <div class="shapes" aria-hidden="true">
-        <img class="sh" src="../images/circle__68f142c5.svg" alt="" style="bottom:-14%;right:6%;width:min(16vw,210px)">
-        <img class="sh" src="../images/rectangle-2__67bcf6f6.svg" alt="" style="top:3%;right:9%;width:min(12vw,158px);transform:rotate(26deg)">
-        <img class="sh" src="../images/petal__68f140b4.svg" alt="" style="top:4%;right:30%;width:min(8vw,112px);transform:rotate(56deg)">
-        <img class="sh" src="../images/minion__68f142e5.svg" alt="" style="bottom:-8%;left:4%;width:min(13vw,175px);transform:rotate(-28deg)">
-        <img class="sh" src="../images/diamond3__68f140b4.svg" alt="" style="top:44%;left:86%;width:32px;transform:rotate(28deg)">
-        <img class="sh" src="../images/diamond2__68f140b4.svg" alt="" style="top:13%;left:56%;width:24px;transform:rotate(-20deg)">
-        <img class="sh" src="../images/diamond1__68f140b4.svg" alt="" style="bottom:30%;left:48%;width:30px;transform:rotate(18deg)">
-      </div>
-
       <div class="wrap gate-hero__inner">
         <p class="gate-eyebrow"><span>Welcome to my portfolio!</span><strong>I'm Megan Garcia</strong></p>
         <h1 class="gate-h1">Some of my work is <span class="gate-pill">under NDA</span></h1>

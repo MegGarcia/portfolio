@@ -559,12 +559,26 @@ body.menu-open .nav__toggle { display: none; }
 /* The whole page is one blue plane: the hero fills the viewport and the footer
    sits directly at the bottom of it (sticky-footer flex), transparent and with no
    shapes of its own, so it reads as the base of the gate rather than a separate band. */
-.gate-body { background: var(--blue); min-height: 100vh; display: flex; flex-direction: column; }
+.gate-body { background: var(--blue); min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
 .gate-body > main { flex: 1 0 auto; display: flex; flex-direction: column; }
 .gate-body > .site-footer { flex: none; }
-.gate-hero { min-height: 0; flex: 1 0 auto; }
+/* Hero and footer are transparent so the page-wide shape layer shows through both. */
+.gate-hero { min-height: 0; flex: 1 0 auto; background: transparent; }
 .gate-body .site-footer { background: transparent; }
 .gate-body .site-footer .shapes { display: none; }
+
+/* One decorative layer spanning the whole page, behind the hero and the footer,
+   with each shape drifting slowly so they're visibly moving behind the footer. */
+.gate-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.gate-bg .sh { animation: gateFloat 9s ease-in-out infinite; will-change: translate; }
+.gate-bg .sh:nth-child(1) { animation-duration: 12s; }
+.gate-bg .sh:nth-child(2) { animation-duration: 8s; animation-delay: -3s; }
+.gate-bg .sh:nth-child(3) { animation-duration: 10s; animation-delay: -1s; }
+.gate-bg .sh:nth-child(4) { animation-duration: 13s; animation-delay: -5s; }
+.gate-bg .sh:nth-child(5) { animation-duration: 7s; animation-delay: -2s; }
+.gate-bg .sh:nth-child(6) { animation-duration: 9.5s; animation-delay: -4s; }
+.gate-bg .sh:nth-child(7) { animation-duration: 11s; animation-delay: -6s; }
+@keyframes gateFloat { 0% { translate: 0 0; } 50% { translate: 0 -18px; } 100% { translate: 0 0; } }
 .gate-eyebrow { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; color: #fff; font-size: clamp(1rem, 1.8vw, 1.2rem); }
 .gate-eyebrow span { font-weight: 500; }
 .gate-eyebrow strong { font-weight: 700; }
@@ -1264,6 +1278,7 @@ html.lo-fi body { background: #fff; }
   .hero--home .sh { translate: none !important; rotate: none !important; scale: none !important; }
   .hero-headline .pill:hover { transform: none; }
   .gate-pill:hover { transform: none; }
+  .gate-bg .sh { animation: none; }
   /* No sticky overlap under reduced motion — plain stacked sections. */
   .project-stack .project-link:has(.project) { position: static; }
   .project-stack .project-link:has(.project) .project { box-shadow: none; }
