@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=84">
+  <link rel="stylesheet" href="../css/style.css?v=85">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Gate state. Client-side only (static site) — a courtesy gate, not real auth. */
@@ -25,9 +25,9 @@
         return p.charAt(0) === '/' || p.charAt(0) === '.' ? p : null;
       }
       window.__gateNext = safeNext(n);
+      // Already unlocked? Skip the gate and go to wherever they were headed (or home).
       if (localStorage.getItem('mg-unlocked') === 'yes') {
-        document.documentElement.classList.add('is-unlocked');
-        if (window.__gateNext) location.replace(window.__gateNext);
+        location.replace(window.__gateNext || '../');
       }
     } catch (e) {}
   })();
@@ -55,105 +55,41 @@
     <a href="../#work">Work</a><a href="../about/">About</a><a href="../resume/">Resume</a>
   </div>
 
-  <main id="main" class="section gate-page">
-    <div class="wrap gate-wrap">
+  <main id="main">
+    <section class="hero gate-hero" aria-label="Password">
+      <div class="shapes" aria-hidden="true">
+        <img class="sh" src="../images/minion__68f142e5.svg" alt="" style="top:-96px;left:clamp(24px,6vw,92px);width:min(20vw,230px);transform:rotate(3deg)">
+        <img class="sh" src="../images/circle__68f142c5.svg" alt="" style="top:15%;right:-5%;width:min(22vw,280px)">
+        <img class="sh" src="../images/petal__68f140b4.svg" alt="" style="bottom:-12%;left:52%;width:min(16vw,220px);transform:rotate(-8deg)">
+        <img class="sh" src="../images/diamond3__68f140b4.svg" alt="" style="top:22%;left:70%;width:30px;transform:rotate(8deg)">
+        <img class="sh" src="../images/diamond2__68f140b4.svg" alt="" style="top:60%;left:-6px;width:26px">
+        <img class="sh" src="../images/diamond1__68f140b4.svg" alt="" style="top:80%;left:34%;width:32px;transform:rotate(-6deg)">
+      </div>
 
-      <!-- LOCKED -->
-      <section class="gate-locked">
-        <div class="gate-card">
-          <span class="gate-shape" aria-hidden="true" style="top:-18px;left:44px;width:84px;height:84px;border-radius:100% 0 0 0;background:var(--pink);transform:rotate(-16deg)"></span>
-          <span class="gate-shape" aria-hidden="true" style="top:-12px;right:12%;width:40px;height:40px;border-radius:50%;background:var(--purple)"></span>
-          <span class="gate-shape" aria-hidden="true" style="bottom:-18px;right:9%;width:56px;height:56px;border-radius:4px;background:var(--yellow);transform:rotate(28deg)"></span>
-          <span class="gate-shape" aria-hidden="true" style="left:-20px;bottom:56px;width:60px;height:60px;border-radius:50% 0 50% 50%;background:var(--orange);transform:rotate(-28deg)"></span>
-          <span class="gate-shape" aria-hidden="true" style="top:58%;right:-24px;width:72px;height:72px;border-radius:50%;background:var(--orange)"></span>
-          <span class="gate-shape" aria-hidden="true" style="bottom:-8px;left:24%;width:24px;height:24px;border-radius:50%;background:var(--pink)"></span>
+      <div class="wrap gate-hero__inner">
+        <p class="gate-eyebrow"><span>Welcome to my portfolio!</span><strong>I'm Megan Garcia</strong></p>
+        <h1 class="gate-h1">Some of my work is <span class="gate-pill">under NDA</span></h1>
+        <p class="gate-sub">Enter the password for the full versions, or proceed without and browse low-fidelity previews of the confidential projects.</p>
 
-          <svg class="gate-lock" width="96" height="120" viewBox="0 0 96 120" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M31 54V38a17 17 0 0 1 34 0v16" stroke="var(--blue)" stroke-width="8"></path>
-            <rect x="18" y="52" width="60" height="58" rx="14" fill="var(--blue)" stroke="var(--blue)" stroke-width="4"></rect>
-            <circle cx="48" cy="77" r="7" fill="var(--card)"></circle>
-            <path d="M48 80v14" stroke="var(--card)" stroke-width="6"></path>
-            <circle cx="86" cy="22" r="5" fill="var(--purple)"></circle>
-            <rect x="4" y="22" width="10" height="10" rx="2" fill="var(--orange)" transform="rotate(20 9 27)"></rect>
-          </svg>
-          <h1 class="gate-title">Protected Work</h1>
-          <p class="gate-lead">These case studies cover confidential Johnson &amp; Johnson work. Enter the password for the full versions — or browse low-fidelity previews with the mockups shown as sketches.</p>
+        <form id="gate-form" class="gate-form" novalidate>
+          <label for="pw">Enter the password to see everything</label>
+          <div class="gate-field">
+            <input id="pw" type="password" name="password" autocomplete="current-password" aria-describedby="pw-error" placeholder="Password">
+            <button type="submit" class="gate-unlock">Unlock
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </button>
+          </div>
+          <p id="pw-error" class="gate-error" role="alert" hidden><span class="gate-error__dot" aria-hidden="true"></span>That password didn't work. Try again.</p>
+        </form>
 
-          <form id="gate-form" class="gate-form" novalidate>
-            <label for="pw">Password</label>
-            <div class="gate-field">
-              <input id="pw" type="password" name="password" autocomplete="current-password" aria-describedby="pw-error" placeholder="Enter password">
-              <button type="submit" class="gate-submit" aria-label="View projects">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-              </button>
-            </div>
-            <p id="pw-error" class="gate-error" role="alert" hidden><span class="gate-error__dot" aria-hidden="true"></span>That password didn't work. Try again.</p>
-          </form>
+        <div class="gate-or" aria-hidden="true"><span></span><span class="gate-or__word">or</span><span></span></div>
 
-          <div class="gate-or" aria-hidden="true"><span>or</span></div>
-          <button type="button" class="btn btn--secondary gate-bypass" data-bypass>
-            Browse a low-fidelity preview
-            <svg class="arrow-h" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
+        <div class="gate-actions">
+          <button type="button" class="gate-guest" data-bypass>Browse low-fidelity previews</button>
           <p class="gate-help">Need the password? <a href="mailto:megangarcia2024@gmail.com?subject=Portfolio%20password">Email me</a></p>
         </div>
-
-        <div class="gate-inside">
-          <h2 class="gate-inside__h">What's Inside</h2>
-          <p class="gate-inside__sub">Tap a project to open its low-fidelity preview, or enter the password above for the full version.</p>
-          <div class="gate-grid">
-            <a class="gate-preview" href="../project-reset/" data-preview>
-              <div class="gate-preview__media">
-                <img src="../images/coic-1-500__6a666361.png" alt="" loading="lazy">
-                <span class="gate-preview__lock" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
-              </div>
-              <div class="gate-preview__body">
-                <span class="gate-preview__title t-orange">Project Reset</span>
-                <span class="gate-preview__desc">Rebuilt navigation for a cell-therapy platform, hitting the industry UX benchmark for the first time.</span>
-                <span class="gate-preview__cta">View low-fidelity preview →</span>
-              </div>
-            </a>
-            <a class="gate-preview" href="../under-one-brand/" data-preview>
-              <div class="gate-preview__media">
-                <img src="../images/one-brand-500__6a6f4f5e.png" alt="" loading="lazy">
-                <span class="gate-preview__lock" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
-              </div>
-              <div class="gate-preview__body">
-                <span class="gate-preview__title t-purple">Under One Brand</span>
-                <span class="gate-preview__desc">Rebranded the platform into one J&amp;J product, designed and hand-coded end to end.</span>
-                <span class="gate-preview__cta">View low-fidelity preview →</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- UNLOCKED -->
-      <section class="gate-unlocked">
-        <div class="gate-granted">
-          <span class="gate-granted__row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Access granted</span>
-          <h1 id="granted-h" class="gate-title" tabindex="-1">Protected Work</h1>
-          <p>Thanks for taking a look. Please keep these case studies confidential.</p>
-        </div>
-        <div class="gate-grid">
-          <a class="gate-link" href="../project-reset/">
-            <img src="../images/coic-1-500__6a666361.png" alt="Project Reset — redesigned Chain of Identity &amp; Custody collection screen" loading="lazy">
-            <span class="gate-link__row">
-              <span class="gate-link__title t-orange">Project Reset</span>
-              <span class="gate-link__arrow" aria-hidden="true" style="border-color:var(--orange);color:var(--orange)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"></path></svg></span>
-            </span>
-          </a>
-          <a class="gate-link" href="../under-one-brand/">
-            <img src="../images/one-brand-500__6a6f4f5e.png" alt="Under One Brand — unified cell therapy platform interface" loading="lazy">
-            <span class="gate-link__row">
-              <span class="gate-link__title t-purple">Under One Brand</span>
-              <span class="gate-link__arrow" aria-hidden="true" style="border-color:var(--purple);color:var(--purple)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"></path></svg></span>
-            </span>
-          </a>
-        </div>
-      </section>
-
-    </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -176,8 +112,6 @@
 
   <script>
   (function () {
-    function setPreview() { try { localStorage.setItem('mg-preview', 'yes'); } catch (e) {} }
-
     var form = document.getElementById('gate-form');
     if (form) {
       var input = document.getElementById('pw');
@@ -186,11 +120,8 @@
         e.preventDefault();
         if (input.value.trim() === 'EverydayThings') {
           try { localStorage.setItem('mg-unlocked', 'yes'); } catch (e) {}
-          if (window.__gateNext) { location.replace(window.__gateNext); return; }
-          document.documentElement.classList.add('is-unlocked');
-          if (err) err.hidden = true;
-          var h = document.getElementById('granted-h');
-          if (h) { h.focus(); h.scrollIntoView({ block: 'center' }); }
+          // Full access: go to wherever they were headed, or home.
+          location.replace(window.__gateNext || '../');
         } else if (err) {
           err.hidden = false;
           input.focus();
@@ -199,20 +130,15 @@
       });
     }
 
-    // "Browse a low-fidelity preview" — enter preview mode, then go to the
-    // requested project (if we came from one) or Project Reset.
+    // "Browse low-fidelity previews" — enter preview mode, then continue to
+    // wherever they were headed (or home) to browse the doodle versions.
     var bypass = document.querySelector('[data-bypass]');
     if (bypass) {
       bypass.addEventListener('click', function () {
-        setPreview();
-        location.href = window.__gateNext || '../project-reset/';
+        try { localStorage.setItem('mg-preview', 'yes'); } catch (e) {}
+        location.href = window.__gateNext || '../';
       });
     }
-
-    // Clicking a "What's Inside" card opens that project's low-fidelity preview.
-    Array.prototype.forEach.call(document.querySelectorAll('[data-preview]'), function (a) {
-      a.addEventListener('click', setPreview);
-    });
   })();
   </script>
   <script src="../js/main.js?v=23" defer></script>

@@ -544,86 +544,67 @@ body.menu-open .nav__toggle { display: none; }
 /* ==========================================================================
    Protected Work gate (password page)
    ========================================================================== */
-.gate-wrap { display: flex; flex-direction: column; gap: clamp(40px, 6vw, 56px); }
-/* The inline head script flips <html>.is-unlocked; default shows the locked view. */
-.gate-unlocked { display: none; }
-.is-unlocked .gate-locked { display: none; }
-.is-unlocked .gate-unlocked { display: block; }
-
-.gate-locked { display: flex; flex-direction: column; gap: clamp(40px, 6vw, 56px); }
-.gate-title { font-family: var(--f-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; color: var(--blue); }
-
-.gate-card {
-  position: relative; overflow: hidden;
-  background: var(--card); border-radius: var(--radius);
-  padding: clamp(40px, 6vw, 80px) clamp(24px, 6vw, 80px);
-  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px;
+/* The gate is a full blue hero (like the home hero), so the shared header sits
+   transparently over it. Headline, a single password field with an inline Unlock
+   button, an "or" divider, and a low-fidelity-preview button. */
+.gate-hero { min-height: 84vh; display: flex; }
+.gate-hero__inner {
+  position: relative; z-index: 2; width: 100%;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: clamp(20px, 3vw, 32px);
+  padding-block: clamp(116px, 15vw, 168px) clamp(60px, 9vw, 104px);
 }
-.gate-shape { position: absolute; z-index: 0; }
-.gate-card > :not(.gate-shape) { position: relative; z-index: 1; }
-.gate-lock { width: clamp(72px, 10vw, 96px); height: auto; }
-.gate-lead { margin: 0; max-width: 46ch; color: var(--body); text-wrap: pretty; }
+.gate-eyebrow { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; color: #fff; font-size: clamp(1rem, 1.8vw, 1.2rem); }
+.gate-eyebrow span { font-weight: 500; }
+.gate-eyebrow strong { font-weight: 700; }
+.gate-h1 { margin: 0; max-width: 15ch; font-family: var(--f-display); font-weight: 400; font-size: clamp(2.1rem, 5.6vw, 4.4rem); line-height: 1.12; letter-spacing: -.02em; color: #fff; }
+.gate-pill { display: inline-block; color: var(--yellow); border: .08em solid var(--yellow); border-radius: 999px; padding: .04em .4em .28em; line-height: 1; }
+.gate-sub { margin: 0; max-width: 52ch; color: #fff; font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.15rem); }
 
-.gate-form { margin-top: 6px; width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 10px; text-align: left; }
-.gate-form label { font-family: var(--f-head); font-weight: 700; color: var(--ink); }
+.gate-form { width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 10px; }
+.gate-form label { font-family: var(--f-head); font-weight: 700; color: #fff; }
 .gate-field { position: relative; }
 .gate-field input {
-  width: 100%; box-sizing: border-box; min-height: 52px;
+  width: 100%; box-sizing: border-box; min-height: 56px;
   font-family: var(--f-body); font-size: 1rem; color: var(--ink);
   background: #fff; border: 1.5px solid #8a8a8a; border-radius: 10px;
-  padding: 0 64px 0 16px;
+  padding: 0 148px 0 16px;
 }
-.gate-field input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-color: var(--blue); }
-.gate-submit {
+.gate-field input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.gate-unlock {
   position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
-  width: 40px; height: 40px; border-radius: 50%;
+  min-height: 44px; padding: 0 20px; border-radius: 999px;
   border: 2px solid var(--blue); background: var(--blue); color: #fff;
-  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  font-family: var(--f-body); font-weight: 700; font-size: 15px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
   transition: background .2s var(--ease), border-color .2s var(--ease);
 }
-.gate-submit:hover { background: var(--blue-d); border-color: var(--blue-d); }
-.gate-error { margin: 0; display: flex; align-items: center; gap: 8px; color: #c2003f; font-weight: 600; font-size: .95rem; }
+.gate-unlock:hover { background: var(--blue-d); border-color: var(--blue-d); }
+.gate-error { margin: 0; display: flex; align-items: center; gap: 8px; color: #fff; font-weight: 700; font-size: .95rem; }
 .gate-error[hidden] { display: none; }
-.gate-error__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--pink); flex: none; }
-.gate-help { margin: 0; font-size: .95rem; }
-.gate-help a { font-weight: 700; }
+.gate-error__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); flex: none; }
 
-.gate-inside__h { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.5rem, 3.5vw, 2.3rem); line-height: 1.08; color: var(--ink); margin: 0 0 22px; }
-.gate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+.gate-or { display: flex; align-items: center; gap: 16px; width: 100%; max-width: 520px; }
+.gate-or span:first-child, .gate-or span:last-child { flex: 1; height: 2px; background: rgba(255, 255, 255, .6); }
+.gate-or__word { flex: none; color: #fff; font-weight: 700; font-size: 15px; }
 
-.gate-preview { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
-.gate-preview__media { position: relative; aspect-ratio: 2.39; overflow: hidden; background: var(--card); }
-.gate-preview__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; filter: blur(10px); transform: scale(1.1); }
-.gate-preview__lock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.gate-preview__lock svg { position: relative; z-index: 1; }
-.gate-preview__lock::before {
-  content: ""; width: 52px; height: 52px; border-radius: 50%; background: #fff;
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+.gate-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.gate-guest {
+  min-height: 48px; padding: 0 22px; border-radius: 999px;
+  border: 2px solid #fff; background: rgba(13, 21, 66, .45); color: #fff;
+  font-family: var(--f-body); font-weight: 700; font-size: 15px; cursor: pointer;
+  transition: background .2s var(--ease);
 }
-.gate-preview__body { padding: clamp(16px, 2.4vw, 24px) clamp(18px, 3vw, 28px); display: flex; flex-direction: column; gap: 6px; }
-.gate-preview__title, .gate-link__title { font-family: var(--f-display); font-weight: 400; line-height: 1.1; }
-.gate-preview__title { font-size: clamp(24px, 3vw, 32px); }
-.gate-preview__desc { color: var(--body); }
+.gate-guest:hover { background: rgba(13, 21, 66, .68); }
+.gate-help { margin: 0; color: #fff; font-weight: 500; font-size: 15px; }
+.gate-help a { color: #fff; font-weight: 700; text-decoration: underline; }
 
-.gate-granted { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
-.gate-granted__row { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-head); font-weight: 700; color: var(--ink); }
-.gate-granted p { margin: 0; max-width: 60ch; color: var(--body); }
-
-.gate-link { display: block; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; text-decoration: none; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
-.gate-link:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(11, 11, 15, .1); }
-.gate-link img { display: block; width: 100%; aspect-ratio: 2.39; object-fit: cover; object-position: 50% 0; }
-.gate-link__row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: clamp(16px, 2.4vw, 26px) clamp(18px, 3vw, 30px); }
-.gate-link__title { font-size: clamp(24px, 3vw, 36px); }
-.gate-link__arrow { width: 46px; height: 46px; flex: none; border: 2px solid; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
-
-/* "or" divider + bypass button + clickable preview cards */
-.gate-or { display: flex; align-items: center; gap: 14px; width: 100%; max-width: 460px; color: var(--faint); font-size: .9rem; }
-.gate-or::before, .gate-or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-.gate-bypass { align-self: center; }
-.gate-inside__sub { margin: -14px 0 22px; color: var(--body); }
-a.gate-preview { text-decoration: none; color: inherit; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
-a.gate-preview:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(11, 11, 15, .1); }
-.gate-preview__cta { font-family: var(--f-head); font-weight: 700; font-size: .9rem; color: var(--blue); margin-top: 4px; }
+/* Small screens: keep the Unlock button inside the white field (a blue pill on the
+   blue hero would vanish if stacked); just tighten the spacing so it fits. */
+@media (max-width: 440px) {
+  .gate-field input { padding-right: 126px; min-height: 52px; }
+  .gate-unlock { padding: 0 15px; }
+}
 a.gate-preview:hover .gate-preview__cta { text-decoration: underline; }
 
 /* ==========================================================================
