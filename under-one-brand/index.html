@@ -8,7 +8,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=72">
+  <link rel="stylesheet" href="../css/style.css?v=74">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Access gate: full version when unlocked, low-fidelity preview when the
@@ -45,12 +45,10 @@
   <svg class="lofi-defs" width="0" height="0" aria-hidden="true" focusable="false">
     <filter id="lofi-sketch" color-interpolation-filters="sRGB">
       <feColorMatrix type="saturate" values="0"/>
-      <feGaussianBlur stdDeviation="0.5"/>
-      <feConvolveMatrix order="3" preserveAlpha="true" divisor="1" bias="0" kernelMatrix="0 -1 0 -1 4 -1 0 -1 0"/>
       <feComponentTransfer>
-        <feFuncR type="table" tableValues="1 0 0"/>
-        <feFuncG type="table" tableValues="1 0 0"/>
-        <feFuncB type="table" tableValues="1 0 0"/>
+        <feFuncR type="discrete" tableValues="0 0 1"/>
+        <feFuncG type="discrete" tableValues="0 0 1"/>
+        <feFuncB type="discrete" tableValues="0 0 1"/>
       </feComponentTransfer>
     </filter>
   </svg>
