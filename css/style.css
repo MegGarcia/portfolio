@@ -433,8 +433,8 @@ body.menu-open .nav__toggle { display: none; }
 /* ==========================================================================
    About page
    ========================================================================== */
-/* 32px of breathing room above the "Megan" identity row. */
-main:has(.about-head).section { padding-top: 32px; }
+/* The default .section padding-top above the "Megan" row matches the space
+   above the hero image on the case-study pages. */
 .about-head { display: flex; flex-direction: column; }
 .about-head__bar { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; }
 .avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
@@ -492,7 +492,7 @@ main:has(.about-head).section { padding-top: 32px; }
 .about-stage__copy { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 24px; }
 .about-stage__copy p { font-size: 1.05rem; line-height: 1.75; text-wrap: pretty; }
 .ask { display: flex; flex-direction: column; gap: 12px; }
-.ask__label { font-family: var(--f-head); font-weight: 700; color: var(--muted); }
+.ask__label { font-family: var(--f-head); font-weight: 700; color: var(--ink); }
 .ask__tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .ask__tags li {
   padding: 9px 16px; border-radius: 10px; background: #fff; border: 0;
