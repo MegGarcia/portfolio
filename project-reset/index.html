@@ -8,7 +8,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=80">
+  <link rel="stylesheet" href="../css/style.css?v=81">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Access gate: full version when unlocked, low-fidelity preview when the
@@ -257,7 +257,15 @@
         document.querySelectorAll('.deck-btn').forEach(function (a) {
           a.classList.add('is-locked');
           a.setAttribute('aria-disabled', 'true');
-          a.addEventListener('click', function (e) { e.preventDefault(); });
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            /* On touch (no hover) a tap shows the tooltip, then fades it after 30s. */
+            if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+              a.classList.add('is-tip');
+              clearTimeout(a._tipTimer);
+              a._tipTimer = setTimeout(function () { a.classList.remove('is-tip'); }, 30000);
+            }
+          });
         });
       }
     } catch (e) {}
