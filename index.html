@@ -95,7 +95,7 @@
             </div>
             <div class="project__media">
               <figure class="product-frame product-frame--orange">
-                <img class="product-frame__img" src="images/pr-product.png" alt="Redesigned Chain of Identity &amp; Custody collection screen" loading="lazy">
+                <img class="product-frame__img" src="images/lofi/pr-product.png" data-full="images/pr-product.png" alt="Redesigned Chain of Identity &amp; Custody collection screen" loading="lazy">
                 <img class="product-frame__shapes" src="images/frame-shapes-orange.svg" alt="" aria-hidden="true">
               </figure>
             </div>
@@ -114,7 +114,7 @@
             </div>
             <div class="project__media">
               <figure class="product-frame product-frame--purple">
-                <img class="product-frame__img" src="images/uob-product.png" alt="Unified cell therapy platform interface" loading="lazy">
+                <img class="product-frame__img" src="images/lofi/uob-product.png" data-full="images/uob-product.png" alt="Unified cell therapy platform interface" loading="lazy">
                 <img class="product-frame__shapes" src="images/frame-shapes-purple.svg" alt="" aria-hidden="true">
               </figure>
             </div>
@@ -164,6 +164,17 @@
   <button class="back-to-top" type="button" aria-label="Back to top">
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 20V5M5 12l7-7 7 7"/></svg>
   </button>
+  <script>
+  /* Work cards for the password-protected projects show the low-fi doodle until
+     the visitor is signed in, then swap to the real hi-fi screenshot. */
+  (function () {
+    try {
+      if (localStorage.getItem('mg-unlocked') === 'yes') {
+        document.querySelectorAll('img[data-full]').forEach(function (i) { i.src = i.getAttribute('data-full'); });
+      }
+    } catch (e) {}
+  })();
+  </script>
   <script src="js/main.js?v=23" defer></script>
 </body>
 </html>
