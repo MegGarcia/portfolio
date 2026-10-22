@@ -51,7 +51,7 @@
     <section class="section cs-hero">
       <div class="wrap">
         <figure class="product-frame product-frame--purple reveal">
-          <img class="product-frame__img" src="../images/uob-product.png" alt="Rebranded Chain of Identity &amp; Custody collection screen">
+          <img class="product-frame__img" src="../images/lofi/uob-product.png" data-full="../images/uob-product.png" alt="Rebranded Chain of Identity &amp; Custody collection screen">
           <img class="product-frame__shapes" src="../images/frame-shapes-purple.svg" alt="" aria-hidden="true">
         </figure>
         <h1 class="cs-title t-purple">Under One Brand</h1>
@@ -197,7 +197,7 @@
         <h2 class="cs-h t-purple" style="margin-bottom:6px">More Like This</h2>
         <a class="next-card reveal" href="../project-reset/">
           <figure class="product-frame product-frame--orange">
-            <img class="product-frame__img" src="../images/pr-product.png" alt="Project Reset — redesigned Chain of Identity &amp; Custody collection screen" loading="lazy">
+            <img class="product-frame__img" src="../images/lofi/pr-product.png" data-full="../images/pr-product.png" alt="Project Reset — redesigned Chain of Identity &amp; Custody collection screen" loading="lazy">
             <img class="product-frame__shapes" src="../images/frame-shapes-orange.svg" alt="" aria-hidden="true">
           </figure>
           <div class="next-card__foot">
@@ -226,6 +226,18 @@
   <button class="back-to-top" type="button" aria-label="Back to top">
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 20V5M5 12l7-7 7 7"/></svg>
   </button>
+  <script>
+  /* Signed-in visitors (page not in lo-fi preview) see the real hi-fi product
+     image; signed-out/preview visitors keep the low-fi doodle that is the default
+     src, so the confidential screenshot is never fetched. */
+  (function () {
+    try {
+      if (!document.documentElement.classList.contains('lo-fi')) {
+        document.querySelectorAll('img[data-full]').forEach(function (i) { i.src = i.getAttribute('data-full'); });
+      }
+    } catch (e) {}
+  })();
+  </script>
   <script src="../js/main.js?v=23" defer></script>
 </body>
 </html>
