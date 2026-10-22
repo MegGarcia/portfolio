@@ -923,6 +923,7 @@ body.menu-open .nav__toggle { display: none; }
 .quote-card__q { position: relative; z-index: 1; margin: 0 0 16px; max-width: 30ch; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.6rem, 3.5vw, 2.4rem); line-height: 1.2; color: var(--ink); text-wrap: balance; }
 .quote-card__by { position: relative; z-index: 1; margin: 0; color: var(--body); max-width: 52ch; text-wrap: pretty; }
 .qshape { position: absolute; z-index: 0; }
+@media (max-width: 760px) { .qshape--orange { display: none; } }
 
 /* Screens showcase box (Pizza): gray panel with clipped brand shapes holding a
    grid of captioned screens. */
