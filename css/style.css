@@ -815,6 +815,58 @@ body.menu-open .nav__toggle { display: none; }
 .shipped__item h4 { font-family: var(--f-head); font-weight: 700; margin-top: 4px; }
 .shipped__item p { margin-top: 6px; color: var(--muted); }
 
+/* ===== Project Reset redesign components (scoped to .cs-page) =============== */
+/* Numbered section intro: number + heading (left), lead paragraph (right). */
+.cs-num { display: flex; flex-wrap: wrap; gap: 20px 56px; }
+.cs-num__head { flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px; }
+.cs-num__eye { font-family: var(--f-display); font-weight: 400; font-size: 15px; color: var(--ink); }
+.cs-num__head .cs-h { margin: 0; }
+.cs-num__body { flex: 1.6 1 420px; margin: 0; }
+.cs-num__body > :first-child { margin-top: 0; }
+.cs-num__body--flow { display: flex; flex-direction: column; gap: 20px; }
+.cs-num__body--flow .btn { align-self: flex-start; }
+
+/* Two Key Decisions: display-type sub-headings. */
+.kd-title { font-family: var(--f-display); font-weight: 400; font-size: 1.4rem; line-height: 1.2; color: var(--ink); margin: 44px 0 14px; }
+
+/* Full-width outcome image under the numbered intro. */
+.outcome__img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); margin-top: 32px; }
+
+/* Impact stat row: colored label above a big ink number, no borders. */
+.impact { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 18px; }
+.impact__item { display: flex; flex-direction: column; gap: 10px; padding: 24px 24px 24px 0; }
+.impact__label { font-weight: 700; font-size: .95rem; letter-spacing: .02em; }
+.impact__n { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.6rem, 4.6vw, 3.8rem); line-height: 1; color: var(--ink); }
+.t-gold { color: #c98f00; }
+
+/* Before / After comparison inside a gray box: label + blurb left, image right;
+   the "before" image is desaturated, a divider separates the two. */
+.ba { display: flex; flex-direction: column; }
+.ba__item { display: grid; grid-template-columns: minmax(200px, 300px) 1fr; column-gap: clamp(28px, 6vw, 112px); row-gap: 8px; align-items: start; }
+.ba__item--after { border-top: 1px solid #d9d9d9; padding-top: 40px; }
+.ba__label { grid-column: 1; grid-row: 1; align-self: end; font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; color: var(--ink); }
+.ba__text { grid-column: 1; grid-row: 2; align-self: start; margin: 0; color: var(--body); }
+.ba__img { grid-column: 2; grid-row: 1 / span 2; width: 100%; border-radius: 6px; display: block; }
+.ba__img--before { filter: grayscale(1); opacity: .7; }
+@media (max-width: 620px) {
+  .ba__item { grid-template-columns: 1fr; }
+  .ba__label, .ba__text, .ba__img { grid-column: 1; grid-row: auto; }
+  .ba__label { order: 1; }
+  .ba__text { order: 2; }
+  .ba__img { order: 3; margin-top: 12px; }
+}
+
+/* Two-column "also shipped" bullet list. */
+.cs-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 6px 32px; margin: 0; padding-left: 1.2em; }
+.cs-cols li { color: var(--ink); }
+
+/* "What Users Said": quote + supporting text (left), image (right). */
+.wus { display: flex; flex-wrap: wrap; gap: 32px 56px; align-items: center; }
+.wus__text { flex: 1 1 360px; display: flex; flex-direction: column; gap: 16px; }
+.wus__text .cs-h { margin: 0; }
+.wus__quote { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.3rem, 2.6vw, 1.8rem); line-height: 1.3; color: var(--ink); margin: 0; }
+.wus__img { flex: 1 1 360px; min-width: 0; width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); }
+
 /* ==========================================================================
    Footer
    ========================================================================== */
