@@ -836,9 +836,6 @@ body.menu-open .nav__toggle { display: none; }
    stays shorter than the screen (centered in the content row). */
 .outcome__img { width: 100%; max-width: 720px; height: auto; display: block; margin: 32px auto 0; border-radius: var(--radius); border: 1px solid var(--line); }
 
-/* Equal breathing room on both sides of the Before/After divider. */
-.ba__item--before { padding-bottom: 40px; }
-
 /* Crop a figure row to one uniform ratio so every image is the same size. */
 .media-grid--crop img { aspect-ratio: 343 / 203; object-fit: cover; object-position: 50% 0; }
 
@@ -870,21 +867,17 @@ body.menu-open .nav__toggle { display: none; }
 .impact__n { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.6rem, 4.6vw, 3.8rem); line-height: 1; color: var(--ink); }
 .t-gold { color: #c98f00; }
 
-/* Before / After comparison inside a gray box: label + blurb left, image right;
-   the "before" image is desaturated, a divider separates the two. */
-.ba { display: flex; flex-direction: column; }
-.ba__item { display: grid; grid-template-columns: minmax(200px, 300px) 1fr; column-gap: clamp(28px, 6vw, 112px); row-gap: 8px; align-items: start; }
-.ba__item--after { border-top: 1px solid #d9d9d9; padding-top: 40px; }
-.ba__label { grid-column: 1; grid-row: 1; align-self: end; font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; color: var(--ink); }
-.ba__text { grid-column: 1; grid-row: 2; align-self: start; margin: 0; color: var(--body); }
-.ba__img { grid-column: 2; grid-row: 1 / span 2; width: 100%; border-radius: 6px; display: block; }
+/* Before / After comparison inside a gray box: the two images sit side by side
+   so they're easy to compare, each with its label above and blurb below.
+   Stacks to one column on narrow screens. */
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
+.ba__item { display: flex; flex-direction: column; gap: 12px; }
+.ba__label { order: 1; font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; color: var(--ink); }
+.ba__img { order: 2; width: 100%; border-radius: 6px; display: block; }
+.ba__text { order: 3; margin: 0; color: var(--body); }
 .ba__img--before { filter: grayscale(1); opacity: .7; }
 @media (max-width: 620px) {
-  .ba__item { grid-template-columns: 1fr; }
-  .ba__label, .ba__text, .ba__img { grid-column: 1; grid-row: auto; }
-  .ba__label { order: 1; }
-  .ba__text { order: 2; }
-  .ba__img { order: 3; margin-top: 12px; }
+  .ba { grid-template-columns: 1fr; }
 }
 
 /* Two-column "also shipped" bullet list. */
