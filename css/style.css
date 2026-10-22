@@ -1097,7 +1097,10 @@ html.lo-fi body { background: #fff; }
 .ba { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); }
 .ba__item { display: flex; flex-direction: column; gap: 12px; }
 .ba__label { order: 1; font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; color: var(--ink); }
-.ba__img { order: 2; width: 100%; display: block; aspect-ratio: 3 / 2; object-fit: cover; object-position: top center; border: 1px solid #b0b0b0 !important; border-radius: var(--radius); }
+.ba__img { order: 2; width: 100%; display: block; aspect-ratio: 3 / 2; object-fit: contain; background: #fff; border: 1px solid #b0b0b0 !important; border-radius: var(--radius); }
+/* Project Reset zooms its Before/After to fill the box (top-aligned); other case
+   studies (e.g. Under One Brand) show the full screen without the zoom/crop. */
+.cs--orange .ba__img { object-fit: cover; object-position: top center; background: none; }
 .ba__text { order: 3; margin: 0; color: var(--body); }
 @media (max-width: 620px) {
   .ba { grid-template-columns: 1fr; }
