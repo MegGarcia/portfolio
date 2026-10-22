@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=86">
+  <link rel="stylesheet" href="../css/style.css?v=87">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Gate state. Client-side only (static site) — a courtesy gate, not real auth. */
@@ -72,9 +72,8 @@
         <p class="gate-sub">Enter the password for the full versions, or proceed without and browse low-fidelity previews of the confidential projects.</p>
 
         <form id="gate-form" class="gate-form" novalidate>
-          <label for="pw">Enter the password to see everything</label>
           <div class="gate-field">
-            <input id="pw" type="password" name="password" autocomplete="current-password" aria-describedby="pw-error" placeholder="Password">
+            <input id="pw" type="password" name="password" autocomplete="current-password" aria-label="Password" aria-describedby="pw-error" placeholder="Password">
             <button type="submit" class="gate-unlock">Unlock
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
             </button>

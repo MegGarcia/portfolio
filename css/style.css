@@ -561,7 +561,9 @@ body.menu-open .nav__toggle { display: none; }
 .gate-eyebrow { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; color: #fff; font-size: clamp(1rem, 1.8vw, 1.2rem); }
 .gate-eyebrow span { font-weight: 500; }
 .gate-eyebrow strong { font-weight: 700; }
-.gate-h1 { margin: 0; max-width: 15ch; font-family: var(--f-display); font-weight: 400; font-size: clamp(2.1rem, 5.6vw, 4.4rem); line-height: 1.12; letter-spacing: -.02em; color: #fff; }
+/* Extra line-height so the "under NDA" pill clears the line above (as on home);
+   negative top margin pulls the headline up closer to the eyebrow. */
+.gate-h1 { margin: -0.3em 0 0; max-width: 15ch; font-family: var(--f-display); font-weight: 400; font-size: clamp(2.1rem, 5.6vw, 4.4rem); line-height: 1.34; letter-spacing: -.02em; color: #fff; }
 .gate-pill { display: inline-block; color: var(--yellow); border: .08em solid var(--yellow); border-radius: 999px; padding: .04em .4em .28em; line-height: 1; transition: transform .35s var(--ease); }
 .gate-pill:hover { transform: rotate(-5deg); }
 .gate-sub { margin: 0; max-width: 52ch; color: #fff; font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.15rem); }
@@ -572,8 +574,8 @@ body.menu-open .nav__toggle { display: none; }
 .gate-field input {
   width: 100%; box-sizing: border-box; min-height: 56px;
   font-family: var(--f-body); font-size: 1rem; color: var(--ink);
-  background: #fff; border: 1.5px solid #8a8a8a; border-radius: 10px;
-  padding: 0 148px 0 16px;
+  background: #fff; border: 0; border-radius: 999px;
+  padding: 0 148px 0 22px;
 }
 .gate-field input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .gate-unlock {
