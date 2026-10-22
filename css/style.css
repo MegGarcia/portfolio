@@ -596,10 +596,9 @@ a.gate-preview:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba
 a.gate-preview:hover .gate-preview__cta { text-decoration: underline; }
 
 /* ==========================================================================
-   Low-fidelity preview mode (unsigned visitors) — mockups render as whiteboard
-   sketches via an SVG edge-detect filter, with a banner offering the full view.
+   Low-fidelity preview mode (unsigned visitors) — a banner offering the full
+   view. Per-image sketch overrides (images/lofi/) are swapped in separately.
    ========================================================================== */
-.lofi-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .lofi-banner { display: none; }
 html.lo-fi .lofi-banner {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
@@ -610,10 +609,8 @@ html.lo-fi .lofi-banner {
 }
 .lofi-banner__text { max-width: 72ch; color: var(--ink); font-size: .95rem; }
 html.lo-fi body { background: #fff; }
-/* The sketch look: black marker line art on white, like a whiteboard drawing. */
-html.lo-fi main img { filter: url(#lofi-sketch); background: #fff; }
-/* Keep navigation thumbnails (More Like This) legible. */
-html.lo-fi .next-card img { filter: none; }
+/* (Low-fi mockup treatment temporarily disabled — hand-drawn wireframe versions
+   will be swapped in per image once supplied.) */
 
 /* Timeline / list rows (experience, education, certificates) */
 .rows { margin-top: 28px; }
