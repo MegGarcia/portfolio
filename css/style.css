@@ -556,9 +556,13 @@ body.menu-open .nav__toggle { display: none; }
 }
 /* All-blue page: the footer sits on the same blue, so drop its own fill and let
    the page's blue show through (matches the other blue-hero-led pages). */
-.gate-body { background: var(--blue); }
-/* Footer sits on the page's blue with no fill and none of its own decorative
-   shapes, so it reads as part of the gate rather than a separate footer band. */
+/* The whole page is one blue plane: the hero fills the viewport and the footer
+   sits directly at the bottom of it (sticky-footer flex), transparent and with no
+   shapes of its own, so it reads as the base of the gate rather than a separate band. */
+.gate-body { background: var(--blue); min-height: 100vh; display: flex; flex-direction: column; }
+.gate-body > main { flex: 1 0 auto; display: flex; flex-direction: column; }
+.gate-body > .site-footer { flex: none; }
+.gate-hero { min-height: 0; flex: 1 0 auto; }
 .gate-body .site-footer { background: transparent; }
 .gate-body .site-footer .shapes { display: none; }
 .gate-eyebrow { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; color: #fff; font-size: clamp(1rem, 1.8vw, 1.2rem); }
