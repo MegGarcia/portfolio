@@ -550,15 +550,20 @@ body.menu-open .nav__toggle { display: none; }
 .gate-hero { min-height: 84vh; display: flex; }
 .gate-hero__inner {
   position: relative; z-index: 2; width: 100%;
-  display: flex; flex-direction: column; justify-content: center;
-  gap: clamp(20px, 3vw, 32px);
-  padding-block: clamp(116px, 15vw, 168px) clamp(60px, 9vw, 104px);
+  display: flex; flex-direction: column; justify-content: flex-start;
+  gap: clamp(18px, 2.4vw, 28px);
+  padding-block: clamp(98px, 12vw, 124px) clamp(40px, 6vw, 72px);
 }
+/* All-blue page: the footer sits on the same blue, so drop its own fill and let
+   the page's blue show through (matches the other blue-hero-led pages). */
+.gate-body { background: var(--blue); }
+.gate-body .site-footer { background: transparent; }
 .gate-eyebrow { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; color: #fff; font-size: clamp(1rem, 1.8vw, 1.2rem); }
 .gate-eyebrow span { font-weight: 500; }
 .gate-eyebrow strong { font-weight: 700; }
 .gate-h1 { margin: 0; max-width: 15ch; font-family: var(--f-display); font-weight: 400; font-size: clamp(2.1rem, 5.6vw, 4.4rem); line-height: 1.12; letter-spacing: -.02em; color: #fff; }
-.gate-pill { display: inline-block; color: var(--yellow); border: .08em solid var(--yellow); border-radius: 999px; padding: .04em .4em .28em; line-height: 1; }
+.gate-pill { display: inline-block; color: var(--yellow); border: .08em solid var(--yellow); border-radius: 999px; padding: .04em .4em .28em; line-height: 1; transition: transform .35s var(--ease); }
+.gate-pill:hover { transform: rotate(-5deg); }
 .gate-sub { margin: 0; max-width: 52ch; color: #fff; font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.15rem); }
 
 .gate-form { width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 10px; }
@@ -589,13 +594,6 @@ body.menu-open .nav__toggle { display: none; }
 .gate-or__word { flex: none; color: #fff; font-weight: 700; font-size: 15px; }
 
 .gate-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-.gate-guest {
-  min-height: 48px; padding: 0 22px; border-radius: 999px;
-  border: 2px solid #fff; background: rgba(13, 21, 66, .45); color: #fff;
-  font-family: var(--f-body); font-weight: 700; font-size: 15px; cursor: pointer;
-  transition: background .2s var(--ease);
-}
-.gate-guest:hover { background: rgba(13, 21, 66, .68); }
 .gate-help { margin: 0; color: #fff; font-weight: 500; font-size: 15px; }
 .gate-help a { color: #fff; font-weight: 700; text-decoration: underline; }
 
@@ -1256,6 +1254,7 @@ html.lo-fi body { background: #fff; }
   .hero-id__ping { animation: none; display: none; }
   .hero--home .sh { translate: none !important; rotate: none !important; scale: none !important; }
   .hero-headline .pill:hover { transform: none; }
+  .gate-pill:hover { transform: none; }
   /* No sticky overlap under reduced motion — plain stacked sections. */
   .project-stack .project-link:has(.project) { position: static; }
   .project-stack .project-link:has(.project) .project { box-shadow: none; }
