@@ -841,9 +841,23 @@ body.menu-open .nav__toggle { display: none; }
 
 /* Project Reset page-scoped spacing + section rules (match the design file). */
 .cs-reset .cs-hero { padding-bottom: clamp(28px, 4vw, 48px); }
-.cs-reset .section--tight { padding-top: 0; }
+.cs-reset .section--tight { padding-top: clamp(18px, 2.5vw, 32px); padding-bottom: clamp(48px, 7vw, 96px); }
+/* Roomier gaps between sections. */
+.cs-reset .cs-section { padding-block: clamp(48px, 7vw, 96px); }
 .cs-reset .cs-section,
 .cs-reset .cs-morework { border-top: 1px solid var(--line); }
+
+/* Outcome: text column left, image right on desktop; stacked on mobile. */
+.outcome-split__text { display: flex; flex-direction: column; gap: 20px; }
+/* The head carries a flex-basis for the horizontal numbered row; reset it here
+   so it doesn't grow to fill the vertical column. */
+.outcome-split__text .cs-num__head { flex: none; gap: 8px; }
+.outcome-split__text .btn { align-self: flex-start; }
+.outcome-split .outcome__img { max-width: 100%; margin: 24px auto 0; }
+@media (min-width: 760px) {
+  .outcome-split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .outcome-split .outcome__img { margin: 0; width: 100%; }
+}
 
 /* Impact stat row: colored label above a big ink number, no borders. */
 .impact { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 18px; }
