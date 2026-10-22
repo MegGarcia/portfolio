@@ -861,11 +861,21 @@ body.menu-open .nav__toggle { display: none; }
 }
 
 /* Impact stat row: colored label above a big ink number, no borders. */
-/* Flex + justify-content:center so a stat left alone on the last row (e.g. an
-   odd one on mobile) centers itself instead of sitting in the left column. The
-   max-width lets a full row still fill the width. */
-.impact { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 18px; }
-.impact__item { flex: 1 1 180px; max-width: 360px; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px; text-align: center; }
+/* Equal-width columns via grid — minmax(0,1fr) keeps every stat exactly the same
+   width even when one value (e.g. "+194%") is wider. Column count follows the
+   number of stats: a 4-stat row is a clean 2x2 (never a ragged 3+1) until it fits
+   on one line; a 3-stat row drops from 3-across straight to one column. Mobile
+   first, so the per-count breakpoints all share specificity and layer cleanly. */
+.impact { display: grid; margin-top: 18px; }
+.impact:has(.impact__item:nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 821px) {
+  .impact:has(.impact__item:nth-child(4)) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.impact:not(:has(.impact__item:nth-child(4))) { grid-template-columns: 1fr; }
+@media (min-width: 561px) {
+  .impact:not(:has(.impact__item:nth-child(4))) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.impact__item { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px; text-align: center; }
 .impact__label { font-weight: 700; font-size: .95rem; letter-spacing: .02em; }
 .impact__n { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.6rem, 4.6vw, 3.8rem); line-height: 1; color: var(--ink); }
 .t-gold { color: #c98f00; }
