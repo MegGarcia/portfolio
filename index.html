@@ -12,8 +12,19 @@
   <meta property="og:type" content="website">
 
   <link rel="stylesheet" href="fonts/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=77">
+  <link rel="stylesheet" href="css/style.css?v=78">
   <script>document.documentElement.classList.add("js");</script>
+  <script>
+  /* Site entrance: on a first visit (no choice made yet), send the visitor to the
+     password page so they pick full access or a low-fidelity preview up front. */
+  (function () {
+    try {
+      if (localStorage.getItem('mg-unlocked') !== 'yes' && localStorage.getItem('mg-preview') !== 'yes') {
+        location.replace('protected/?next=' + encodeURIComponent(location.pathname));
+      }
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>

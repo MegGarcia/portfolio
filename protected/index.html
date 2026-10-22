@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=77">
+  <link rel="stylesheet" href="../css/style.css?v=78">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Gate state. Client-side only (static site) — a courtesy gate, not real auth. */
@@ -17,11 +17,12 @@
     try {
       var params = new URLSearchParams(location.search);
       var n = params.get('next');
-      // Only honor a same-origin relative path into the two protected folders.
+      // Honor any same-origin relative/absolute path (so the gate can return the
+      // visitor to wherever they entered the site), but never an external URL.
       function safeNext(p) {
         if (!p) return null;
         if (p.indexOf('://') !== -1 || p.indexOf('//') === 0 || p.charAt(0) === '\\') return null;
-        return /(^|\/)(project-reset|under-one-brand)\/?($|\?|#)/.test(p) ? p : null;
+        return p.charAt(0) === '/' || p.charAt(0) === '.' ? p : null;
       }
       window.__gateNext = safeNext(n);
       if (localStorage.getItem('mg-unlocked') === 'yes') {

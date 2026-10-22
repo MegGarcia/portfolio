@@ -8,7 +8,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=77">
+  <link rel="stylesheet" href="../css/style.css?v=78">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Access gate: full version when unlocked, low-fidelity preview when the
@@ -227,13 +227,19 @@
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 20V5M5 12l7-7 7 7"/></svg>
   </button>
   <script>
-  /* Signed-in visitors (page not in lo-fi preview) see the real hi-fi product
-     image; signed-out/preview visitors keep the low-fi doodle that is the default
-     src, so the confidential screenshot is never fetched. */
+  /* Signed-in visitors see the real hi-fi product image + an enabled Process Deck.
+     Signed-out/preview visitors keep the low-fi doodle (so the confidential
+     screenshot is never fetched) and get a disabled, tooltipped deck button. */
   (function () {
     try {
-      if (!document.documentElement.classList.contains('lo-fi')) {
+      if (localStorage.getItem('mg-unlocked') === 'yes') {
         document.querySelectorAll('img[data-full]').forEach(function (i) { i.src = i.getAttribute('data-full'); });
+      } else {
+        document.querySelectorAll('.deck-btn').forEach(function (a) {
+          a.classList.add('is-locked');
+          a.setAttribute('aria-disabled', 'true');
+          a.addEventListener('click', function (e) { e.preventDefault(); });
+        });
       }
     } catch (e) {}
   })();
