@@ -1103,7 +1103,11 @@ html.lo-fi body { background: #fff; }
 .cs--orange .ba__img { object-fit: cover; object-position: top center; background: none; }
 /* Under One Brand's Before/After screens are a wider/shorter dimension than Project
    Reset's, so let them size to their own height instead of the tall 3/2 box. */
-.cs--purple .ba__img { aspect-ratio: 1.96; background: none; }
+.cs--purple .ba__img { background: none; }
+/* Doodle view keeps the shorter contain box; the signed-in hi-fi screens fill the
+   base 3/2 box from the top instead of letterboxing. */
+html.lo-fi .cs--purple .ba__img { aspect-ratio: 1.96; }
+html:not(.lo-fi) .cs--purple .ba__img { object-fit: cover; object-position: top; }
 .ba__text { order: 3; margin: 0; color: var(--body); }
 @media (max-width: 620px) {
   .ba { grid-template-columns: 1fr; }
