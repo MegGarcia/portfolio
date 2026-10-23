@@ -30,8 +30,10 @@ and logs each unlock.
 
    Authorize when prompted, then copy the **Web app URL** (ends in `/exec`).
 
-4. **Wire the frontend:** paste that URL into `GATE_ENDPOINT` near the top of the
-   gate script in [`../protected/index.html`](../protected/index.html). Commit & push.
+4. **Wire the frontend:** the deployed `/exec` URL is already set in `GATE_ENDPOINT`
+   near the top of the gate script in [`../protected/index.html`](../protected/index.html)
+   and the local fallback has been removed. If you redeploy to a *new* URL, update that
+   constant.
 
 That's it — unlocking now validates against your sheet. Edit passwords any time in the
 sheet (no redeploy needed). The `Log` tab records `Timestamp, Company` on each unlock.
@@ -47,8 +49,7 @@ bundle). That's a larger follow-up — ask and we can scope it.
 
 - The frontend posts `{"password": "..."}` as `text/plain` (a "simple" CORS request,
   no preflight); the script returns `{"ok":true,"company":"..."}` or `{"ok":false}`.
-- Until `GATE_ENDPOINT` is set, the gate falls back to a local password so the site
-  keeps working. **Remove that fallback** (both `GATE_ENDPOINT`'s empty-string branch
-  and `FALLBACK_PASSWORD`) once the endpoint is live.
 - After editing `Code.gs`, redeploy: **Manage deployments ▸ edit ▸ New version** keeps
   the same `/exec` URL.
+- If unlocking fails on the live site, the usual cause is the deployment's *Who has
+  access* not being set to **Anyone**, or needing a fresh **New version** deployment.

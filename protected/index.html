@@ -124,8 +124,7 @@
        Until GATE_ENDPOINT is filled in, the gate falls back to the local
        password so the site keeps working; remove the fallback once it's live.
        ───────────────────────────────────────────────────────────────────── */
-    var GATE_ENDPOINT = '';                 // e.g. 'https://script.google.com/macros/s/AKfy.../exec'
-    var FALLBACK_PASSWORD = 'EverydayThings'; // used only while GATE_ENDPOINT is empty
+    var GATE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxfURBbfccIMTCGyiQwaQ_3LVBIhGIxaJw9bQ-jgItNzMPsa8NY1pyAbsO-4-WpayPa/exec';
 
     var form = document.getElementById('gate-form');
     if (form) {
@@ -159,13 +158,6 @@
         if (!pw) { showError('Enter the password to continue.'); return; }
         if (err) err.hidden = true;
         setBusy(true);
-
-        if (!GATE_ENDPOINT) {
-          // Local fallback until the Apps Script endpoint is configured.
-          if (pw === FALLBACK_PASSWORD) { unlock(); }
-          else { showError("That password didn't work. Try again."); setBusy(false); }
-          return;
-        }
 
         fetch(GATE_ENDPOINT, {
           method: 'POST',
