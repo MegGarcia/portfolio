@@ -30,7 +30,8 @@ function doPost(e) {
     var payload = JSON.parse((e && e.postData && e.postData.contents) || '{}');
     var pw = String(payload.password || '').trim();
     if (pw) {
-      var sheet = SpreadsheetApp.getActive().getSheetByName('Passwords');
+      var ss = SpreadsheetApp.getActive();
+      var sheet = ss.getSheetByName('Passwords') || ss.getSheets()[0]; // "Passwords" tab, else the first tab
       var rows = sheet.getDataRange().getValues();
       for (var i = 1; i < rows.length; i++) {           // skip the header row
         var company = String(rows[i][0] || '').trim();

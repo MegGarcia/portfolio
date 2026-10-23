@@ -7,8 +7,10 @@ and logs each unlock.
 
 ## Setup
 
-1. **Create a Google Sheet** (private — don't share it publicly). Add a tab named
-   `Passwords` with a header row and one row per company:
+1. **Google Sheet** (private — don't share it publicly). Already created for this
+   project: **Portfolio — Protected Work Passwords**
+   (`https://docs.google.com/spreadsheets/d/1qVoQa7XZ3XUZYsV8pgo9ZtAz0opyLgnk3Y-jREgL9vU/edit`).
+   It uses a header row then one row per company — add as many as you like:
 
    | Company   | Password     | Active |
    |-----------|--------------|--------|
@@ -16,7 +18,8 @@ and logs each unlock.
    | Globex    | `globex-xyz` | TRUE   |
 
    (A blank `Active` cell counts as active; set it to `FALSE` to disable a password
-   without deleting the row.)
+   without deleting the row.) The script reads a tab named `Passwords` if present,
+   otherwise the first tab — so the default tab name is fine.
 
 2. **Add the script:** in that sheet, **Extensions ▸ Apps Script**, paste
    [`Code.gs`](./Code.gs), and Save.
