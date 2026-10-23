@@ -77,11 +77,11 @@
         <form id="gate-form" class="gate-form" novalidate>
           <div class="gate-field">
             <input id="pw" type="password" name="password" autocomplete="current-password" aria-label="Password" aria-describedby="pw-error" placeholder="Password">
-            <button type="submit" class="gate-unlock">Unlock
+            <button type="submit" class="gate-unlock"><span class="gate-unlock__label">Unlock</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
             </button>
           </div>
-          <p id="pw-error" class="gate-error" role="alert" hidden><span class="gate-error__dot" aria-hidden="true"></span>That password didn't work. Try again.</p>
+          <p id="pw-error" class="gate-error" role="alert" hidden><span class="gate-error__dot" aria-hidden="true"></span><span id="pw-error-msg">That password didn't work. Try again.</span></p>
         </form>
 
         <div class="gate-or" aria-hidden="true"><span></span><span class="gate-or__word">or</span><span></span></div>
@@ -116,21 +116,71 @@
 
   <script>
   (function () {
+    /* ─────────────────────────────────────────────────────────────────────
+       Server-side password check. GATE_ENDPOINT is a Google Apps Script web
+       app (see ../apps-script/README.md) that validates the password against a
+       PRIVATE Google Sheet on Google's servers — supports per-company passwords
+       and never exposes them to the browser.
+       Until GATE_ENDPOINT is filled in, the gate falls back to the local
+       password so the site keeps working; remove the fallback once it's live.
+       ───────────────────────────────────────────────────────────────────── */
+    var GATE_ENDPOINT = '';                 // e.g. 'https://script.google.com/macros/s/AKfy.../exec'
+    var FALLBACK_PASSWORD = 'EverydayThings'; // used only while GATE_ENDPOINT is empty
+
     var form = document.getElementById('gate-form');
     if (form) {
       var input = document.getElementById('pw');
       var err = document.getElementById('pw-error');
+      var errMsg = document.getElementById('pw-error-msg');
+      var btn = form.querySelector('.gate-unlock');
+      var btnLabel = form.querySelector('.gate-unlock__label');
+
+      function showError(msg) {
+        if (errMsg && msg) errMsg.textContent = msg;
+        if (err) err.hidden = false;
+        if (input) { input.focus(); input.select(); }
+      }
+      function setBusy(busy) {
+        if (btn) btn.disabled = busy;
+        if (input) input.disabled = busy;
+        if (btnLabel) btnLabel.textContent = busy ? 'Checking…' : 'Unlock';
+      }
+      function unlock(company) {
+        try {
+          localStorage.setItem('mg-unlocked', 'yes');
+          if (company) localStorage.setItem('mg-company', company);
+        } catch (e) {}
+        location.replace(window.__gateNext || '../');
+      }
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (input.value.trim() === 'EverydayThings') {
-          try { localStorage.setItem('mg-unlocked', 'yes'); } catch (e) {}
-          // Full access: go to wherever they were headed, or home.
-          location.replace(window.__gateNext || '../');
-        } else if (err) {
-          err.hidden = false;
-          input.focus();
-          input.select();
+        var pw = (input.value || '').trim();
+        if (!pw) { showError('Enter the password to continue.'); return; }
+        if (err) err.hidden = true;
+        setBusy(true);
+
+        if (!GATE_ENDPOINT) {
+          // Local fallback until the Apps Script endpoint is configured.
+          if (pw === FALLBACK_PASSWORD) { unlock(); }
+          else { showError("That password didn't work. Try again."); setBusy(false); }
+          return;
         }
+
+        fetch(GATE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ password: pw })
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (d && d.ok) { unlock(d.company); }
+            else { showError("That password didn't work. Try again."); setBusy(false); }
+          })
+          .catch(function () {
+            showError("Couldn't reach the server. Check your connection and try again.");
+            setBusy(false);
+          });
       });
     }
 
