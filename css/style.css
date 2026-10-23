@@ -585,7 +585,11 @@ body.menu-open .nav__toggle { display: none; }
 .gate-bg .sh:nth-child(6) { animation-duration: 9.5s; animation-delay: -4s; }
 .gate-bg .sh:nth-child(7) { animation-duration: 11s; animation-delay: -6s; }
 @keyframes gateFloat { 0% { translate: 0 0; } 50% { translate: 0 -18px; } 100% { translate: 0 0; } }
-.gate-eyebrow { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; color: #fff; font-size: clamp(1rem, 1.8vw, 1.2rem); }
+.gate-eyebrow { margin: 0; display: flex; align-items: center; gap: 0 10px; color: #fff; font-size: clamp(1rem, 1.8vw, 1.2rem); }
+/* Stack "Welcome…" above "I'm Megan Garcia" on mobile only. */
+@media (max-width: 560px) {
+  .gate-eyebrow { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
 .gate-eyebrow span { font-weight: 500; }
 .gate-eyebrow strong { font-weight: 700; }
 /* Extra line-height so the "under NDA" pill clears the line above (as on home);
