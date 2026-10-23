@@ -524,11 +524,20 @@ body.menu-open .nav__toggle { display: none; }
 .about-stage__copy p { font-size: 1.05rem; line-height: 1.75; text-wrap: pretty; }
 .ask { display: flex; flex-direction: column; gap: 12px; }
 .ask__label { font-family: var(--f-head); font-weight: 700; color: var(--ink); }
-.ask__tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.ask__tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+/* Flat tinted topic chips — themed to the mode, deliberately NOT pill-shaped so
+   they don't read as buttons. */
 .ask__tags li {
-  padding: 9px 16px; border-radius: 10px; background: #fff; border: 0;
-  font-weight: 600; font-size: .9rem; line-height: 1.3;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 12px 6px 11px; border-radius: 7px; border: 0;
+  background: #dfe4ff; color: var(--blue);
+  font-weight: 600; font-size: .88rem; line-height: 1.25;
 }
+.ask__tags li::before {
+  content: ""; width: 7px; height: 7px; border-radius: 2px; flex: none;
+  background: currentColor; transform: rotate(45deg);
+}
+.ask__tags--life li { background: #ffdeed; color: #d60059; }
 .about-stage__copy .btn { align-self: flex-start; }
 /* Off The Clock CTA mirrors the primary button in brand pink. */
 .about-cta--life {
@@ -596,11 +605,26 @@ body.menu-open .nav__toggle { display: none; }
   width: 100%; box-sizing: border-box; min-height: 56px;
   font-family: var(--f-body); font-size: 1rem; color: var(--ink);
   background: #fff; border: 0; border-radius: 999px;
-  padding: 0 148px 0 22px;
+  padding: 0 150px 0 22px;
 }
 .gate-field input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-.gate-unlock {
+/* Right-aligned cluster inside the field: show-password toggle + Unlock button. */
+.gate-field__controls {
   position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center; gap: 6px;
+}
+.gate-reveal {
+  width: 38px; height: 38px; flex: none; border: 0; background: transparent;
+  color: #5d6c7b; cursor: pointer; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .2s var(--ease), color .2s var(--ease);
+}
+.gate-reveal:hover { color: var(--ink); background: rgba(11, 11, 15, .06); }
+.gate-reveal svg { width: 20px; height: 20px; }
+.gate-reveal__hide { display: none; }
+.gate-reveal.is-revealed .gate-reveal__show { display: none; }
+.gate-reveal.is-revealed .gate-reveal__hide { display: inline-block; }
+.gate-unlock {
   min-height: 44px; padding: 0 20px; border-radius: 999px;
   border: 2px solid var(--blue); background: var(--blue); color: #fff;
   font-family: var(--f-body); font-weight: 700; font-size: 15px; cursor: pointer;
@@ -608,9 +632,24 @@ body.menu-open .nav__toggle { display: none; }
   transition: background .2s var(--ease), border-color .2s var(--ease);
 }
 .gate-unlock:hover { background: var(--blue-d); border-color: var(--blue-d); }
-.gate-error { margin: 0; display: flex; align-items: center; gap: 8px; color: #fff; font-weight: 700; font-size: .95rem; }
+.gate-unlock:disabled { cursor: default; }
+.gate-unlock__spin {
+  display: none; width: 15px; height: 15px; flex: none;
+  border: 2px solid rgba(255, 255, 255, .45); border-top-color: #fff; border-radius: 50%;
+  animation: gateSpin .6s linear infinite;
+}
+.gate-unlock.is-busy .gate-unlock__spin { display: inline-block; }
+@keyframes gateSpin { to { transform: rotate(360deg); } }
+/* Error: a clearly-flagged alert (icon + tinted container), not just a line of text. */
+.gate-error {
+  margin: 0; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 8px;
+  color: #c2003f; font-weight: 700; font-size: .9rem;
+  background: #fff; border: 1px solid rgba(194, 0, 63, .35);
+  padding: 8px 14px; border-radius: 10px;
+}
 .gate-error[hidden] { display: none; }
-.gate-error__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); flex: none; }
+.gate-error svg { width: 18px; height: 18px; flex: none; }
 
 .gate-or { display: flex; align-items: center; gap: 16px; width: 100%; max-width: 520px; }
 .gate-or span:first-child, .gate-or span:last-child { flex: 1; height: 2px; background: rgba(255, 255, 255, .6); }
@@ -623,8 +662,9 @@ body.menu-open .nav__toggle { display: none; }
 /* Small screens: keep the Unlock button inside the white field (a blue pill on the
    blue hero would vanish if stacked); just tighten the spacing so it fits. */
 @media (max-width: 440px) {
-  .gate-field input { padding-right: 126px; min-height: 52px; }
-  .gate-unlock { padding: 0 15px; }
+  .gate-field input { padding-right: 134px; min-height: 52px; }
+  .gate-reveal { width: 34px; height: 34px; }
+  .gate-unlock { padding: 0 14px; }
 }
 a.gate-preview:hover .gate-preview__cta { text-decoration: underline; }
 
@@ -634,13 +674,21 @@ a.gate-preview:hover .gate-preview__cta { text-decoration: underline; }
    ========================================================================== */
 .lofi-banner { display: none; }
 html.lo-fi .lofi-banner {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  gap: 14px clamp(20px, 3vw, 32px); text-align: center;
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 10px clamp(14px, 2.4vw, 22px);
   position: sticky; top: 0; z-index: 50;
-  background: #eef1ff; border-bottom: 1px solid var(--line);
-  padding: 14px clamp(20px, 5vw, 64px);
+  background: #eef1ff; border-bottom: 1px solid rgba(45, 81, 242, .18);
+  padding: 12px clamp(20px, 5vw, 64px);
 }
-.lofi-banner__text { max-width: 72ch; color: var(--ink); font-size: .95rem; }
+.lofi-banner__icon { flex: none; display: inline-flex; color: var(--blue); }
+.lofi-banner__icon svg { width: 20px; height: 20px; display: block; }
+.lofi-banner__text { color: var(--ink); font-size: .93rem; line-height: 1.45; }
+.lofi-banner__text strong { color: var(--blue); }
+.lofi-banner .btn { margin-left: auto; font-size: .85rem; min-height: 40px; padding: 0 18px; }
+@media (max-width: 620px) {
+  html.lo-fi .lofi-banner { justify-content: center; text-align: center; }
+  .lofi-banner .btn { margin: 2px auto 0; }
+}
 html.lo-fi body { background: #fff; }
 /* (Low-fi mockup treatment temporarily disabled — hand-drawn wireframe versions
    will be swapped in per image once supplied.) */
@@ -748,12 +796,12 @@ html.lo-fi body { background: #fff; }
 .hero__inner--row {
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: clamp(24px, 4vw, 56px); flex-wrap: wrap;
-  padding-block: clamp(44px, 8vw, 96px) clamp(110px, 15vw, 180px);
+  padding-block: clamp(96px, 10vw, 150px) clamp(110px, 15vw, 180px);
 }
 /* On mobile push the headline down so it clears the logo, and keep the blue
    deep enough that the résumé card still pokes into it. */
 @media (max-width: 560px) {
-  .hero__inner--row { padding-block: 84px 92px; }
+  .hero__inner--row { padding-block: 96px 92px; }
 }
 /* Compact the headline so it shares the row with the action buttons */
 .hero__inner--row .page-title {
@@ -1086,7 +1134,7 @@ html.lo-fi body { background: #fff; }
 @media (max-width: 560px) {
   .impact:not(:has(.impact__item:nth-child(4))) .impact__item { flex-basis: 50%; max-width: 50%; }
 }
-.impact__item { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px; text-align: center; }
+.impact__item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; text-align: center; }
 .impact__label { font-weight: 700; font-size: .95rem; letter-spacing: .02em; }
 .impact__n { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.6rem, 4.6vw, 3.8rem); line-height: 1; color: var(--ink); }
 .t-gold { color: #c98f00; }

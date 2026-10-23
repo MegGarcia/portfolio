@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=94">
+  <link rel="stylesheet" href="../css/style.css?v=95">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Gate state. Client-side only (static site) — a courtesy gate, not real auth. */
@@ -77,11 +77,15 @@
         <form id="gate-form" class="gate-form" novalidate>
           <div class="gate-field">
             <input id="pw" type="password" name="password" autocomplete="current-password" aria-label="Password" aria-describedby="pw-error" placeholder="Password">
-            <button type="submit" class="gate-unlock"><span class="gate-unlock__label">Unlock</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-            </button>
+            <div class="gate-field__controls">
+              <button type="button" class="gate-reveal" aria-label="Show password" aria-pressed="false">
+                <svg class="gate-reveal__show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <svg class="gate-reveal__hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"></path><path d="M10.6 10.6a3 3 0 0 0 4.2 4.2"></path><path d="M9.9 5.1A9.6 9.6 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3.2 3.9"></path><path d="M6.1 6.1A17 17 0 0 0 2 12s3.5 7 10 7a9.6 9.6 0 0 0 3.1-.5"></path></svg>
+              </button>
+              <button type="submit" class="gate-unlock"><span class="gate-unlock__label">Unlock</span><span class="gate-unlock__spin" aria-hidden="true"></span></button>
+            </div>
           </div>
-          <p id="pw-error" class="gate-error" role="alert" hidden><span class="gate-error__dot" aria-hidden="true"></span><span id="pw-error-msg">That password didn't work. Try again.</span></p>
+          <p id="pw-error" class="gate-error" role="alert" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h16.9a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span id="pw-error-msg">That password didn't work. Try again.</span></p>
         </form>
 
         <div class="gate-or" aria-hidden="true"><span></span><span class="gate-or__word">or</span><span></span></div>
@@ -132,7 +136,19 @@
       var err = document.getElementById('pw-error');
       var errMsg = document.getElementById('pw-error-msg');
       var btn = form.querySelector('.gate-unlock');
-      var btnLabel = form.querySelector('.gate-unlock__label');
+      var reveal = form.querySelector('.gate-reveal');
+
+      // Show / hide the typed password.
+      if (reveal && input) {
+        reveal.addEventListener('click', function () {
+          var show = input.type === 'password';
+          input.type = show ? 'text' : 'password';
+          reveal.setAttribute('aria-pressed', show ? 'true' : 'false');
+          reveal.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+          reveal.classList.toggle('is-revealed', show);
+          input.focus();
+        });
+      }
 
       function showError(msg) {
         if (errMsg && msg) errMsg.textContent = msg;
@@ -140,9 +156,8 @@
         if (input) { input.focus(); input.select(); }
       }
       function setBusy(busy) {
-        if (btn) btn.disabled = busy;
+        if (btn) { btn.disabled = busy; btn.classList.toggle('is-busy', busy); }
         if (input) input.disabled = busy;
-        if (btnLabel) btnLabel.textContent = busy ? 'Checking…' : 'Unlock';
       }
       function unlock(company) {
         try {
