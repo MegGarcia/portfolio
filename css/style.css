@@ -214,9 +214,12 @@ body:has(.hero) .site-header {
   background: transparent;
 }
 .nav {
-  display: flex; align-items: center; justify-content: space-between;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
   gap: 20px; min-height: 76px;
 }
+.nav > .brand { justify-self: start; }
+.nav > nav { justify-self: center; }
+.nav > .nav__right { justify-self: end; }
 /* Logo sits in a deep-blue box (matches the live site) so the white "M" stays
    legible over the hero shapes behind the transparent nav. */
 .brand { display: inline-flex; background: #0b46a5; padding: 4px; line-height: 0; }
