@@ -8,7 +8,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="../images/logo-5__6a6fe14c.png">
   <link rel="stylesheet" href="../fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=95">
+  <link rel="stylesheet" href="../css/style.css?v=96">
   <script>document.documentElement.classList.add("js");</script>
   <script>
   /* Access gate: full version when unlocked, low-fidelity preview when the
@@ -44,8 +44,7 @@
 
   <main id="main" class="cs-page cs--orange cs-redesign">
     <div class="lofi-banner" role="status">
-      <span class="lofi-banner__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
-      <span class="lofi-banner__text"><strong>Low-fidelity preview.</strong> You're seeing wireframe versions — enter the password for the full case study.</span>
+      <span class="lofi-banner__text"><strong>Limited Preview.</strong> You're seeing low-fidelity versions of the confidential screens. Log in to view the full case study.</span>
       <a class="btn btn--primary" href="../protected/?next=..%2Fproject-reset%2F">Enter password</a>
     </div>
     <!-- Hero -->
@@ -264,7 +263,7 @@
             if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
               a.classList.add('is-tip');
               clearTimeout(a._tipTimer);
-              a._tipTimer = setTimeout(function () { a.classList.remove('is-tip'); }, 30000);
+              a._tipTimer = setTimeout(function () { a.classList.remove('is-tip'); }, 5000);
             }
           });
         });
